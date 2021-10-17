@@ -17,7 +17,6 @@ export default function Hero__1({ data }) {
     const hours = Math.floor((total / (1000 * 60 * 60)) % 24);
     const days = Math.floor(total / (1000 * 60 * 60 * 24));
 
-    // Display the result in the element with id="demo"
     setDays(days);
     setHours(hours);
     setMinutes(minutes);
