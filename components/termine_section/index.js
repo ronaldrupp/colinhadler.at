@@ -23,6 +23,7 @@ export default function TermineSection({ data }) {
 
 const Container = styled.div`
   position: relative;
+  height: 600px;
 `;
 const OuterContainer = styled.div`
   position: absolute;
@@ -55,8 +56,9 @@ const Overlay = styled.div`
 
 const BackgroundImage = styled.img`
   width: 100%;
-  height: 600px;
+  height: 100%;
   object-fit: cover;
+  filter: saturate(0);
 `;
 
 const Btn = styled.a`

@@ -62,13 +62,13 @@ export default function Hero__1({ data }) {
 
 const Container = styled.div`
   width: 100%;
-  min-height: 100vh;
+  height: 100vh;
   position: relative;
 `;
 
 const BgImage = styled.img`
   width: 100%;
-  min-height: 100vh;
+  height: 100vh;
   object-fit: cover;
   filter: brightness(0.5);
 `;

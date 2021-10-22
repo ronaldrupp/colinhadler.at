@@ -9,15 +9,13 @@ export default function MeineBucherSection({ data }) {
   return (
     <Container>
       <h2>Meine Bücher</h2>
-      <ul>
-        {data.items.map((buch) => (
-          <li key={buch.buch.slug}>
-            <Link href={`/buch/${buch.buch.slug}`}>
-              <a>{buch.buch.uid}</a>
-            </Link>
-          </li>
-        ))}
-      </ul>
+      {data.items.map((buch) => (
+        <Link href={`/buch/${buch.buch.slug}`} key={buch.buch.slug}>
+          <a>
+          <Cover src={buch.buch.data.cover.url} />
+          </a>
+        </Link>
+      ))}
     </Container>
   );
 }
@@ -25,4 +23,8 @@ export default function MeineBucherSection({ data }) {
 const Container = styled.div`
   max-width: var(--main-width);
   margin: 20rem auto;
+`;
+
+const Cover = styled.img`
+  width: 200px;
 `;

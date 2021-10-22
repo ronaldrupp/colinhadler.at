@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { RichText } from "prismic-reactjs";
+
 export default function Hero__2({ data }) {
-  console.log(data);
   return (
     <Container>
       <BigBgTitle>

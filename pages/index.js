@@ -20,15 +20,13 @@ export const getStaticProps = async (req, ctx) => {
     accessToken: process.env.PRISMIC_API_ACCESS_TOKEN,
   });
 
-  const response = await client.query(
-    Prismic.Predicates.at("document.type", "homepage", {
-      fetchLinks: "bucher.cover",
-    })
-  );
-
+  const response = await client.getSingle("homepage", {
+    fetchLinks: "bucher.cover",
+  });
+  console.log(response.data.body[2].items[0].buch.data);
   return {
     props: {
-      data: response.results[0].data,
+      data: response.data,
     },
   };
 };

@@ -12,7 +12,6 @@ import HeaderTitle from "../components/header-title";
 import styled from "styled-components";
 
 export default function SliceResolver({ slice, data }) {
-  console.log(data);
   switch (data.slice_type) {
     case "hero__1":
       return <Hero__1 data={data} />;

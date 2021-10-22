@@ -2,7 +2,6 @@ import styled from "styled-components";
 import { RichText } from "prismic-reactjs";
 
 export default function Centered_Text({ data }) {
-  console.log(data);
   return (
     <Container>
       <TextContainer>{RichText.render(data.primary.text)}</TextContainer>
