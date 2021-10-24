@@ -1,9 +1,10 @@
 import styled from "styled-components";
 import { RichText } from "prismic-reactjs";
+
 export default function Gallerie({ data }) {
   return (
     <Container>
-      {data.items.map((bild, idx) => (
+      {data.fields.map((bild, idx) => (
         <Element>
           <Image src={bild.bild.url} key={bild.bild.url} />
           <TextContainer>{RichText.render(bild.beschreibung)}</TextContainer>

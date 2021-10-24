@@ -3,8 +3,9 @@
   --bg-color: hsl(0, 0%, 100%);
   --transition-duration: 0.3s;
   --navbar-height: 140px;
+  --navbar-mobile-height: 60px;
   --main-width: 1200px;
-  --font-family: 'Poppins', sans-serif;
+  --font-family: "Poppins", sans-serif;
 }
 
 html,
@@ -12,6 +13,7 @@ body {
   padding: 0;
   margin: 0;
   font-family: var(--font-family);
+  background-color: var(--bg-color);
 }
 
 a {

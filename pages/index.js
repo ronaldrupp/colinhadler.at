@@ -1,6 +1,14 @@
 import Prismic from "@prismicio/client";
 import SliceResolver from "./../utils/SliceResolver";
 import Head from "next/head";
+import { PrismicLink } from "apollo-link-prismic";
+import {
+  InMemoryCache,
+  IntrospectionFragmentMatcher,
+} from "apollo-cache-inmemory";
+import ApolloClient from "apollo-client";
+import gql from "graphql-tag";
+import fragmentTypes from "./../utils/fragmentTypes.json";
 
 export default function Home({ data }) {
   return (
@@ -15,18 +23,100 @@ export default function Home({ data }) {
   );
 }
 
-export const getStaticProps = async (req, ctx) => {
-  const client = Prismic.client(process.env.PRISMIC_API_URL, {
+const fragmentMatcher = new IntrospectionFragmentMatcher({
+  introspectionQueryResultData: fragmentTypes,
+});
+const client = new ApolloClient({
+  link: PrismicLink({
+    uri: "https://colinhadler.cdn.prismic.io/graphql",
     accessToken: process.env.PRISMIC_API_ACCESS_TOKEN,
-  });
+  }),
+  cache: new InMemoryCache({ fragmentMatcher }),
+});
 
-  const response = await client.getSingle("homepage", {
-    fetchLinks: "bucher.cover",
+export const getStaticProps = async (req, ctx) => {
+  const response = await client.query({
+    query: gql`
+      {
+        allHomepages(uid: "index") {
+          edges {
+            node {
+              title
+              body {
+                __typename
+                ... on HomepageBodyHero__1 {
+                  primary {
+                    releasedatum
+                    hintergrundbild
+                    kurzbeschreibung
+                    cover
+                  }
+                }
+                ... on HomepageBodyUberMich_section {
+                  primary {
+                    bild
+                    hintergrundnamen
+                    hintergrundfarbe
+                    button_label
+                    kurze_beschreibung
+                    link_zur_internen_seite {
+                      ... on _Document {
+                        _meta {
+                          uid
+                        }
+                      }
+                    }
+                  }
+                }
+                ... on HomepageBodyMeineBucher_section {
+                  fields {
+                    buch {
+                      ... on Bucher {
+                        cover
+                        _meta {
+                          uid
+                        }
+                      }
+                    }
+                  }
+                }
+                ... on HomepageBodyTermine_section {
+                  primary {
+                    kurzbeschreibung
+                    titel
+                    hintergrundbild
+                    link_zur_internen_seite {
+                      ... on _Document {
+                        _meta {
+                          uid
+                        }
+                      }
+                    }
+                  }
+                }
+                ... on HomepageBodyKontakt_banner {
+                  primary {
+                    titel
+                  }
+                  fields {
+                    icon
+                    link {
+                      ... on _ExternalLink {
+                        url
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    `,
   });
-  console.log(response.data.body[2].items[0].buch.data);
   return {
     props: {
-      data: response.data,
+      data: response.data.allHomepages.edges[0].node,
     },
   };
 };

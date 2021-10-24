@@ -14,4 +14,7 @@ const Container = styled.div`
   margin-left: auto;
   margin-right: auto;
   padding: 0 1rem;
+  @media screen and (max-width: 768px) {
+    margin-top: var(--navbar-mobile-height);
+  }
 `;

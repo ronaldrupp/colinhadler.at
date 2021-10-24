@@ -8,7 +8,7 @@ export default function KontaktBanner({ data }) {
       <InnerContainer>
         {RichText.render(data.primary.titel)}
         <SocialLinksContainer className="socialLinks">
-          {data.items.map((link, idx) => (
+          {data.fields.map((link, idx) => (
             <SocialLinkItem
               href={link.link.url}
               key={idx}
@@ -25,7 +25,7 @@ export default function KontaktBanner({ data }) {
 
 const Container = styled.div`
   width: 100%;
-  background-color: black;
+  background-color: var(--bg-color);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -36,7 +36,6 @@ const InnerContainer = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  color: white;
   max-width: var(--main-width);
   padding: 0 1rem;
   width: 100%;
@@ -63,6 +62,7 @@ const SocialLinkItem = styled.a`
   padding: 1rem;
   border-radius: 999px;
   transition: var(--transition-duration);
+  filter: invert(1);
   &:hover {
     filter: brightness(0.7);
   }

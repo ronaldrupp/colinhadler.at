@@ -11,6 +11,25 @@ const Container = styled.div`
   flex-direction: column;
   justify-content: flex-start;
   align-items: flex-start;
-  margin: 0 auto;
+  margin: 2rem auto;
   max-width: var(--main-width);
+  a {
+    font-weight: 600;
+    position: relative;
+    &:after {
+      content: "";
+      height: 2.5px;
+      width: 0%;
+      background-color: black;
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      transition: .4s;
+    }
+    &:hover {
+      &:after {
+        width: 100%;
+      }
+    }
+  }
 `;

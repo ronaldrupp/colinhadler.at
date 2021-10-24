@@ -21,7 +21,6 @@ export default function Hero__1({ data }) {
     setHours(hours);
     setMinutes(minutes);
     setSeconds(seconds);
-
   }
 
   useEffect(() => {
@@ -84,6 +83,8 @@ const Overlay = styled.div`
   color: white;
   @media screen and (max-width: 768px) {
     flex-direction: column;
+    justify-content: center;
+    gap: 2rem;
   }
 `;
 
@@ -91,7 +92,7 @@ const Quote = styled.div`
   color: white;
   font-size: 1.5rem;
   margin-bottom: 5rem;
-  @media screen and (max-width: 768px){
+  @media screen and (max-width: 768px) {
     display: none;
   }
 `;
@@ -114,4 +115,12 @@ const Countdown = styled.span`
   font-weight: 800;
 `;
 
-const TextContent = styled.div``;
+const TextContent = styled.div`
+  @media screen and (max-width: 768px) {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    text-align: center;
+  }
+`;

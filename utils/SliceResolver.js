@@ -10,31 +10,37 @@ import Gallerie from "../components/gallerie";
 import HeaderTitle from "../components/header-title";
 
 import styled from "styled-components";
+import All_Books from "../components/all_books";
+import Buch_Detail from "../components/buch_detail";
 
 export default function SliceResolver({ slice, data }) {
-  switch (data.slice_type) {
-    case "hero__1":
+  switch (data.__typename) {
+    case "HomepageBodyHero__1":
       return <Hero__1 data={data} />;
-    case "uber-mich_section":
+    case "HomepageBodyUberMich_section":
       return <UberMichSection data={data} />;
-    case "meine-bucher_section":
+    case "HomepageBodyMeineBucher_section":
       return <MeineBucherSection data={data} />;
-    case "termine_section":
+    case "HomepageBodyTermine_section":
       return <TermineSection data={data}></TermineSection>;
-    case "kontakt_banner":
+    case "HomepageBodyKontakt_banner":
       return <KontaktBanner data={data} />;
-    case "hero_2":
+    case "PagesBodyHero_2":
       return <Hero__2 data={data} />;
-    case "centered_text":
+    case "PagesBodyCentered_text":
       return <Centered_Text data={data} />;
-    case "freier_text":
+    case "PagesBodyFreier_text":
       return <Freier_Text data={data} />;
-    case "gallerie":
+    case "PagesBodyGallerie":
       return <Gallerie data={data} />;
-    case "header":
+    case "PagesBodyHeader":
       return <HeaderTitle data={data} />;
+    case "PagesBodyAll_books":
+      return <All_Books data={data} />;
+    case "PagesBodyBuch_detail":
+      return <Buch_Detail data={data} />;
     default:
-      return <Container>component not found</Container>;
+      return <Container>{console.log(data)}component not found</Container>;
   }
 }
 

@@ -11,7 +11,7 @@ export default function TermineSection({ data }) {
           <Overlay>
             {RichText.render(data.primary.titel)}
             {RichText.render(data.primary.kurzbeschreibung)}
-            <Link href={data.primary.link_zur_internen_seite.slug}>
+            <Link href={data.primary.link_zur_internen_seite._meta.uid}>
               <Btn>Mehr erfahren</Btn>
             </Link>
           </Overlay>

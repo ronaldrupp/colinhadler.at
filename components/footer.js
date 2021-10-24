@@ -6,20 +6,21 @@ export default function Footer({ data }) {
   return (
     <Container>
       <InnerContainer>
-        <ul>
-          {data.data.sitemap.map((site) => (
-            <li key={site.interne_seite.uid}>
-              <Link href={site.interne_seite.uid}>
-                <a>{RichText.render(site.seitennamen)}</a>
-              </Link>
-            </li>
+        <List>
+          {data.node.sitemap.map((site) => (
+            <Link
+              href={site.interne_seite._meta.uid}
+              key={site.interne_seite._meta.uid}
+            >
+              <a>{RichText.render(site.seitennamen)}</a>
+            </Link>
           ))}
-        </ul>
+        </List>
         <LegalNoticeContainer>
           <ul>
-            {data.data.legal_notice.map((site) => (
-              <li key={site.interne_seiten.uid}>
-                <Link href={site.interne_seiten.uid}>
+            {data.node.legal_notice.map((site) => (
+              <li key={site.interne_seiten._meta.uid}>
+                <Link href={site.interne_seiten._meta.uid}>
                   <a>{RichText.render(site.seitennamen)}</a>
                 </Link>
               </li>
@@ -34,19 +35,35 @@ export default function Footer({ data }) {
 const Container = styled.footer`
   width: 100%;
   padding: 2rem 0;
+  background-color: black;
+  color: white;
   h1 {
     margin: 0.25rem 0;
-  }
-  ul {
-    padding: 0;
   }
   li {
     list-style: none;
   }
   a {
-    transition: 0.3s;
+    transition: all 0.2s ease-in-out;
+    position: relative;
+    &:after {
+      content: "";
+      position: absolute;
+      top: 50px;
+      width: 0px;
+      height: 5px;
+      transition: all 0.2s ease-in-out;
+      transition-duration: 0.75s;
+      opacity: 1;
+      background-color: white;
+      left: 0;
+    }
     &:hover {
-      filter: brightness(0.7);
+      cursor: pointer;
+      &:after {
+        width: 100%;
+        opacity: 1;
+      }
     }
   }
 `;
@@ -61,4 +78,15 @@ const LegalNoticeContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  ul{
+    padding: 0;
+  }
+`;
+
+const List = styled.ul`
+  padding: 0;
+  display: flex;
+  justify-content: flex-start;
+  flex-direction: column;
+  align-items: flex-start;
 `;
