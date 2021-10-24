@@ -32,6 +32,7 @@ export default class MyApp extends NextApp {
             name="viewport"
             content="width=device-width, initial-scale=1.0"
           />
+      <meta name="robots" content="noindex" />
           <meta charSet="utf-8" />
           <meta name="theme-color" content="var(--bg-color)" />
           <link
