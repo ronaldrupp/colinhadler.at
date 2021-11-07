@@ -44,7 +44,7 @@ const InnerContainer = styled.div`
 `;
 
 const TextContainer = styled.div`
-  width: 30ch;
+  max-width: 30ch;
 `;
 
 const Btn = styled.a`
@@ -94,4 +94,7 @@ const Bild = styled.div`
   top: 30%;
   right: 10%;
   z-index: 2;
+  @media screen and (max-width: 768px) {
+    display: none;
+  }
 `;

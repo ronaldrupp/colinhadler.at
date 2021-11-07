@@ -62,6 +62,7 @@ export default function Hero__1({ data }) {
 const Container = styled.div`
   width: 100%;
   height: 100vh;
+  min-height: 600px;
   position: relative;
 `;
 
@@ -81,6 +82,7 @@ const Overlay = styled.div`
   max-width: calc(var(--main-width) - 200px);
   margin: 0 auto;
   color: white;
+  gap: 1rem;
   @media screen and (max-width: 768px) {
     flex-direction: column;
     justify-content: center;
@@ -92,6 +94,7 @@ const Quote = styled.div`
   color: white;
   font-size: 1.5rem;
   margin-bottom: 5rem;
+  font-weight: 800;
   @media screen and (max-width: 768px) {
     display: none;
   }
@@ -101,10 +104,13 @@ const Cover = styled.img`
   max-width: 400px;
   height: auto;
   object-fit: contain;
+  @media screen and (max-width: 768px) {
+    width: 300px;
+  }
 `;
 
 const Time = styled.span`
-  font-weight: 500;
+  font-weight: 300;
   color: white;
   margin-right: 0.5rem;
 `;
@@ -112,10 +118,11 @@ const Time = styled.span`
 const Countdown = styled.span`
   color: white;
   font-size: 2rem;
-  font-weight: 800;
+  font-weight: 600;
 `;
 
 const TextContent = styled.div`
+  padding: 1rem;
   @media screen and (max-width: 768px) {
     display: flex;
     justify-content: center;

@@ -25,6 +25,7 @@ const Container = styled.div`
   margin: 20rem auto;
   display: flex;
   align-items: center;
+  overflow: hidden;
 `;
 
 const Cover = styled.img`

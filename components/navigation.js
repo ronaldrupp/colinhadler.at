@@ -4,6 +4,8 @@ import { RichText } from "prismic-reactjs";
 import { useEffect, useState } from "react";
 import Logo from "./../public/colin-hadler-logo.svg";
 import { useRouter } from "next/router";
+import { AnimatePresence, motion } from "framer-motion";
+import MenuSVG from './../public/menu.svg';
 
 export default function Navigation({ data }) {
   const router = useRouter();
@@ -23,26 +25,57 @@ export default function Navigation({ data }) {
   }, []);
   return (
     <>
-      {showMobileContainer && (
-        <MobileContainer>
-          <button onClick={() => setMobileContainer(false)}>button</button>
-        </MobileContainer>
-      )}
+      <AnimatePresence>
+        {showMobileContainer && (
+          <MobileContainer
+            initial={{ y: "-100%" }}
+            animate={{ y: 0 }}
+            exit={{ y: "-100%" }}
+            transition={{ duration: 0.5 }}
+          >
+            <div>
+              {data.node.interne_seiten.map((site) => (
+                <li key={site.interne_seite._meta.uid}>
+                  <Link href={site.interne_seite._meta.uid}>
+                    <LinkItem
+                      active={
+                        router.asPath === site.interne_seite._meta.uid
+                          ? true
+                          : false
+                      }
+                    >
+                      {RichText.render(site.seitennamen)}
+                    </LinkItem>
+                  </Link>
+                </li>
+              ))}
+            </div>
+          </MobileContainer>
+        )}
+      </AnimatePresence>
       <Container windowScroll={windowScroll} index={router.route}>
         <InnerContainer>
           <Link href="/">
-            <a>
+            <LogoContainerLink>
               <LogoContainer />
-            </a>
+            </LogoContainerLink>
           </Link>
-          <MenuButton onClick={() => setMobileContainer(true)}>
-            BUTTON
+          <MenuButton onClick={() => setMobileContainer(!showMobileContainer)}>
+            <MenuSVG />
           </MenuButton>
           <LinkContainer>
             {data.node.interne_seiten.map((site) => (
               <li key={site.interne_seite._meta.uid}>
                 <Link href={site.interne_seite._meta.uid}>
-                  <a>{RichText.render(site.seitennamen)}</a>
+                  <LinkItem
+                    active={
+                      router.asPath === site.interne_seite._meta.uid
+                        ? true
+                        : false
+                    }
+                  >
+                    {RichText.render(site.seitennamen)}
+                  </LinkItem>
                 </Link>
               </li>
             ))}
@@ -52,6 +85,8 @@ export default function Navigation({ data }) {
     </>
   );
 }
+
+const LinkItem = styled.a``;
 
 const Container = styled.nav`
   position: fixed;
@@ -73,9 +108,18 @@ const Container = styled.nav`
   }
 `;
 
+const LogoContainerLink = styled.a`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+`;
 const LogoContainer = styled(Logo)`
   height: 75px;
   object-fit: contain;
+  @media screen and (max-width: 768px) {
+    height: 50px;
+  }
 `;
 
 const InnerContainer = styled.div`
@@ -157,14 +201,25 @@ const MenuButton = styled.button`
   display: none;
   @media screen and (max-width: 768px) {
     display: block;
+    width: 35px;
+    height: 35px;
+    border: none;
+    background: none;
   }
 `;
 
-const MobileContainer = styled.div`
+const MobileContainer = styled(motion.div)`
   width: 100%;
   height: 100vh;
   position: fixed;
   inset: 0;
-  background-color: var(--bg-color);
-  z-index: 9999;
+  background-color: var(--primary-color);
+  color: white;
+  z-index: 999;
+  padding: 1rem;
+  padding-top: var(--navbar-mobile-height);
+  ul,
+  li {
+    list-style: none;
+  }
 `;

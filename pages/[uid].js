@@ -9,15 +9,14 @@ import ApolloClient from "apollo-client";
 import gql from "graphql-tag";
 import fragmentTypes from "./../utils/fragmentTypes.json";
 
-import { impressumSlices } from "../prismic-graphql-querries";
 export default function Page({ data }) {
   return (
     <>
       <Head>
         <title> | Colin Hadler</title>
       </Head>
-      {data.allPagess.edges[0].node.body.map((elm) => (
-        <SliceResolver slice={elm.slice_type} data={elm} key={elm.slice_type} />
+      {data.allPagess.edges[0].node.body.map((elm, idx) => (
+        <SliceResolver slice={elm.slice_type} data={elm} key={idx} />
       ))}
     </>
   );
@@ -102,6 +101,31 @@ export const getStaticProps = async (ctx) => {
                 ... on PagesBodyHeader {
                   primary {
                     headertitle
+                  }
+                }
+                ... on PagesBodyPresse_medien__bilder{
+            fields{
+              bild
+              titel1
+              untertitel
+            }
+          }
+          ... on PagesBodyPresse_medien__videos{
+            fields{
+              externer_videolink{
+                ... on _ExternalLink{
+                  url
+                }
+              }
+              titel1
+              untertitel
+            }
+          }
+          ... on PagesBodyTerminliste{
+                  fields{
+                    titel_des_events,
+                    ort,
+                    datum___uhrzeit
                   }
                 }
                 ... on PagesBodyAll_books {

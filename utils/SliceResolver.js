@@ -12,6 +12,9 @@ import HeaderTitle from "../components/header-title";
 import styled from "styled-components";
 import All_Books from "../components/all_books";
 import Buch_Detail from "../components/buch_detail";
+import PressImageGallery from "../components/pressImageGallery";
+import PressVideoGallery from "../components/PressVideoGallery";
+import TerminList from "../components/terminlist";
 
 export default function SliceResolver({ slice, data }) {
   switch (data.__typename) {
@@ -39,6 +42,12 @@ export default function SliceResolver({ slice, data }) {
       return <All_Books data={data} />;
     case "PagesBodyBuch_detail":
       return <Buch_Detail data={data} />;
+    case "PagesBodyPresse_medien__bilder":
+      return <PressImageGallery data={data} />;
+    case "PagesBodyPresse_medien__videos":
+      return <PressVideoGallery data={data} />;
+    case "PagesBodyTerminliste":
+      return <TerminList data={data} />
     default:
       return <Container>{console.log(data)}component not found</Container>;
   }

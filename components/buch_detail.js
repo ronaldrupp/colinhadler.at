@@ -12,11 +12,14 @@ export default function Buch_Detail({ data }) {
           <MerchantsContainer>
             {data.primary.buch.listoflinks &&
               data.primary.buch.listoflinks.map((merchant, idx) => (
-                <MerchantItem href={merchant.link.url} key={idx}>
-                  <Logo src={merchant.merchant.logo_of_merchant.url} />
-                </MerchantItem>
+                <>
+                  <MerchantItem href={merchant.link.url} key={idx}>
+                    <Logo src={merchant.merchant.logo_of_merchant.url} />
+                  </MerchantItem>
+                </>
               ))}
           </MerchantsContainer>
+          <p>Am besten bestellen Sie in Ihrer lokalen Buchhandlung!</p>
         </Infos>
       </Header>
       <Description>
