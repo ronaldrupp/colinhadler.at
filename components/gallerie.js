@@ -27,11 +27,18 @@ const Container = styled.div`
 
 const Image = styled.img`
   width: 100%;
+  max-height: 600px;
+  object-fit: cover;
+  @media screen and (max-width:768px){
+    width: 100%;
+  }
 `;
 
 const Element = styled.div`
   display: flex;
   max-width: var(--main-width);
+  flex-direction: column;
+  align-items: center;
   @media screen and (max-width: 768px) {
     flex-direction: column;
   }

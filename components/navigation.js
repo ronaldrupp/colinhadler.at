@@ -5,7 +5,8 @@ import { useEffect, useState } from "react";
 import Logo from "./../public/colin-hadler-logo.svg";
 import { useRouter } from "next/router";
 import { AnimatePresence, motion } from "framer-motion";
-import MenuSVG from './../public/menu.svg';
+import MenuSVG from "./../public/menu.svg";
+import XSVG from "./../public/x.svg";
 
 export default function Navigation({ data }) {
   const router = useRouter();
@@ -61,7 +62,17 @@ export default function Navigation({ data }) {
             </LogoContainerLink>
           </Link>
           <MenuButton onClick={() => setMobileContainer(!showMobileContainer)}>
-            <MenuSVG />
+            <AnimatePresence>
+              {showMobileContainer ? (
+                <motion.div animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
+                  <XSVG />
+                </motion.div>
+              ) : (
+                <motion.div animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
+                  <MenuSVG />
+                </motion.div>
+              )}
+            </AnimatePresence>
           </MenuButton>
           <LinkContainer>
             {data.node.interne_seiten.map((site) => (

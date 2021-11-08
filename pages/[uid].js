@@ -45,6 +45,20 @@ export const getStaticProps = async (ctx) => {
               }
               body {
                 __typename
+                ... on PagesBodyUber_mich__image__2{
+                  primary{
+                    bild,
+                    beschreibung,
+                    links_oder_rechts
+                  }
+                }
+                ... on PagesBodyUber_mich__image_landscape{
+                  primary{
+                    bild,
+                    beschreibung,
+                    links_oder_rechts
+                  }
+                }
                 ... on PagesBodyBuch_detail{
             primary{
               buch{

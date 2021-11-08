@@ -15,6 +15,8 @@ import Buch_Detail from "../components/buch_detail";
 import PressImageGallery from "../components/pressImageGallery";
 import PressVideoGallery from "../components/PressVideoGallery";
 import TerminList from "../components/terminlist";
+import PotraitImageWithText from "../components/PotraitImageWithText";
+import LandscapeImageWithText from "../components/LandscapeImageWithText";
 
 export default function SliceResolver({ slice, data }) {
   switch (data.__typename) {
@@ -47,7 +49,11 @@ export default function SliceResolver({ slice, data }) {
     case "PagesBodyPresse_medien__videos":
       return <PressVideoGallery data={data} />;
     case "PagesBodyTerminliste":
-      return <TerminList data={data} />
+      return <TerminList data={data} />;
+    case "PagesBodyUber_mich__image__2":
+      return <PotraitImageWithText data={data} />;
+    case "PagesBodyUber_mich__image_landscape":
+      return <LandscapeImageWithText data={data} />;
     default:
       return <Container>{console.log(data)}component not found</Container>;
   }

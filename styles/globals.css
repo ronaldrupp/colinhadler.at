@@ -1,6 +1,7 @@
 :root {
   --primary-color: hsl(0, 0%, 0%);
   --bg-color: hsl(0, 0%, 100%);
+  --secondary-color: #fff1da;
   --transition-duration: 0.3s;
   --navbar-height: 140px;
   --navbar-mobile-height: 60px;
