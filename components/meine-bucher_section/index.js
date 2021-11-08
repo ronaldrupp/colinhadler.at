@@ -52,5 +52,4 @@ const Cover = styled.img`
 `;
 
 const ElementContainer = styled.a`
-  width: 100%;
 `;
