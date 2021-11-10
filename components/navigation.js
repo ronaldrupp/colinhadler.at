@@ -39,7 +39,7 @@ export default function Navigation({ data }) {
                 <li key={site.interne_seite._meta.uid}>
                   <Link href={site.interne_seite._meta.uid}>
                     <LinkItem
-                      active={
+                      activeClass={
                         router.asPath === site.interne_seite._meta.uid
                           ? true
                           : false
@@ -80,7 +80,7 @@ export default function Navigation({ data }) {
                 <Link href={site.interne_seite._meta.uid}>
                   <LinkItem
                     active={
-                      router.asPath === site.interne_seite._meta.uid
+                      router.asPath === "/" + site.interne_seite._meta.uid
                         ? true
                         : false
                     }
@@ -97,14 +97,50 @@ export default function Navigation({ data }) {
   );
 }
 
-const LinkItem = styled.a``;
+const LinkItem = styled.a`
+  h2 {
+    color: inherit;
+    font-size: 1rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    transition: var(--transition-duration);
+    position: relative;
+    overflow: hidden;
+
+    &:after {
+      content: "";
+      position: absolute;
+      width: 100%;
+      left: 0;
+      bottom: 0;
+      height: 1px;
+      transform-origin: right center;
+      transition: transform 0.6s cubic-bezier(0.19, 1, 0.22, 1),
+        -webkit-transform 0.6s cubic-bezier(0.19, 1, 0.22, 1);
+      background-color: black;
+      transform: ${(props) => {
+        return props.active ? "scaleX(1)" : "scaleX(0)";
+      }};
+    }
+    &:hover {
+      cursor: pointer;
+      &:after {
+        transform: scaleX(1);
+        transform-origin: left center;
+      }
+    }
+  }
+  font-size: 1rem;
+  transition: all 0.2s ease-in-out;
+  position: relative;
+`;
 
 const Container = styled.nav`
   position: fixed;
   width: 100%;
   height: ${(props) => (props.windowScroll.y > 60 ? "75px" : "150px")};
   border-bottom: ${(props) =>
-    props.windowScroll.y > 60 && "1px solid rgb(200,200,200)"};
+    props.windowScroll.y > 60 && "1px solid rgba(200,200,200,0.6)"};
   top: 0;
   z-index: 999;
   transition: 0.3s;
@@ -113,7 +149,9 @@ const Container = styled.nav`
       ? "invert(1)"
       : "invert(0)"};
   background-color: ${(props) =>
-    props.windowScroll.y > 60 ? "white" : "transparent"};
+    props.windowScroll.y > 60 ? "rgba(255,255,255,1)" : "transparent"};
+  /* backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px); */
   @media screen and (max-width: 768px) {
     height: var(--navbar-mobile-height);
   }
@@ -153,58 +191,6 @@ const LinkContainer = styled.ul`
   gap: 1rem;
   @media screen and (max-width: 768px) {
     display: none;
-  }
-  a > h2 {
-    color: inherit;
-    font-size: 1rem;
-    font-weight: 600;
-    text-transform: uppercase;
-    transition: var(--transition-duration);
-    position: relative;
-    overflow: hidden;
-
-    &:after {
-      content: "";
-      position: absolute;
-      width: 100%;
-      left: 0;
-      bottom: 0;
-      height: 1px;
-      transition: all 0.15s ease-in-out;
-      transition-duration: 0.75s;
-      background-color: black;
-      transform: translateX(-100%);
-    }
-    &:hover {
-      cursor: pointer;
-      &:after {
-        transform: translateX(0%);
-      }
-    }
-  }
-  a {
-    font-size: 1rem;
-    transition: all 0.2s ease-in-out;
-    position: relative;
-    &:after {
-      content: "";
-      position: absolute;
-      top: 50px;
-      width: 0px;
-      height: 5px;
-      transition: all 0.2s ease-in-out;
-      transition-duration: 0.75s;
-      opacity: 1;
-      background-color: inherit;
-      left: 0;
-    }
-    &:hover {
-      cursor: pointer;
-      &:after {
-        width: 100%;
-        opacity: 1;
-      }
-    }
   }
 `;
 

@@ -34,7 +34,7 @@ const OuterContainer = styled.div`
 `;
 const InnerContainer = styled.div`
   display: flex;
-  justify-content: flex-start;
+  justify-content: flex-end;
   align-items: center;
   width: 100%;
   height: inherit;

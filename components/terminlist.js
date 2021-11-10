@@ -28,7 +28,7 @@ const Container = styled.section`
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   max-width: var(--main-width);
-  padding: 1rem;
+  padding: 4rem 1rem;
   margin: 0 auto;
   @media screen and (max-width: 768px) {
     grid-template-columns: 1fr;

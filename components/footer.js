@@ -50,10 +50,12 @@ const Container = styled.footer`
       content: "";
       position: absolute;
       top: 50px;
-      width: 0px;
+      width: 100%;
       height: 5px;
-      transition: all 0.2s ease-in-out;
-      transition-duration: 0.75s;
+      transform: scaleX(0);
+      transform-origin: right center;
+      transition: transform 0.6s cubic-bezier(0.19, 1, 0.22, 1),
+        -webkit-transform 0.6s cubic-bezier(0.19, 1, 0.22, 1);
       opacity: 1;
       background-color: white;
       left: 0;
@@ -61,8 +63,8 @@ const Container = styled.footer`
     &:hover {
       cursor: pointer;
       &:after {
-        width: 100%;
-        opacity: 1;
+        transform: scaleX(1);
+        transform-origin: left center;
       }
     }
   }
