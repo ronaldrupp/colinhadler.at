@@ -55,14 +55,47 @@ export default function SliceResolver({ slice, data }) {
     case "PagesBodyUber_mich__image_landscape":
       return <LandscapeImageWithText data={data} />;
     default:
-      return <Container>{console.log(data)}component not found</Container>;
+      return (
+        <Container>
+          {console.log(data)}
+          <code>component not found</code>
+        </Container>
+      );
   }
 }
 
 const Container = styled.div`
   margin: 0 auto;
-  padding: 1rem;
+  padding: 2rem;
+  margin: 2rem;
   background-color: black;
   color: white;
   text-align: center;
+  border: 1px solid white;
+  @keyframes mymove {
+    from {
+      transform: scaleX(0);
+    }
+    to {
+      tranform: scale(1);
+    }
+  }
+  code {
+    position: relative;
+    &:after {
+      content: "";
+      position: absolute;
+      bottom: -5px;
+      width: 100%;
+      height: 1px;
+      transform-origin: center center;
+
+      transition: transform 0.6s cubic-bezier(0.19, 1, 0.22, 1),
+        -webkit-transform 0.6s cubic-bezier(0.19, 1, 0.22, 1);
+      opacity: 1;
+      background-color: white;
+      left: 0;
+      animation: mymove 2s infinite alternate-reverse;
+    }
+  }
 `;

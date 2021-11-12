@@ -12,7 +12,9 @@ export default function TermineSection({ data }) {
             {RichText.render(data.primary.titel)}
             {RichText.render(data.primary.kurzbeschreibung)}
             <Link href={data.primary.link_zur_internen_seite._meta.uid}>
-              <Btn>Mehr erfahren</Btn>
+              <Btn>
+                <span>Mehr erfahren</span>
+              </Btn>
             </Link>
           </Overlay>
         </InnerContainer>
@@ -21,9 +23,11 @@ export default function TermineSection({ data }) {
   );
 }
 
-const Container = styled.div`
+const Container = styled.section`
   position: relative;
   height: 600px;
+  display: flex;
+  flex-direction: column;
 `;
 const OuterContainer = styled.div`
   position: absolute;
@@ -31,6 +35,9 @@ const OuterContainer = styled.div`
   left: 0;
   width: 100%;
   height: 100%;
+  @media screen and (max-width: 768px) {
+    position: unset;
+  }
 `;
 const InnerContainer = styled.div`
   display: flex;
@@ -52,6 +59,10 @@ const Overlay = styled.div`
   h1 {
     margin: 0;
   }
+  @media screen and (max-width: 768px) {
+    padding: 1rem;
+    width: 100%;
+  }
 `;
 
 const BackgroundImage = styled.img`
@@ -63,10 +74,27 @@ const BackgroundImage = styled.img`
 
 const Btn = styled.a`
   background-color: black;
-  padding: 0.75rem 2rem;
   color: white;
+  padding: 0.75rem 2rem;
   margin-top: 1rem;
   font-weight: 700;
   font-size: 0.8rem;
   cursor: pointer;
+  position: relative;
+  :before {
+    content: "";
+    width: 100%;
+    height: 100%;
+    background-color: white;
+    position: absolute;
+    top: 0;
+    left: 0;
+    transform: scaleX(0);
+    transform-origin: right center;
+    transition: transform 0.6s cubic-bezier(0.19, 1, 0.22, 1),
+      -webkit-transform 0.6s cubic-bezier(0.19, 1, 0.22, 1);
+  }
+  :hover {
+    filter: brightness(1.5);
+  }
 `;
