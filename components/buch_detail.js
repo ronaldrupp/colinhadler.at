@@ -55,6 +55,7 @@ const MerchantsContainer = styled.div`
 const Description = styled.div`
   max-width: 70ch;
   margin: 6rem auto;
+  text-align: justify;
 `;
 const Header = styled.div`
   display: grid;

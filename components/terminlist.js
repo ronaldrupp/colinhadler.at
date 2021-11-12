@@ -4,6 +4,12 @@ import dayjs from "dayjs";
 
 export default function TerminList({ data }) {
   console.log(data);
+  if (data.fields.length <= 0)
+    return (
+      <NoEventsContainer>
+        <span>Momentan keine öffentlichen Lesungen geplant.</span>
+      </NoEventsContainer>
+    );
   return (
     <Container>
       {data.fields.map((event) => (
@@ -21,6 +27,18 @@ export default function TerminList({ data }) {
   );
 }
 
+const NoEventsContainer = styled.div`
+  display: grid;
+  place-items: center;
+  padding: 4rem 0;
+  margin: 0 auto;
+  max-width: var(--main-width);
+  span {
+    font-weight: 100;
+    color: rgb(150, 150, 150);
+    text-align: center;
+  }
+`;
 const EventDetails = styled.div`
   margin-top: 1rem;
 `;

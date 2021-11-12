@@ -25,17 +25,16 @@ const Container = styled.section`
   padding: 10rem 0rem;
   background-color: var(--secondary-color);
   @media screen and (max-width: 768px) {
-    grid-template-rows: repeat(6, 1fr);
   }
 `;
 
 const Image = styled.img`
   width: 100%;
-  grid-column: ${(params) => (params.leftRight ? "6 / 12" : "4 / 8")};
-  grid-row: 1/12;
+  grid-column: ${(params) => (params.leftRight ? "6 / 12" : "4 / 9")};
+  grid-row: 1/13;
   @media screen and (max-width: 768px) {
-    grid-column: 1/12;
-    grid-row: 1/2;
+    grid-column: ${(params) => (params.leftRight ? "6 / 13" : "1 / 10")};
+    grid-row: 1/12;
   }
 `;
 
@@ -60,8 +59,8 @@ const Description = styled.div`
   }
   @media screen and (max-width: 768px) {
     font-size: 1rem;
-    padding: 2.5rem;
-    grid-column: 2/13;
-    grid-row: 2/3;
+    padding: 2rem;
+    grid-column: ${(params) => (!params.leftRight ? "2 / 13" : "1 / 8")};
+    grid-row: 10 / auto;
   }
 `;

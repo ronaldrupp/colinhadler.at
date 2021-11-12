@@ -2,6 +2,7 @@ import { RichText } from "prismic-reactjs";
 import { useEffect, useRef, useState } from "react";
 import styled from "styled-components";
 import gsap from "gsap";
+import Link from "next/link";
 
 export default function Hero__1({ data }) {
   const [days, setDays] = useState("");
@@ -53,7 +54,11 @@ export default function Hero__1({ data }) {
             <Time className="time">s</Time>
           </div>
         </TextContent>
-        <Cover src={data.primary.cover.url} />
+        <Link href="/ancora">
+          <a>
+            <Cover src={data.primary.cover.url} />
+          </a>
+        </Link>
       </Overlay>
     </Container>
   );
@@ -68,12 +73,13 @@ const Container = styled.div`
 
 const BgImage = styled.img`
   width: 100%;
-  height: 100vh;
+  height: 100%;
   object-fit: cover;
   filter: brightness(0.5);
 `;
 
 const Overlay = styled.div`
+  min-height: 600px;
   position: absolute;
   inset: 0;
   display: flex;
@@ -102,7 +108,7 @@ const Quote = styled.div`
 
 const Cover = styled.img`
   max-width: 400px;
-  height: auto;
+  max-height: 90%;
   object-fit: contain;
   @media screen and (max-width: 768px) {
     width: 300px;

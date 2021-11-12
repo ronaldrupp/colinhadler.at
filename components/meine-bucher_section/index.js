@@ -23,7 +23,7 @@ export default function MeineBucherSection({ data }) {
       <h2>Meine Bücher</h2>
       <BookContainer>
         {data.fields.map((buch) => (
-          <Link href={`/buch/${buch.buch._meta.uid}`} key={buch.buch._meta.uid}>
+          <Link href={buch.buch._meta.uid} key={buch.buch._meta.uid}>
             <ElementContainer>
               <Cover src={buch.buch.cover.url} />
             </ElementContainer>
@@ -52,4 +52,5 @@ const Cover = styled.img`
 `;
 
 const ElementContainer = styled.a`
+  cursor: pointer;
 `;

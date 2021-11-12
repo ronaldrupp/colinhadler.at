@@ -9,7 +9,6 @@ import { InMemoryCache } from "apollo-cache-inmemory";
 import ApolloClient from "apollo-client";
 import gql from "graphql-tag";
 
-
 const client = new ApolloClient({
   link: PrismicLink({
     uri: "https://colinhadler.cdn.prismic.io/graphql",
@@ -20,45 +19,18 @@ const client = new ApolloClient({
 
 export default class MyApp extends NextApp {
   static async getInitialProps(appCtx) {
-      const response = await client.query({
-        query: gql`
-          {
-            allNavigations {
-              edges {
-                node {
-                  interne_seiten {
-                    seitennamen
-                    interne_seite {
-                      ... on Pages {
-                        _meta {
-                          uid
-                        }
-                      }
-                    }
-                  }
-                }
-              }
-            }
-            allFooters {
-              edges {
-                node {
-                  sitemap {
-                    seitennamen
-                    interne_seite {
-                      ... on Pages {
-                        _meta {
-                          uid
-                        }
-                      }
-                    }
-                  }
-                  legal_notice {
-                    seitennamen
-                    interne_seiten {
-                      ... on Pages {
-                        _meta {
-                          uid
-                        }
+    const response = await client.query({
+      query: gql`
+        {
+          allNavigations {
+            edges {
+              node {
+                interne_seiten {
+                  seitennamen
+                  interne_seite {
+                    ... on Pages {
+                      _meta {
+                        uid
                       }
                     }
                   }
@@ -66,8 +38,35 @@ export default class MyApp extends NextApp {
               }
             }
           }
-        `,
-      });
+          allFooters {
+            edges {
+              node {
+                sitemap {
+                  seitennamen
+                  interne_seite {
+                    ... on Pages {
+                      _meta {
+                        uid
+                      }
+                    }
+                  }
+                }
+                legal_notice {
+                  seitennamen
+                  interne_seiten {
+                    ... on Pages {
+                      _meta {
+                        uid
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      `,
+    });
     return {
       props: {
         navigation: response.data.allNavigations.edges[0],
@@ -90,6 +89,7 @@ export default class MyApp extends NextApp {
             href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700;800&display=swap"
             rel="stylesheet"
           />
+          <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400&display=swap" rel="stylesheet" /> 
         </Head>
         <Layout footer={props.footer} navigation={props.navigation}>
           <Component {...pageProps} />

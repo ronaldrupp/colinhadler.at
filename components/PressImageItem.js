@@ -2,6 +2,7 @@ import styled from "styled-components";
 import { useState, useRef } from "react";
 import { RichText } from "prismic-reactjs";
 import gsap from "gsap";
+import Image from "next/image";
 
 export default function PressImageItem({ image }) {
   let ContainerRef = useRef();
@@ -29,9 +30,13 @@ export default function PressImageItem({ image }) {
   };
   return (
     <ImageItem>
-      <Image
-        src={image.bild.url}
-      ></Image>
+      <ImageContainer>
+        <StyledImage
+          src={image.bild.url}
+          width={334}
+          height={334}
+        ></StyledImage>
+      </ImageContainer>
       <InfoContainer>
         <ResolutionIndicator>
           {image.bild.dimensions.width}x{image.bild.dimensions.height}
@@ -40,7 +45,10 @@ export default function PressImageItem({ image }) {
         <SubtitleContainer>
           {RichText.render(image.untertitel)}
         </SubtitleContainer>
-        <DownloadBtn onClick={() => download(image.bild.url, image.titel1)}>
+        <DownloadBtn
+          disabled={fetching}
+          onClick={() => download(image.bild.url, image.titel1)}
+        >
           {fetching ? "lädt..." : "Herunterladen"}
         </DownloadBtn>
       </InfoContainer>
@@ -62,11 +70,12 @@ const SubtitleContainer = styled.div`
   }
 `;
 const ResolutionIndicator = styled.span`
-  border: 1px solid gray;
+  border: 0.85px solid gray;
   padding: 0.25rem;
   border-radius: 0.25rem;
   font-size: 0.75rem;
   color: gray;
+  font-family: "Rajdhani", sans-serif;
 `;
 
 const Container = styled.div`
@@ -83,7 +92,10 @@ const Container = styled.div`
   }
 `;
 
-const Image = styled.img`
+const ImageContainer = styled.div`
+  position: relative;
+`;
+const StyledImage = styled(Image)`
   width: 100%;
   aspect-ratio: 1/1;
   object-fit: cover;
@@ -125,5 +137,11 @@ const DownloadBtn = styled.button`
   cursor: pointer;
   :active {
     filter: brightness(0.3);
+  }
+  :disabled {
+    opacity: 0.7;
+  }
+  @media screen and (max-width: 768px) {
+    font-size: 0.8rem;
   }
 `;

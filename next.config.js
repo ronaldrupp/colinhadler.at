@@ -7,4 +7,5 @@ module.exports = {
 
     return config;
   },
+  images: { domains: ["images.prismic.io"] },
 };

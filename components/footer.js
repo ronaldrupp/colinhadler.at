@@ -49,7 +49,7 @@ const Container = styled.footer`
     &:after {
       content: "";
       position: absolute;
-      top: 50px;
+      bottom: 0px;
       width: 100%;
       height: 5px;
       transform: scaleX(0);
@@ -80,8 +80,34 @@ const LegalNoticeContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  ul{
+  ul {
     padding: 0;
+    h6 {
+      margin: 0;
+      transition: all 0.2s ease-in-out;
+      position: relative;
+      &:after {
+        content: "";
+        position: absolute;
+        bottom: 0px;
+        width: 100%;
+        height: 2px;
+        transform: scaleX(0);
+        transform-origin: right center;
+        transition: transform 0.6s cubic-bezier(0.19, 1, 0.22, 1),
+          -webkit-transform 0.6s cubic-bezier(0.19, 1, 0.22, 1);
+        opacity: 1;
+        background-color: white;
+        left: 0;
+      }
+      &:hover {
+        cursor: pointer;
+        &:after {
+          transform: scaleX(1);
+          transform-origin: left center;
+        }
+      }
+    }
   }
 `;
 

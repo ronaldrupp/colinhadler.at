@@ -34,27 +34,35 @@ export default function Navigation({ data }) {
             exit={{ y: "-100%" }}
             transition={{ duration: 0.5 }}
           >
-            <div>
+            <MobileUl>
               {data.node.interne_seiten.map((site) => (
-                <li key={site.interne_seite._meta.uid}>
-                  <Link href={site.interne_seite._meta.uid}>
-                    <LinkItem
-                      activeClass={
-                        router.asPath === site.interne_seite._meta.uid
-                          ? true
-                          : false
-                      }
-                    >
-                      {RichText.render(site.seitennamen)}
-                    </LinkItem>
-                  </Link>
-                </li>
+                <Link
+                  href={site.interne_seite._meta.uid}
+                  key={site.interne_seite._meta.uid}
+                >
+                  <LinkItem
+                    onClick={() => {
+                      setMobileContainer(!showMobileContainer);
+                    }}
+                    activeClass={
+                      router.asPath === site.interne_seite._meta.uid
+                        ? true
+                        : false
+                    }
+                  >
+                    {RichText.render(site.seitennamen)}
+                  </LinkItem>
+                </Link>
               ))}
-            </div>
+            </MobileUl>
           </MobileContainer>
         )}
       </AnimatePresence>
-      <Container windowScroll={windowScroll} index={router.route}>
+      <Container
+        windowScroll={windowScroll}
+        index={router.route}
+        mobileContainer={showMobileContainer}
+      >
         <InnerContainer>
           <Link href="/">
             <LogoContainerLink>
@@ -97,6 +105,10 @@ export default function Navigation({ data }) {
   );
 }
 
+const MobileUl = styled.div``;
+
+const MobileLinkItem = styled.a``;
+
 const LinkItem = styled.a`
   h2 {
     color: inherit;
@@ -129,6 +141,10 @@ const LinkItem = styled.a`
         transform-origin: left center;
       }
     }
+    @media screen and (max-width: 768px) {
+      font-size: 2rem;
+      margin: 0;
+    }
   }
   font-size: 1rem;
   transition: all 0.2s ease-in-out;
@@ -143,9 +159,9 @@ const Container = styled.nav`
     props.windowScroll.y > 60 && "1px solid rgba(200,200,200,0.6)"};
   top: 0;
   z-index: 999;
-  transition: 0.3s;
+  transition: 0.6s;
   filter: ${(props) =>
-    props.windowScroll.y < 60 && props.index === "/"
+    (props.windowScroll.y < 60 && props.index === "/") || props.mobileContainer
       ? "invert(1)"
       : "invert(0)"};
   background-color: ${(props) =>
@@ -180,6 +196,7 @@ const InnerContainer = styled.div`
   max-width: var(--main-width);
   margin: 0 auto;
   padding: 0 1rem;
+  z-index: 2;
 `;
 
 const LinkContainer = styled.ul`
@@ -214,7 +231,7 @@ const MobileContainer = styled(motion.div)`
   color: white;
   z-index: 999;
   padding: 1rem;
-  padding-top: var(--navbar-mobile-height);
+  padding-top: calc(var(--navbar-mobile-height) + 50px);
   ul,
   li {
     list-style: none;
