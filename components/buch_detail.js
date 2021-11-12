@@ -1,30 +1,40 @@
 import styled from "styled-components";
 import { RichText } from "prismic-reactjs";
 import dayjs from "dayjs";
+import Link from "next/link";
+
 export default function Buch_Detail({ data }) {
   return (
-    <Container>
-      <Header>
-        <Cover src={data.primary.buch.cover.url} />
-        <Infos>
-          {RichText.render(data.primary.buch.titel)}
-          {dayjs(data.primary.buch.erscheinungsdatum).format("YYYY")}
-          <MerchantsContainer>
-            {data.primary.buch.listoflinks &&
-              data.primary.buch.listoflinks.map((merchant, idx) => (
-                <>
-                  <MerchantItem href={merchant.link.url} key={idx}>
-                    <Logo src={merchant.merchant.logo_of_merchant.url} />
-                  </MerchantItem>
-                </>
-              ))}
-          </MerchantsContainer>
-          <p>Am besten bestellen Sie in Ihrer lokalen Buchhandlung!</p>
-        </Infos>
-      </Header>
-      <Description>
-        {RichText.render(data.primary.buch.beschreibung)}
-      </Description>
+    <>
+      <Container>
+        <BackLink>
+          <Link href="/buecher">
+            <BackLinkA>Zur Übersicht</BackLinkA>
+          </Link>
+        </BackLink>
+        <Header>
+          <Cover src={data.primary.buch.cover.url} />
+          <Infos>
+            {RichText.render(data.primary.buch.titel)}
+            {dayjs(data.primary.buch.erscheinungsdatum).format("YYYY")}
+            <MerchantsContainer>
+              {data.primary.buch.listoflinks &&
+                data.primary.buch.listoflinks.map((merchant, idx) => (
+                  <>
+                    <MerchantItem href={merchant.link.url} key={idx}>
+                      <Logo src={merchant.merchant.logo_of_merchant.url} />
+                    </MerchantItem>
+                  </>
+                ))}
+            </MerchantsContainer>
+            <p>Am besten bestellen Sie in Ihrer lokalen Buchhandlung!</p>
+          </Infos>
+        </Header>
+        <Description>
+          {RichText.render(data.primary.buch.beschreibung)}
+        </Description>
+      </Container>
+
       <ReviewsContainer>
         {data.primary.buch.rezensionen.map((review, idx) => (
           <ReviewItem key={idx}>
@@ -33,10 +43,54 @@ export default function Buch_Detail({ data }) {
           </ReviewItem>
         ))}
       </ReviewsContainer>
-    </Container>
+    </>
   );
 }
 
+const BackLinkA = styled.a`
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  position: relative;
+  :before {
+    display: inline-block;
+    content: "";
+    background: url("arrow-left.svg");
+    width: 20px;
+    height: 20px;
+    margin-right: 0.25rem;
+  }
+  :after {
+    transition: all 0.2s ease-in-out;
+    position: relative;
+    content: "";
+    position: absolute;
+    bottom: 0px;
+    width: 100%;
+    height: 1px;
+    transform: scaleX(0);
+    transform-origin: right center;
+    transition: transform 0.6s cubic-bezier(0.19, 1, 0.22, 1),
+      -webkit-transform 0.6s cubic-bezier(0.19, 1, 0.22, 1);
+    background-color: black;
+    left: 0;
+  }
+  &:hover {
+    cursor: pointer;
+    &:after {
+      transform: scaleX(1);
+      transform-origin: left center;
+    }
+  }
+`;
+const BackLink = styled.div`
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  padding-bottom: 4rem;
+  text-transform: uppercase;
+  font-weight: 100;
+`;
 const Container = styled.div`
   padding: 1rem;
   max-width: var(--main-width);
@@ -108,8 +162,9 @@ const ReviewsContainer = styled.div`
   flex-direction: column;
   justify-content: flex-start;
   align-items: flex-start;
-  max-width: 70ch;
-  margin: 2rem auto;
+  width: 100%;
+  background-color: black;
+  color: white;
 `;
 
 const ReviewItem = styled.div`
@@ -117,10 +172,12 @@ const ReviewItem = styled.div`
   flex-direction: column;
   justify-content: flex-start;
   align-items: flex-start;
-  margin-top: 2rem;
+  max-width: 70ch;
+  margin: 2rem auto;
 `;
 const ReviewQoute = styled.div`
   font-style: italic;
+  font-weight: 500;
 `;
 const ReviewAuthor = styled.div`
   width: 100%;
