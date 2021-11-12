@@ -17,6 +17,7 @@ import PressVideoGallery from "../components/PressVideoGallery";
 import TerminList from "../components/terminlist";
 import PotraitImageWithText from "../components/PotraitImageWithText";
 import LandscapeImageWithText from "../components/LandscapeImageWithText";
+import ContactSection from "../components/contact_section";
 
 export default function SliceResolver({ slice, data }) {
   switch (data.__typename) {
@@ -54,6 +55,8 @@ export default function SliceResolver({ slice, data }) {
       return <PotraitImageWithText data={data} />;
     case "PagesBodyUber_mich__image_landscape":
       return <LandscapeImageWithText data={data} />;
+    case "PagesBodyKontaktSection":
+      return <ContactSection data={data} />;
     default:
       return (
         <Container>

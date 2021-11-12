@@ -1,10 +1,18 @@
 import { RichText } from "prismic-reactjs";
 import Link from "next/link";
 import styled from "styled-components";
+import Image from "next/image";
 
 export default function TermineSection({ data }) {
   return (
     <Container>
+      {/* <Image
+        src={data.primary.hintergrundbild.url}
+        width={1200}
+        height={600}
+        objectFit="cover"
+        className="bg-img"
+      /> */}
       <BackgroundImage src={data.primary.hintergrundbild.url} />
       <OuterContainer>
         <InnerContainer>
@@ -28,6 +36,9 @@ const Container = styled.section`
   height: 600px;
   display: flex;
   flex-direction: column;
+  .bg-img {
+    filter: saturate(0);
+  }
 `;
 const OuterContainer = styled.div`
   position: absolute;
@@ -47,6 +58,7 @@ const InnerContainer = styled.div`
   height: inherit;
   max-width: var(--main-width);
   margin: 0 auto;
+  padding: 0rem 1rem;
 `;
 const Overlay = styled.div`
   width: 350px;

@@ -61,9 +61,9 @@ const SocialLinkItem = styled.a`
   align-items: center;
   padding: 1rem;
   border-radius: 999px;
-  transition: var(--transition-duration);
+  transition: 0.6s;
   filter: invert(1);
-  &:hover {
+  :hover {
     filter: brightness(0.7);
   }
   img {

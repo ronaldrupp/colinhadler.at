@@ -90,6 +90,22 @@ export const getStaticProps = async (ctx) => {
               }
             }
           }
+          ... on PagesBodyKontaktSection {
+            primary{
+              text,
+              titel1
+            }
+            fields{
+              icon_fur_button,
+              name_des_buttons,
+              externer_link{
+                ... on _ExternalLink{
+                  url,
+                  target
+                }
+              }
+            }
+          }
                 ... on PagesBodyHero_2 {
                   primary {
                     big_background_text

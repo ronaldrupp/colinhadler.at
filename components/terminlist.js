@@ -3,7 +3,6 @@ import { RichText } from "prismic-reactjs";
 import dayjs from "dayjs";
 
 export default function TerminList({ data }) {
-  console.log(data);
   if (data.fields.length <= 0)
     return (
       <NoEventsContainer>
