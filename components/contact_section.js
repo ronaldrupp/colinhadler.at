@@ -2,7 +2,6 @@ import styled from "styled-components";
 import { RichText } from "prismic-reactjs";
 
 export default function ContactSection({ data }) {
-  console.log(data);
   return (
     <Container>
       <div>
