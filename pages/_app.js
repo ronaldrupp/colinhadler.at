@@ -3,12 +3,12 @@ import Head from "next/head";
 import NextApp from "next/app";
 import Prismic from "@prismicio/client";
 import Layout from "../components/layout";
-import { motion, AnimatedPresence } from "framer-motion";
+import { motion, AnimatedPresence, AnimatePresence } from "framer-motion";
 import { PrismicLink } from "apollo-link-prismic";
 import { InMemoryCache } from "apollo-cache-inmemory";
 import ApolloClient from "apollo-client";
 import gql from "graphql-tag";
-
+import { withRouter } from "next/router";
 const client = new ApolloClient({
   link: PrismicLink({
     uri: "https://colinhadler.cdn.prismic.io/graphql",
@@ -17,7 +17,7 @@ const client = new ApolloClient({
   cache: new InMemoryCache(),
 });
 
-export default class MyApp extends NextApp {
+class MyApp extends NextApp {
   static async getInitialProps(appCtx) {
     const response = await client.query({
       query: gql`
@@ -75,7 +75,7 @@ export default class MyApp extends NextApp {
     };
   }
   render() {
-    const { Component, pageProps, props } = this.props;
+    const { Component, pageProps, props, router } = this.props;
     return (
       <>
         <Head>
@@ -89,12 +89,28 @@ export default class MyApp extends NextApp {
             href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700;800&display=swap"
             rel="stylesheet"
           />
-          <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400&display=swap" rel="stylesheet" /> 
+          <link
+            href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400&display=swap"
+            rel="stylesheet"
+          />
         </Head>
+
         <Layout footer={props.footer} navigation={props.navigation}>
-          <Component {...pageProps} />
+          <AnimatePresence exitBeforeEnter>
+            <motion.div
+              key={router.asPath}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.3, ease: "easeInOut" }}
+            >
+              <Component {...pageProps} />
+            </motion.div>
+          </AnimatePresence>
         </Layout>
       </>
     );
   }
 }
+
+export default withRouter(MyApp);

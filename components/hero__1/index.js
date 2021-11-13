@@ -1,5 +1,5 @@
 import { RichText } from "prismic-reactjs";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, useLayoutEffect } from "react";
 import styled from "styled-components";
 import gsap from "gsap";
 import Link from "next/link";
@@ -26,12 +26,21 @@ export default function Hero__1({ data }) {
 
   useEffect(() => {
     let countDownInterval = setInterval(() => countDown(), 1000);
-    gsap.to(countDownRef, { opacity: 1, duration: 1 });
 
     return () => {
       clearInterval(countDownInterval);
     };
   }, []);
+
+  const firstUpdate = useRef(true);
+
+  useLayoutEffect(() => {
+    if (firstUpdate.current) {
+      firstUpdate.current = false;
+      return;
+    }
+    gsap.to(countDownRef, { opacity: 1, duration: 1 });
+  });
 
   return (
     <Container>
@@ -110,6 +119,11 @@ const Cover = styled.img`
   max-width: 400px;
   max-height: 90%;
   object-fit: contain;
+  transition: transform 0.6s cubic-bezier(0.19, 1, 0.22, 1),
+    -webkit-transform 0.6s cubic-bezier(0.19, 1, 0.22, 1);
+  :hover {
+    transform: scale(1.1);
+  }
   @media screen and (max-width: 768px) {
     width: 300px;
   }

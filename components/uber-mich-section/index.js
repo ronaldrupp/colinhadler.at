@@ -48,11 +48,31 @@ const TextContainer = styled.div`
 `;
 
 const Btn = styled.a`
-  padding: 1rem;
-  color: white;
   background-color: black;
-  margin-top: 2rem;
+  color: white;
+  padding: 0.75rem 2rem;
+  margin-top: 1rem;
+  font-weight: 700;
+  font-size: 0.8rem;
   cursor: pointer;
+  position: relative;
+  border-radius: 0.25rem;
+  :before {
+    content: "";
+    width: 100%;
+    height: 100%;
+    background-color: white;
+    position: absolute;
+    top: 0;
+    left: 0;
+    transform: scaleX(0);
+    transform-origin: right center;
+    transition: transform 0.6s cubic-bezier(0.19, 1, 0.22, 1),
+      -webkit-transform 0.6s cubic-bezier(0.19, 1, 0.22, 1);
+  }
+  :hover {
+    filter: brightness(1.5);
+  }
 `;
 
 const Hintergrundnamen = styled.div`

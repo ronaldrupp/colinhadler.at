@@ -163,7 +163,7 @@ const ReviewsContainer = styled.div`
   justify-content: flex-start;
   align-items: flex-start;
   width: 100%;
-  background-color: black;
+  background-color: rgb(40,40,40);
   color: white;
 `;
 

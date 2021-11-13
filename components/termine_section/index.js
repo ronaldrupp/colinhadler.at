@@ -47,7 +47,7 @@ const OuterContainer = styled.div`
   width: 100%;
   height: 100%;
   @media screen and (max-width: 768px) {
-    position: unset;
+    position: static;
   }
 `;
 const InnerContainer = styled.div`
@@ -72,7 +72,7 @@ const Overlay = styled.div`
     margin: 0;
   }
   @media screen and (max-width: 768px) {
-    padding: 1rem;
+    padding: 0;
     width: 100%;
   }
 `;
@@ -93,6 +93,7 @@ const Btn = styled.a`
   font-size: 0.8rem;
   cursor: pointer;
   position: relative;
+  border-radius: 0.25rem;
   :before {
     content: "";
     width: 100%;
