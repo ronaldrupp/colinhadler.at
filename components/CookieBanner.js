@@ -34,7 +34,7 @@ export default function CookieBanner() {
               <Title>🍪 Cookie</Title>
               <p>
                 Neben technisch notewendigen Cookies verwendet diese Webseite
-                auch statistike Cookies (Google Analytics).
+                auch statistische Cookies (Google Analytics).
               </p>
               <Actions>
                 <Button onClick={() => handleCookie(false)} rejectStyle>
