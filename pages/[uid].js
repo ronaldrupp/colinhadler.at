@@ -21,7 +21,7 @@ export default function Page({ data }) {
     book_release_date,
     book_isbn,
   } = data.allPagess.edges[0].node;
-  
+
   return (
     <>
       <NextSeo
@@ -217,21 +217,20 @@ export const getStaticProps = async (ctx) => {
                   }
             fields{
               bild
-              titel1
-              untertitel
             }
           }
-          ... on PagesBodyPresse_medien__videos{
-            primary{
-                    titel_des_containers1,
-                    beschreibung_des_containers
-                  }
-            fields{
-              externer_videolink{
-                ... on _ExternalLink{
+          ... on PagesBodyPresse_medien__videos {
+            primary {
+              titel_des_containers1
+              beschreibung_des_containers
+            }
+            fields {
+              externer_videolink {
+                ... on _ExternalLink {
                   url
                 }
               }
+              image
               titel1
               untertitel
             }

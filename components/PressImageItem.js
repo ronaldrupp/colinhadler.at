@@ -66,7 +66,7 @@ const SubtitleContainer = styled.div`
   color: gray;
   font-size: 0.75rem;
   * {
-    margin: 0;
+    margin: 0.5rem 0;
   }
 `;
 const ResolutionIndicator = styled.span`

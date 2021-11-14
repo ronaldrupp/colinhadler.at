@@ -3,7 +3,7 @@ import { useEffect, useRef, useState, useLayoutEffect } from "react";
 import styled from "styled-components";
 import gsap from "gsap";
 import Link from "next/link";
-
+import Image from "next/image";
 export default function Hero__1({ data }) {
   const [days, setDays] = useState("");
   const [hours, setHours] = useState("");
@@ -44,8 +44,10 @@ export default function Hero__1({ data }) {
 
   return (
     <Container>
-      <BgImage
+      <Image
         className="bgBackground"
+        layout="fill"
+        objectFit="cover"
         src={data.primary.hintergrundbild.url}
       />
       <Overlay>
@@ -65,7 +67,13 @@ export default function Hero__1({ data }) {
         </TextContent>
         <Link href="/ancora">
           <a>
-            <Cover src={data.primary.cover.url} />
+            <Image
+              src={data.primary.cover.url}
+              width={500}
+              height={400}
+              objectFit="contain"
+            />
+            {/* <Cover src={data.primary.cover.url} /> */}
           </a>
         </Link>
       </Overlay>
@@ -76,15 +84,17 @@ export default function Hero__1({ data }) {
 const Container = styled.div`
   width: 100%;
   height: 100vh;
-  min-height: 600px;
+  min-height: 700px;
   position: relative;
+  .bgBackground {
+    filter: brightness(0.3);
+  }
 `;
 
 const BgImage = styled.img`
   width: 100%;
   height: 100%;
   object-fit: cover;
-  filter: brightness(0.5);
 `;
 
 const Overlay = styled.div`
@@ -109,7 +119,7 @@ const Quote = styled.div`
   color: white;
   font-size: 1.5rem;
   margin-bottom: 5rem;
-  font-weight: 800;
+  font-weight: 400;
   @media screen and (max-width: 768px) {
     display: none;
   }
@@ -117,7 +127,7 @@ const Quote = styled.div`
 
 const Cover = styled.img`
   max-width: 400px;
-  max-height: 90%;
+  max-height: 70%;
   object-fit: contain;
   transition: transform 0.6s cubic-bezier(0.19, 1, 0.22, 1),
     -webkit-transform 0.6s cubic-bezier(0.19, 1, 0.22, 1);

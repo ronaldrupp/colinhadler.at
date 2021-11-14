@@ -44,7 +44,7 @@ const ExternalLink = styled.a`
   color: white;
   font-size: 1rem;
   border-radius: 0.25rem;
-  aspect-ratio: 16/9;
+  flex-grow: 1;
   h3 {
     margin: 0;
     margin-top: 0.5rem;
@@ -52,5 +52,15 @@ const ExternalLink = styled.a`
   .exLinkSVG {
     width: 50px;
     stroke: white;
+  }
+  transition: transform 0.6s cubic-bezier(0.19, 1, 0.22, 1),
+    -webkit-transform 0.6s cubic-bezier(0.19, 1, 0.22, 1);
+  :hover {
+    transform: translateY(-10px);
+  }
+  @media screen and (max-width: 768px) {
+    :hover {
+      transform: translateX(10px);
+    }
   }
 `;

@@ -207,6 +207,9 @@ const LinkContainer = styled.ul`
   padding: 0;
   list-style: none;
   gap: 1rem;
+  @supports not (gap: 1rem) {
+    margin-right: 1rem;
+  }
   @media screen and (max-width: 768px) {
     display: none;
   }
@@ -216,8 +219,8 @@ const MenuButton = styled.button`
   display: none;
   @media screen and (max-width: 768px) {
     display: block;
-    width: 35px;
-    height: 35px;
+    width: 45px;
+    height: 45px;
     border: none;
     background: none;
   }
