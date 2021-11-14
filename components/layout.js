@@ -5,13 +5,16 @@ import Navigation from "./navigation";
 import { AnimatePresence, motion } from "framer-motion";
 import { useRouter } from "next/router";
 import * as ga from "../lib/ga";
-import { useEffect } from 'react';
+import { useEffect } from "react";
+import { useCookies } from "react-cookie";
 
 const Layout = ({ children, footer, isPreview, navigation }) => {
-    const router = useRouter();
+  const router = useRouter();
+  const [cookies, setCookie] = useCookies(["COOKIES_ALLOWED"]);
 
   useEffect(() => {
     const handleRouteChange = (url) => {
+      if (!cookies.COOKIES_ALLOWED) return null;
       ga.pageview(url);
     };
     //When the component is mounted, subscribe to router changes

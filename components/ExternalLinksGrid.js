@@ -9,7 +9,6 @@ export default function ExternalLinksGrid({ data }) {
       {RichText.render(data.primary.beschreibung)}
 
       <InnerContainer>
-        {console.log(data.fields)}
         {data.fields.map((video, idx) => (
           <ExternalLink
             href={video.external_link.url}
