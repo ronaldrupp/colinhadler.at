@@ -1,0 +1,719 @@
+{
+  "__schema": {
+    "types": [
+      {
+        "kind": "OBJECT",
+        "name": "Bucher",
+        "possibleTypes": null
+      },
+      {
+        "kind": "OBJECT",
+        "name": "BucherConnectionConnection",
+        "possibleTypes": null
+      },
+      {
+        "kind": "OBJECT",
+        "name": "BucherConnectionEdge",
+        "possibleTypes": null
+      },
+      {
+        "kind": "OBJECT",
+        "name": "BucherLinks",
+        "possibleTypes": null
+      },
+      {
+        "kind": "OBJECT",
+        "name": "BucherRezensionen",
+        "possibleTypes": null
+      },
+      {
+        "kind": "SCALAR",
+        "name": "Date",
+        "possibleTypes": null
+      },
+      {
+        "kind": "SCALAR",
+        "name": "DateTime",
+        "possibleTypes": null
+      },
+      {
+        "kind": "OBJECT",
+        "name": "Footer",
+        "possibleTypes": null
+      },
+      {
+        "kind": "OBJECT",
+        "name": "FooterConnectionConnection",
+        "possibleTypes": null
+      },
+      {
+        "kind": "OBJECT",
+        "name": "FooterConnectionEdge",
+        "possibleTypes": null
+      },
+      {
+        "kind": "OBJECT",
+        "name": "FooterLegal_notice",
+        "possibleTypes": null
+      },
+      {
+        "kind": "OBJECT",
+        "name": "FooterSitemap",
+        "possibleTypes": null
+      },
+      {
+        "kind": "OBJECT",
+        "name": "General",
+        "possibleTypes": null
+      },
+      {
+        "kind": "UNION",
+        "name": "GeneralBody",
+        "possibleTypes": [
+          {
+            "name": "GeneralBodyInfo_banner"
+          }
+        ]
+      },
+      {
+        "kind": "OBJECT",
+        "name": "GeneralBodyInfo_banner",
+        "possibleTypes": null
+      },
+      {
+        "kind": "OBJECT",
+        "name": "GeneralBodyInfo_bannerPrimary",
+        "possibleTypes": null
+      },
+      {
+        "kind": "OBJECT",
+        "name": "GeneralConnectionConnection",
+        "possibleTypes": null
+      },
+      {
+        "kind": "OBJECT",
+        "name": "GeneralConnectionEdge",
+        "possibleTypes": null
+      },
+      {
+        "kind": "OBJECT",
+        "name": "Homepage",
+        "possibleTypes": null
+      },
+      {
+        "kind": "UNION",
+        "name": "HomepageBody",
+        "possibleTypes": [
+          {
+            "name": "HomepageBodyKontakt_banner"
+          },
+          {
+            "name": "HomepageBodyUberMich_section"
+          },
+          {
+            "name": "HomepageBodyMeineBucher_section"
+          },
+          {
+            "name": "HomepageBodyTermine_section"
+          },
+          {
+            "name": "HomepageBodyHero__1"
+          },
+          {
+            "name": "HomepageBodyFooter"
+          }
+        ]
+      },
+      {
+        "kind": "OBJECT",
+        "name": "HomepageBodyFooter",
+        "possibleTypes": null
+      },
+      {
+        "kind": "OBJECT",
+        "name": "HomepageBodyFooterFields",
+        "possibleTypes": null
+      },
+      {
+        "kind": "OBJECT",
+        "name": "HomepageBodyHero__1",
+        "possibleTypes": null
+      },
+      {
+        "kind": "OBJECT",
+        "name": "HomepageBodyHero__1Primary",
+        "possibleTypes": null
+      },
+      {
+        "kind": "OBJECT",
+        "name": "HomepageBodyKontakt_banner",
+        "possibleTypes": null
+      },
+      {
+        "kind": "OBJECT",
+        "name": "HomepageBodyKontakt_bannerFields",
+        "possibleTypes": null
+      },
+      {
+        "kind": "OBJECT",
+        "name": "HomepageBodyKontakt_bannerPrimary",
+        "possibleTypes": null
+      },
+      {
+        "kind": "OBJECT",
+        "name": "HomepageBodyMeineBucher_section",
+        "possibleTypes": null
+      },
+      {
+        "kind": "OBJECT",
+        "name": "HomepageBodyMeineBucher_sectionFields",
+        "possibleTypes": null
+      },
+      {
+        "kind": "OBJECT",
+        "name": "HomepageBodyTermine_section",
+        "possibleTypes": null
+      },
+      {
+        "kind": "OBJECT",
+        "name": "HomepageBodyTermine_sectionPrimary",
+        "possibleTypes": null
+      },
+      {
+        "kind": "OBJECT",
+        "name": "HomepageBodyUberMich_section",
+        "possibleTypes": null
+      },
+      {
+        "kind": "OBJECT",
+        "name": "HomepageBodyUberMich_sectionPrimary",
+        "possibleTypes": null
+      },
+      {
+        "kind": "OBJECT",
+        "name": "HomepageConnectionConnection",
+        "possibleTypes": null
+      },
+      {
+        "kind": "OBJECT",
+        "name": "HomepageConnectionEdge",
+        "possibleTypes": null
+      },
+      {
+        "kind": "SCALAR",
+        "name": "Json",
+        "possibleTypes": null
+      },
+      {
+        "kind": "OBJECT",
+        "name": "Menu",
+        "possibleTypes": null
+      },
+      {
+        "kind": "OBJECT",
+        "name": "MenuConnectionConnection",
+        "possibleTypes": null
+      },
+      {
+        "kind": "OBJECT",
+        "name": "MenuConnectionEdge",
+        "possibleTypes": null
+      },
+      {
+        "kind": "OBJECT",
+        "name": "MenuLinks",
+        "possibleTypes": null
+      },
+      {
+        "kind": "OBJECT",
+        "name": "Meta",
+        "possibleTypes": null
+      },
+      {
+        "kind": "OBJECT",
+        "name": "Navigation",
+        "possibleTypes": null
+      },
+      {
+        "kind": "OBJECT",
+        "name": "NavigationConnectionConnection",
+        "possibleTypes": null
+      },
+      {
+        "kind": "OBJECT",
+        "name": "NavigationConnectionEdge",
+        "possibleTypes": null
+      },
+      {
+        "kind": "OBJECT",
+        "name": "NavigationInterne_seiten",
+        "possibleTypes": null
+      },
+      {
+        "kind": "INPUT_OBJECT",
+        "name": "Near",
+        "possibleTypes": null
+      },
+      {
+        "kind": "OBJECT",
+        "name": "PageInfo",
+        "possibleTypes": null
+      },
+      {
+        "kind": "OBJECT",
+        "name": "Pages",
+        "possibleTypes": null
+      },
+      {
+        "kind": "UNION",
+        "name": "PagesBody",
+        "possibleTypes": [
+          {
+            "name": "PagesBodyInfo_banner"
+          },
+          {
+            "name": "PagesBodyKontakt_banner"
+          },
+          {
+            "name": "PagesBodyAll_books"
+          },
+          {
+            "name": "PagesBodyHero_2"
+          },
+          {
+            "name": "PagesBodyCentered_text"
+          },
+          {
+            "name": "PagesBodyFreier_text"
+          },
+          {
+            "name": "PagesBodyGallerie"
+          },
+          {
+            "name": "PagesBodyHeader"
+          },
+          {
+            "name": "PagesBodyTerminliste"
+          },
+          {
+            "name": "PagesBodyBuch_detail"
+          }
+        ]
+      },
+      {
+        "kind": "OBJECT",
+        "name": "PagesBodyAll_books",
+        "possibleTypes": null
+      },
+      {
+        "kind": "OBJECT",
+        "name": "PagesBodyAll_booksFields",
+        "possibleTypes": null
+      },
+      {
+        "kind": "OBJECT",
+        "name": "PagesBodyBuch_detail",
+        "possibleTypes": null
+      },
+      {
+        "kind": "OBJECT",
+        "name": "PagesBodyBuch_detailPrimary",
+        "possibleTypes": null
+      },
+      {
+        "kind": "OBJECT",
+        "name": "PagesBodyCentered_text",
+        "possibleTypes": null
+      },
+      {
+        "kind": "OBJECT",
+        "name": "PagesBodyCentered_textPrimary",
+        "possibleTypes": null
+      },
+      {
+        "kind": "OBJECT",
+        "name": "PagesBodyFreier_text",
+        "possibleTypes": null
+      },
+      {
+        "kind": "OBJECT",
+        "name": "PagesBodyFreier_textPrimary",
+        "possibleTypes": null
+      },
+      {
+        "kind": "OBJECT",
+        "name": "PagesBodyGallerie",
+        "possibleTypes": null
+      },
+      {
+        "kind": "OBJECT",
+        "name": "PagesBodyGallerieFields",
+        "possibleTypes": null
+      },
+      {
+        "kind": "OBJECT",
+        "name": "PagesBodyHeader",
+        "possibleTypes": null
+      },
+      {
+        "kind": "OBJECT",
+        "name": "PagesBodyHeaderPrimary",
+        "possibleTypes": null
+      },
+      {
+        "kind": "OBJECT",
+        "name": "PagesBodyHero_2",
+        "possibleTypes": null
+      },
+      {
+        "kind": "OBJECT",
+        "name": "PagesBodyHero_2Primary",
+        "possibleTypes": null
+      },
+      {
+        "kind": "OBJECT",
+        "name": "PagesBodyInfo_banner",
+        "possibleTypes": null
+      },
+      {
+        "kind": "OBJECT",
+        "name": "PagesBodyInfo_bannerPrimary",
+        "possibleTypes": null
+      },
+      {
+        "kind": "OBJECT",
+        "name": "PagesBodyKontakt_banner",
+        "possibleTypes": null
+      },
+      {
+        "kind": "OBJECT",
+        "name": "PagesBodyKontakt_bannerFields",
+        "possibleTypes": null
+      },
+      {
+        "kind": "OBJECT",
+        "name": "PagesBodyKontakt_bannerPrimary",
+        "possibleTypes": null
+      },
+      {
+        "kind": "OBJECT",
+        "name": "PagesBodyTerminliste",
+        "possibleTypes": null
+      },
+      {
+        "kind": "OBJECT",
+        "name": "PagesBodyTerminlisteFields",
+        "possibleTypes": null
+      },
+      {
+        "kind": "OBJECT",
+        "name": "PagesConnectionConnection",
+        "possibleTypes": null
+      },
+      {
+        "kind": "OBJECT",
+        "name": "PagesConnectionEdge",
+        "possibleTypes": null
+      },
+      {
+        "kind": "OBJECT",
+        "name": "Query",
+        "possibleTypes": null
+      },
+      {
+        "kind": "OBJECT",
+        "name": "RelatedDocument",
+        "possibleTypes": null
+      },
+      {
+        "kind": "ENUM",
+        "name": "SortBuchery",
+        "possibleTypes": null
+      },
+      {
+        "kind": "ENUM",
+        "name": "SortDocumentsBy",
+        "possibleTypes": null
+      },
+      {
+        "kind": "ENUM",
+        "name": "SortFootery",
+        "possibleTypes": null
+      },
+      {
+        "kind": "ENUM",
+        "name": "SortGeneraly",
+        "possibleTypes": null
+      },
+      {
+        "kind": "ENUM",
+        "name": "SortHomepagey",
+        "possibleTypes": null
+      },
+      {
+        "kind": "ENUM",
+        "name": "SortMenuy",
+        "possibleTypes": null
+      },
+      {
+        "kind": "ENUM",
+        "name": "SortNavigationy",
+        "possibleTypes": null
+      },
+      {
+        "kind": "ENUM",
+        "name": "SortPagesy",
+        "possibleTypes": null
+      },
+      {
+        "kind": "ENUM",
+        "name": "SortTerminey",
+        "possibleTypes": null
+      },
+      {
+        "kind": "OBJECT",
+        "name": "Termine",
+        "possibleTypes": null
+      },
+      {
+        "kind": "OBJECT",
+        "name": "TermineConnectionConnection",
+        "possibleTypes": null
+      },
+      {
+        "kind": "OBJECT",
+        "name": "TermineConnectionEdge",
+        "possibleTypes": null
+      },
+      {
+        "kind": "INPUT_OBJECT",
+        "name": "WhereBucher",
+        "possibleTypes": null
+      },
+      {
+        "kind": "INPUT_OBJECT",
+        "name": "WhereBucherLinks",
+        "possibleTypes": null
+      },
+      {
+        "kind": "INPUT_OBJECT",
+        "name": "WhereBucherRezensionen",
+        "possibleTypes": null
+      },
+      {
+        "kind": "INPUT_OBJECT",
+        "name": "WhereFooter",
+        "possibleTypes": null
+      },
+      {
+        "kind": "INPUT_OBJECT",
+        "name": "WhereFooterLegal_notice",
+        "possibleTypes": null
+      },
+      {
+        "kind": "INPUT_OBJECT",
+        "name": "WhereFooterSitemap",
+        "possibleTypes": null
+      },
+      {
+        "kind": "INPUT_OBJECT",
+        "name": "WhereHomepage",
+        "possibleTypes": null
+      },
+      {
+        "kind": "INPUT_OBJECT",
+        "name": "WhereMenu",
+        "possibleTypes": null
+      },
+      {
+        "kind": "INPUT_OBJECT",
+        "name": "WhereMenuLinks",
+        "possibleTypes": null
+      },
+      {
+        "kind": "INPUT_OBJECT",
+        "name": "WhereNavigation",
+        "possibleTypes": null
+      },
+      {
+        "kind": "INPUT_OBJECT",
+        "name": "WhereNavigationInterne_seiten",
+        "possibleTypes": null
+      },
+      {
+        "kind": "INPUT_OBJECT",
+        "name": "WherePages",
+        "possibleTypes": null
+      },
+      {
+        "kind": "INPUT_OBJECT",
+        "name": "WhereTermine",
+        "possibleTypes": null
+      },
+      {
+        "kind": "INTERFACE",
+        "name": "_Document",
+        "possibleTypes": [
+          {
+            "name": "Bucher"
+          },
+          {
+            "name": "Footer"
+          },
+          {
+            "name": "General"
+          },
+          {
+            "name": "Homepage"
+          },
+          {
+            "name": "Menu"
+          },
+          {
+            "name": "Navigation"
+          },
+          {
+            "name": "Pages"
+          },
+          {
+            "name": "Termine"
+          }
+        ]
+      },
+      {
+        "kind": "OBJECT",
+        "name": "_DocumentConnection",
+        "possibleTypes": null
+      },
+      {
+        "kind": "OBJECT",
+        "name": "_DocumentEdge",
+        "possibleTypes": null
+      },
+      {
+        "kind": "OBJECT",
+        "name": "_ExternalLink",
+        "possibleTypes": null
+      },
+      {
+        "kind": "OBJECT",
+        "name": "_FileLink",
+        "possibleTypes": null
+      },
+      {
+        "kind": "OBJECT",
+        "name": "_ImageLink",
+        "possibleTypes": null
+      },
+      {
+        "kind": "INTERFACE",
+        "name": "_Linkable",
+        "possibleTypes": [
+          {
+            "name": "Bucher"
+          },
+          {
+            "name": "Footer"
+          },
+          {
+            "name": "General"
+          },
+          {
+            "name": "Homepage"
+          },
+          {
+            "name": "Menu"
+          },
+          {
+            "name": "Navigation"
+          },
+          {
+            "name": "Pages"
+          },
+          {
+            "name": "Termine"
+          },
+          {
+            "name": "_ExternalLink"
+          },
+          {
+            "name": "_FileLink"
+          },
+          {
+            "name": "_ImageLink"
+          }
+        ]
+      },
+      {
+        "kind": "INPUT_OBJECT",
+        "name": "similar",
+        "possibleTypes": null
+      },
+      {
+        "kind": "OBJECT",
+        "name": "__Directive",
+        "possibleTypes": null
+      },
+      {
+        "kind": "ENUM",
+        "name": "__DirectiveLocation",
+        "possibleTypes": null
+      },
+      {
+        "kind": "OBJECT",
+        "name": "__EnumValue",
+        "possibleTypes": null
+      },
+      {
+        "kind": "OBJECT",
+        "name": "__Field",
+        "possibleTypes": null
+      },
+      {
+        "kind": "OBJECT",
+        "name": "__InputValue",
+        "possibleTypes": null
+      },
+      {
+        "kind": "OBJECT",
+        "name": "__Schema",
+        "possibleTypes": null
+      },
+      {
+        "kind": "OBJECT",
+        "name": "__Type",
+        "possibleTypes": null
+      },
+      {
+        "kind": "ENUM",
+        "name": "__TypeKind",
+        "possibleTypes": null
+      },
+      {
+        "kind": "SCALAR",
+        "name": "Boolean",
+        "possibleTypes": null
+      },
+      {
+        "kind": "SCALAR",
+        "name": "Float",
+        "possibleTypes": null
+      },
+      {
+        "kind": "SCALAR",
+        "name": "Int",
+        "possibleTypes": null
+      },
+      {
+        "kind": "SCALAR",
+        "name": "Long",
+        "possibleTypes": null
+      },
+      {
+        "kind": "SCALAR",
+        "name": "String",
+        "possibleTypes": null
+      }
+    ]
+  }
+}

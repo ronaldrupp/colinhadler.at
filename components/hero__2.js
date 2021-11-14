@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { RichText } from "prismic-reactjs";
+
 export default function Hero__2({ data }) {
-  console.log(data);
   return (
     <Container>
       <BigBgTitle>
@@ -21,6 +21,9 @@ const Container = styled.div`
   position: relative;
   min-height: 800px;
   padding: 4rem 0;
+  overflow: hidden;
+  @media screen and (max-width: 768px) {
+  }
 `;
 
 const BigBgTitle = styled.div`
@@ -28,9 +31,13 @@ const BigBgTitle = styled.div`
   line-height: 0.9;
   text-align: center;
   font-weight: 600;
+  overflow: hidden;
   text-transform: uppercase;
   p {
     margin: 0;
+  }
+  @media screen and (max-width: 768px) {
+    font-size: 7.5rem;
   }
 `;
 

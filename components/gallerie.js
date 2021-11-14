@@ -1,12 +1,15 @@
 import styled from "styled-components";
 import { RichText } from "prismic-reactjs";
+
 export default function Gallerie({ data }) {
   return (
     <Container>
-      {data.items.map((bild, idx) => (
-        <Element>
-          <Image src={bild.bild.url} key={bild.bild.url} />
-          <TextContainer>{RichText.render(bild.beschreibung)}</TextContainer>
+      {data.fields.map((bild, idx) => (
+        <Element key={bild.bild.url}>
+          <Image src={bild.bild.url} />
+          {bild.beschreibung && (
+            <TextContainer>{RichText.render(bild.beschreibung)}</TextContainer>
+          )}
         </Element>
       ))}
     </Container>
@@ -18,23 +21,32 @@ const Container = styled.div`
   flex-direction: column;
   justify-content: flex-start;
   align-items: flex-start;
+  max-width: var(--main-width);
+  margin: 4rem auto;
 `;
 
 const Image = styled.img`
-  max-width: 792px;
-  max-height: 520px;
+  width: 100%;
+  max-height: 600px;
+  object-fit: cover;
+  @media screen and (max-width:768px){
+    width: 100%;
+  }
 `;
 
 const Element = styled.div`
-  display: grid;
-  grid-template-columns: repeat(12, 1fr);
-  max-width: 1200px;
-  margin: 0 auto;
+  display: flex;
+  max-width: var(--main-width);
+  flex-direction: column;
+  align-items: center;
+  @media screen and (max-width: 768px) {
+    flex-direction: column;
+  }
 `;
 
 const TextContainer = styled.div`
-  width: 35ch;
+  max-width: 35ch;
   font-size: 1.25rem;
   background-color: white;
-  padding: 32px 40px;
+  padding: 1rem;
 `;

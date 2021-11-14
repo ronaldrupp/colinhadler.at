@@ -1,7 +1,8 @@
 import { RichText } from "prismic-reactjs";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, useLayoutEffect } from "react";
 import styled from "styled-components";
 import gsap from "gsap";
+import Link from "next/link";
 
 export default function Hero__1({ data }) {
   const [days, setDays] = useState("");
@@ -17,22 +18,29 @@ export default function Hero__1({ data }) {
     const hours = Math.floor((total / (1000 * 60 * 60)) % 24);
     const days = Math.floor(total / (1000 * 60 * 60 * 24));
 
-    // Display the result in the element with id="demo"
     setDays(days);
     setHours(hours);
     setMinutes(minutes);
     setSeconds(seconds);
-
   }
 
   useEffect(() => {
     let countDownInterval = setInterval(() => countDown(), 1000);
-    gsap.to(countDownRef, { opacity: 1, duration: 1 });
 
     return () => {
       clearInterval(countDownInterval);
     };
   }, []);
+
+  const firstUpdate = useRef(true);
+
+  useLayoutEffect(() => {
+    if (firstUpdate.current) {
+      firstUpdate.current = false;
+      return;
+    }
+    gsap.to(countDownRef, { opacity: 1, duration: 1 });
+  });
 
   return (
     <Container>
@@ -55,7 +63,11 @@ export default function Hero__1({ data }) {
             <Time className="time">s</Time>
           </div>
         </TextContent>
-        <Cover src={data.primary.cover.url} />
+        <Link href="/ancora">
+          <a>
+            <Cover src={data.primary.cover.url} />
+          </a>
+        </Link>
       </Overlay>
     </Container>
   );
@@ -63,18 +75,20 @@ export default function Hero__1({ data }) {
 
 const Container = styled.div`
   width: 100%;
-  min-height: 100vh;
+  height: 100vh;
+  min-height: 600px;
   position: relative;
 `;
 
 const BgImage = styled.img`
   width: 100%;
-  min-height: 100vh;
+  height: 100%;
   object-fit: cover;
   filter: brightness(0.5);
 `;
 
 const Overlay = styled.div`
+  min-height: 600px;
   position: absolute;
   inset: 0;
   display: flex;
@@ -83,8 +97,11 @@ const Overlay = styled.div`
   max-width: calc(var(--main-width) - 200px);
   margin: 0 auto;
   color: white;
+  gap: 1rem;
   @media screen and (max-width: 768px) {
     flex-direction: column;
+    justify-content: center;
+    gap: 2rem;
   }
 `;
 
@@ -92,19 +109,28 @@ const Quote = styled.div`
   color: white;
   font-size: 1.5rem;
   margin-bottom: 5rem;
-  @media screen and (max-width: 768px){
+  font-weight: 800;
+  @media screen and (max-width: 768px) {
     display: none;
   }
 `;
 
 const Cover = styled.img`
   max-width: 400px;
-  height: auto;
+  max-height: 90%;
   object-fit: contain;
+  transition: transform 0.6s cubic-bezier(0.19, 1, 0.22, 1),
+    -webkit-transform 0.6s cubic-bezier(0.19, 1, 0.22, 1);
+  :hover {
+    transform: scale(1.1);
+  }
+  @media screen and (max-width: 768px) {
+    width: 300px;
+  }
 `;
 
 const Time = styled.span`
-  font-weight: 500;
+  font-weight: 300;
   color: white;
   margin-right: 0.5rem;
 `;
@@ -112,7 +138,16 @@ const Time = styled.span`
 const Countdown = styled.span`
   color: white;
   font-size: 2rem;
-  font-weight: 800;
+  font-weight: 600;
 `;
 
-const TextContent = styled.div``;
+const TextContent = styled.div`
+  padding: 1rem;
+  @media screen and (max-width: 768px) {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    text-align: center;
+  }
+`;
