@@ -157,6 +157,9 @@ export const getStaticProps = async (ctx) => {
             fields {
               label,
               external_link {
+                ...on _FileLink{
+                  url
+                }
                 ... on _ExternalLink {
                   url
                   target
