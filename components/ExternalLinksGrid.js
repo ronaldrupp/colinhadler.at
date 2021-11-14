@@ -1,33 +1,35 @@
 import styled from "styled-components";
 import { RichText } from "prismic-reactjs";
-import PlaySVG from "./../public/play.svg";
+import ExternalLinkSVG from "./../public/external-link.svg";
 
-export default function PressVideoGallery({ data }) {
+export default function ExternalLinksGrid({ data }) {
   return (
     <Container>
-      {RichText.render(data.primary.titel_des_containers1)}
-      {RichText.render(data.primary.beschreibung_des_containers)}
+      {RichText.render(data.primary.titel1)}
+      {RichText.render(data.primary.beschreibung)}
       <InnerContainer>
-      {data.fields.map((video, idx) => (
-        <VideoLink
-          href={video.externer_videolink.url}
-          target="_blank"
-          key={idx}
-        >
-          <PlaySVG className="playSVG" />
-          {RichText.render(video.titel1)}
-        </VideoLink>
-      ))}
+        {data.fields.map((video, idx) => (
+          <ExternalLink
+            href={video.external_link.url}
+            target="_blank"
+            key={idx}
+          >
+            <ExternalLinkSVG className="exLinkSVG" />
+            <h2>{video.label}</h2>
+          </ExternalLink>
+        ))}
       </InnerContainer>
     </Container>
   );
 }
+
 const Container = styled.section`
   max-width: var(--main-width);
   padding: 4rem 1rem;
   margin: 0 auto;
 `;
-const InnerContainer = styled.section`
+
+const InnerContainer = styled.div`
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   grid-gap: 1rem;
@@ -35,8 +37,7 @@ const InnerContainer = styled.section`
     grid-template-columns: repeat(1, 1fr);
   }
 `;
-
-const VideoLink = styled.a`
+const ExternalLink = styled.a`
   background-color: black;
   padding: 2rem;
   color: white;
@@ -47,7 +48,8 @@ const VideoLink = styled.a`
     margin: 0;
     margin-top: 0.5rem;
   }
-  .playSVG {
+  .exLinkSVG {
     width: 50px;
+    stroke: white;
   }
 `;

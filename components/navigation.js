@@ -159,7 +159,8 @@ const Container = styled.nav`
     props.windowScroll.y > 60 && "1px solid rgba(200,200,200,0.6)"};
   top: 0;
   z-index: 999;
-  transition: 0.6s;
+  transition: all 0.6s cubic-bezier(0.19, 1, 0.22, 1),
+    -webkit-transform 0.6s cubic-bezier(0.19, 1, 0.22, 1);
   filter: ${(props) =>
     (props.windowScroll.y < 60 && props.index === "/") || props.mobileContainer
       ? "invert(1)"

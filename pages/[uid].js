@@ -8,13 +8,59 @@ import {
 import ApolloClient from "apollo-client";
 import gql from "graphql-tag";
 import fragmentTypes from "./../utils/fragmentTypes.json";
+import { NextSeo, SocialProfileJsonLd } from "next-seo";
 
 export default function Page({ data }) {
+  const {
+    page_title,
+    page_description,
+    page_images,
+    ist_ein_buch_,
+    book_tags,
+    book_release_date,
+    book_isbn,
+  } = data.allPagess.edges[0].node;
   return (
     <>
-      <Head>
-        <title> | Colin Hadler</title>
-      </Head>
+      <NextSeo
+        title={page_title}
+        titleTemplate="%s | Colin Hadler"
+        description={page_description}
+        openGraph={{
+          type: ist_ein_buch_ ? "book" : "website",
+          titel: page_title,
+          description: page_description,
+          images:
+            page_images &&
+            page_images.map(({ image }) => {
+              return {
+                url: image.url,
+                width: image.dimensions.width,
+                height: image.dimensions.height,
+                alt: image.alt,
+              };
+            }),
+          book: {
+            releaseDate: book_release_date,
+            isbn: book_isbn,
+            authors: ["https://colinhadler.at"],
+            tags:
+              book_tags &&
+              book_tags.map((tag) => {
+                return tag.tag;
+              }),
+          },
+        }}
+      />
+      <SocialProfileJsonLd
+        type="Person"
+        name="Colin Hadler"
+        url="http://colinhadler.at"
+        sameAs={[
+          "https://www.facebook.com/ColinHadler/",
+          "https://www.instagram.com/colinhadler/",
+        ]}
+      />
       {data.allPagess.edges[0].node.body.map((elm, idx) => (
         <SliceResolver slice={elm.slice_type} data={elm} key={idx} />
       ))}
@@ -43,6 +89,17 @@ export const getStaticProps = async (ctx) => {
               _meta {
                 uid
               }
+              page_title
+        page_description
+        page_images{
+          image
+        }
+        ist_ein_buch_
+        book_isbn
+        book_tags{
+          tag
+        }
+        book_release_date
               body {
                 __typename
                 ... on PagesBodyUber_mich__image__2{
@@ -86,6 +143,21 @@ export const getStaticProps = async (ctx) => {
                       }
                     }
                   }
+                }
+              }
+            }
+          }
+          ... on PagesBodyExternal_link_section {
+            primary {
+              titel1
+              beschreibung
+            }
+            fields {
+              label,
+              external_link {
+                ... on _ExternalLink {
+                  url
+                  target
                 }
               }
             }
@@ -134,6 +206,10 @@ export const getStaticProps = async (ctx) => {
                   }
                 }
                 ... on PagesBodyPresse_medien__bilder{
+                  primary{
+                    titel_des_containers1,
+                    beschreibung_des_containers
+                  }
             fields{
               bild
               titel1
@@ -141,6 +217,10 @@ export const getStaticProps = async (ctx) => {
             }
           }
           ... on PagesBodyPresse_medien__videos{
+            primary{
+                    titel_des_containers1,
+                    beschreibung_des_containers
+                  }
             fields{
               externer_videolink{
                 ... on _ExternalLink{

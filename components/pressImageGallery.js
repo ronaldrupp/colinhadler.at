@@ -1,17 +1,26 @@
 import styled from "styled-components";
 import PressImageItem from "./PressImageItem";
+import { RichText } from "prismic-reactjs";
 
 export default function PressImageGallery({ data }) {
-
   return (
     <Container>
-      {data.fields.map((image, idx) => (
-        <PressImageItem image={image} key={idx} />
-      ))}
+      {RichText.render(data.primary.titel_des_containers1)}
+      {RichText.render(data.primary.beschreibung_des_containers)}
+      <InnerContainer>
+        {data.fields.map((image, idx) => (
+          <PressImageItem image={image} key={idx} />
+        ))}
+      </InnerContainer>
     </Container>
   );
 }
 
+const Container = styled.section`
+  max-width: var(--main-width);
+  margin: 0 auto;
+  padding: 1rem;
+`;
 const TitelContainer = styled.div`
   font-weight: 800;
   p {
@@ -33,17 +42,15 @@ const ResolutionIndicator = styled.span`
   color: gray;
 `;
 
-const Container = styled.div`
+const InnerContainer = styled.div`
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   max-width: var(--main-width);
   margin: 0 auto;
   grid-gap: 2rem;
-  padding: 1rem;
   @media screen and (max-width: 768px) {
     grid-template-columns: 1fr 1fr;
     grid-gap: 0.5rem;
-    padding: 0.5rem;
   }
 `;
 

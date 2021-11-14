@@ -14,9 +14,7 @@ export default function LandscapeImageWithText({ data }) {
 const Container = styled.section`
   display: grid;
   grid-template-columns: repeat(12, 1fr);
-  grid-template-rows: repeat(8, 1fr);
   background-color: var(--secondary-color);
-  position: relative;
   padding: 4rem 0;
 `;
 
@@ -33,18 +31,17 @@ const Image = styled.img`
 `;
 
 const Description = styled.div`
-  position: absolute;
   background-color: white;
   font-weight: 500;
   font-size: 1.5rem;
-  grid-column: 6 / 12;
+  grid-column: 6 / 13;
   padding: 3rem;
-  grid-row: 5 / auto;
+  grid-row: 6;
 
   @media screen and (max-width: 768px) {
     font-size: 1rem;
     padding: 2rem;
     grid-column: ${(params) => (!params.leftRight ? "2 / 13" : "2 / 7")};
-    grid-row: 11 / auto;
+    grid-row: 12;
   }
 `;

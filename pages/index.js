@@ -9,13 +9,39 @@ import {
 import ApolloClient from "apollo-client";
 import gql from "graphql-tag";
 import fragmentTypes from "./../utils/fragmentTypes.json";
-
+import { NextSeo, SocialProfileJsonLd } from "next-seo";
 export default function Home({ data }) {
+  const { page_title, page_description, page_images } = data;
   return (
     <>
-      <Head>
-        <title>Colin Hadler</title>
-      </Head>
+      <NextSeo
+        title={page_title}
+        description={page_description}
+        openGraph={{
+          type: "website",
+          titel: page_title,
+          description: page_description,
+          images:
+            page_images &&
+            page_images.map(({ image }) => {
+              return {
+                url: image.url,
+                width: image.dimensions.width,
+                height: image.dimensions.height,
+                alt: image.alt,
+              };
+            }),
+        }}
+      />
+      <SocialProfileJsonLd
+        type="Person"
+        name="Colin Hadler"
+        url="http://colinhadler.at"
+        sameAs={[
+          "https://www.facebook.com/ColinHadler/",
+          "https://www.instagram.com/colinhadler/",
+        ]}
+      />
       {data.body.map((elm) => (
         <SliceResolver slice={elm.slice_type} data={elm} key={elm.slice_type} />
       ))}
@@ -41,7 +67,11 @@ export const getStaticProps = async (req, ctx) => {
         allHomepages(uid: "index") {
           edges {
             node {
-              title
+              page_title
+              page_description
+              page_images {
+                image
+              }
               body {
                 __typename
                 ... on HomepageBodyHero__1 {

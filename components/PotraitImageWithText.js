@@ -20,9 +20,7 @@ export default function PotraitImageWithText({ data }) {
 const Container = styled.section`
   display: grid;
   grid-template-columns: repeat(12, 1fr);
-  grid-template-rows: repeat(12, 1fr);
-  position: relative;
-  padding: 10rem 0rem;
+  padding: 2rem 0rem;
   background-color: var(--secondary-color);
   @media screen and (max-width: 768px) {
   }
@@ -47,7 +45,6 @@ const DescriptionWrapper = styled.div`
 `;
 
 const Description = styled.div`
-  position: absolute;
   background-color: white;
   font-weight: 500;
   font-size: 1.5rem;
@@ -60,7 +57,7 @@ const Description = styled.div`
   @media screen and (max-width: 768px) {
     font-size: 1rem;
     padding: 2rem;
-    grid-column: ${(params) => (!params.leftRight ? "2 / 13" : "1 / 8")};
-    grid-row: 10 / auto;
+    grid-column: ${(params) => (!params.leftRight ? "2 / 13" : "1 / 11")};
+    grid-row: 12;
   }
 `;

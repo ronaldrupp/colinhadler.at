@@ -52,6 +52,7 @@ const BackLinkA = styled.a`
   justify-content: flex-start;
   align-items: center;
   position: relative;
+  font-size: 0.85rem;
   :before {
     display: inline-block;
     content: "";
@@ -174,6 +175,7 @@ const ReviewItem = styled.div`
   align-items: flex-start;
   max-width: 70ch;
   margin: 2rem auto;
+  padding: 1rem;
 `;
 const ReviewQoute = styled.div`
   font-style: italic;
