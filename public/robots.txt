@@ -1,0 +1,9 @@
+# *
+User-agent: *
+Allow: /
+
+# Host
+Host: https://colinhadler.at
+
+# Sitemaps
+Sitemap: https://colinhadler.at/sitemap.xml
