@@ -19,7 +19,7 @@ export default function PressImageGallery({ data }) {
 const Container = styled.section`
   max-width: var(--main-width);
   margin: 0 auto;
-  padding: 1rem;
+  padding: 4rem 1rem;
 `;
 const TitelContainer = styled.div`
   font-weight: 800;

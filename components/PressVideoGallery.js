@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import { RichText } from "prismic-reactjs";
 import PlaySVG from "./../public/play.svg";
+import Image from "next/image";
 
 export default function PressVideoGallery({ data }) {
   return (
@@ -8,16 +9,25 @@ export default function PressVideoGallery({ data }) {
       {RichText.render(data.primary.titel_des_containers1)}
       {RichText.render(data.primary.beschreibung_des_containers)}
       <InnerContainer>
-      {data.fields.map((video, idx) => (
-        <VideoLink
-          href={video.externer_videolink.url}
-          target="_blank"
-          key={idx}
-        >
-          <PlaySVG className="playSVG" />
-          {RichText.render(video.titel1)}
-        </VideoLink>
-      ))}
+        {data.fields.map((video, idx) => (
+          <VideoLink
+            href={video.externer_videolink.url}
+            target="_blank"
+            key={idx}
+          >
+            {console.log(video)}
+            <Image
+              src={video.image.url}
+              width={379}
+              height={200}
+              objectFit="cover"
+            />
+            <VideoDescription>
+              <PlaySVG className="playSVG" />
+              <VideoTitel>{video.titel1}</VideoTitel>
+            </VideoDescription>
+          </VideoLink>
+        ))}
       </InnerContainer>
     </Container>
   );
@@ -38,16 +48,46 @@ const InnerContainer = styled.section`
 
 const VideoLink = styled.a`
   background-color: black;
-  padding: 2rem;
   color: white;
   font-size: 1rem;
   border-radius: 0.25rem;
-  aspect-ratio: 16/9;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  z-index: 2;
   h3 {
     margin: 0;
     margin-top: 0.5rem;
   }
   .playSVG {
-    width: 50px;
+    width: 25px;
   }
+  img {
+    border-radius: 0.25rem 0.25rem 0 0;
+  }
+  transition: transform 0.6s cubic-bezier(0.19, 1, 0.22, 1),
+    -webkit-transform 0.6s cubic-bezier(0.19, 1, 0.22, 1);
+  :hover {
+    transform: translateY(-10px);
+  }
+  @media screen and (max-width: 768px) {
+    :hover {
+      transform: translateX(10px);
+    }
+  }
+`;
+
+const VideoDescription = styled.div`
+  padding: 2rem;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  width: 100%;
+  flex-grow: 1;
+  z-index: 2;
+`;
+
+const VideoTitel = styled.span`
+  font-weight: 600;
+  margin-left: 1rem;
 `;
