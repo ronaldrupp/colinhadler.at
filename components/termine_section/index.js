@@ -33,7 +33,6 @@ export default function TermineSection({ data }) {
 
 const Container = styled.section`
   position: relative;
-  height: 600px;
   display: flex;
   flex-direction: column;
   .bg-img {
@@ -58,7 +57,7 @@ const InnerContainer = styled.div`
   height: inherit;
   max-width: var(--main-width);
   margin: 0 auto;
-  padding: 0rem 1rem;
+  padding: 1rem;
 `;
 const Overlay = styled.div`
   width: 350px;
@@ -79,9 +78,12 @@ const Overlay = styled.div`
 
 const BackgroundImage = styled.img`
   width: 100%;
-  height: 100%;
+  height: 600px;
   object-fit: cover;
   filter: saturate(0);
+  @media screen and (max-width: 768px){
+    height: 250px;
+  }
 `;
 
 const Btn = styled.a`
