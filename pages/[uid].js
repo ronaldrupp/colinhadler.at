@@ -9,6 +9,7 @@ import ApolloClient from "apollo-client";
 import gql from "graphql-tag";
 import fragmentTypes from "./../utils/fragmentTypes.json";
 import { NextSeo, SocialProfileJsonLd } from "next-seo";
+import * as ga from "../lib/ga";
 
 export default function Page({ data }) {
   const {
@@ -20,6 +21,7 @@ export default function Page({ data }) {
     book_release_date,
     book_isbn,
   } = data.allPagess.edges[0].node;
+  
   return (
     <>
       <NextSeo
@@ -155,6 +157,9 @@ export const getStaticProps = async (ctx) => {
             fields {
               label,
               external_link {
+                ...on _FileLink{
+                  url
+                }
                 ... on _ExternalLink {
                   url
                   target

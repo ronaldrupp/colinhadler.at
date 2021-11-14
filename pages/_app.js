@@ -3,12 +3,15 @@ import Head from "next/head";
 import NextApp from "next/app";
 import Prismic from "@prismicio/client";
 import Layout from "../components/layout";
-import { motion, AnimatedPresence, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import { PrismicLink } from "apollo-link-prismic";
 import { InMemoryCache } from "apollo-cache-inmemory";
 import ApolloClient from "apollo-client";
 import gql from "graphql-tag";
 import { withRouter } from "next/router";
+import CookieBanner from "./../components/CookieBanner";
+import * as ga from "../lib/ga";
+
 const client = new ApolloClient({
   link: PrismicLink({
     uri: "https://colinhadler.cdn.prismic.io/graphql",
@@ -95,7 +98,7 @@ class MyApp extends NextApp {
             rel="stylesheet"
           />
         </Head>
-
+        <CookieBanner />
         <Layout footer={props.footer} navigation={props.navigation}>
           <AnimatePresence exitBeforeEnter>
             <motion.div
