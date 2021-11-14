@@ -15,6 +15,7 @@ export default function ContactSection({ data }) {
               href={link.externer_link.url}
               target={link.externer_link.target}
             >
+              <LogoOfLink src={link.icon_fur_button.url} />
               {link.name_des_buttons}
             </ExternalLink>
           ))}
@@ -42,11 +43,20 @@ const InnerContainer = styled.section`
   }
 `;
 
+const LogoOfLink = styled.img`
+  width: 25px;
+  height: 25px;
+  object-fit: contain;
+`;
 const ExternalLink = styled.a`
   color: white;
   background-color: black;
   padding: 0.5rem 1rem;
   border-radius: 0.25rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
 `;
 
 const LinksContainer = styled.div`
