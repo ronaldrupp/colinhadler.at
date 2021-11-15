@@ -217,6 +217,8 @@ export const getStaticProps = async (ctx) => {
                   }
             fields{
               bild
+              titel_vom_bild
+              untertitel_vom_bild
             }
           }
           ... on PagesBodyPresse_medien__videos {

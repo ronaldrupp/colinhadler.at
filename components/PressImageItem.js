@@ -41,9 +41,9 @@ export default function PressImageItem({ image }) {
         <ResolutionIndicator>
           {image.bild.dimensions.width}x{image.bild.dimensions.height}
         </ResolutionIndicator>
-        <TitelContainer>{RichText.render(image.titel1)}</TitelContainer>
+        <TitelContainer>{RichText.render(image.titel_vom_bild)}</TitelContainer>
         <SubtitleContainer>
-          {RichText.render(image.untertitel)}
+          {RichText.render(image.untertitel_vom_bild)}
         </SubtitleContainer>
         <DownloadBtn
           disabled={fetching}
