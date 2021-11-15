@@ -1,8 +1,19 @@
 import styled from "styled-components";
 import { RichText } from "prismic-reactjs";
 import ExternalLinkSVG from "./../public/external-link.svg";
+import Gallerie from "./gallerie";
 
 export default function ExternalLinksGrid({ data }) {
+  // function logEventToGA(name) {
+  //   if (window) {
+  //     ga.event({
+  //       action: "Klick",
+  //       params: {
+  //         name,
+  //       },
+  //     });
+  //   }
+  // }
   return (
     <Container>
       {RichText.render(data.primary.titel1)}
@@ -14,6 +25,9 @@ export default function ExternalLinksGrid({ data }) {
             href={video.external_link.url}
             target="_blank"
             key={idx}
+            // onClick={() => {
+            //   logEventToGA(video.label);
+            // }}
           >
             <ExternalLinkSVG className="exLinkSVG" />
             <h2>{video.label}</h2>
