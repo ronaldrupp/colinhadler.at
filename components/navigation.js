@@ -254,9 +254,9 @@ const LinkContainer = styled.ul`
   align-items: center;
   padding: 0;
   list-style: none;
-  gap: 1rem;
-  @supports not (gap: 1rem) {
-    margin-right: 1rem;
+  /* gap: 1rem; */
+  li{
+    margin-left: 0.5rem;
   }
   @media screen and (max-width: 768px) {
     display: none;
