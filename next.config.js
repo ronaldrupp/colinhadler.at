@@ -7,5 +7,5 @@ module.exports = {
 
     return config;
   },
-  images: { domains: ["images.prismic.io"] },
+  images: { domains: ["images.prismic.io", "colinhadler.cdn.prismic.io"] },
 };

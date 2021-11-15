@@ -5,6 +5,7 @@ gsap.registerPlugin(ScrollTrigger);
 import { useEffect, useState, useRef } from "react";
 import styled from "styled-components";
 import Link from "next/link";
+import Image from "next/image";
 
 export default function MeineBucherSection({ data }) {
   // let containerRef = [];
@@ -25,7 +26,12 @@ export default function MeineBucherSection({ data }) {
         {data.fields.map((buch) => (
           <Link href={buch.buch._meta.uid} key={buch.buch._meta.uid}>
             <ElementContainer>
-              <Cover src={buch.buch.cover.url} alt={buch.buch.cover.alt} />
+              <Image
+                width={200}
+                height={300}
+                src={buch.buch.cover.url}
+                alt={buch.buch.cover.alt}
+              />
             </ElementContainer>
           </Link>
         ))}
