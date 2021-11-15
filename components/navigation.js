@@ -44,13 +44,16 @@ export default function Navigation({ data }) {
                     onClick={() => {
                       setMobileContainer(!showMobileContainer);
                     }}
+                    windowScroll={windowScroll}
+                    index={router.route}
+                    mobileContainer={showMobileContainer}
                     activeClass={
                       router.asPath === site.interne_seite._meta.uid
                         ? true
                         : false
                     }
                   >
-                    {RichText.render(site.seitennamen)}
+                    {site.label}
                   </LinkItem>
                 </Link>
               ))}
@@ -65,19 +68,41 @@ export default function Navigation({ data }) {
       >
         <InnerContainer>
           <Link href="/">
-            <LogoContainerLink>
-              <LogoContainer />
+            <LogoContainerLink
+              onClick={() => {
+                if (showMobileContainer)
+                  setMobileContainer(!showMobileContainer);
+              }}
+            >
+              <LogoContainer
+                windowScroll={windowScroll}
+                index={router.route}
+                mobileContainer={showMobileContainer}
+              />
             </LogoContainerLink>
           </Link>
-          <MenuButton onClick={() => setMobileContainer(!showMobileContainer)} aria-label="Menu Button">
+          <MenuButton
+            onClick={() => setMobileContainer(!showMobileContainer)}
+            aria-label="Menu Button"
+          >
             <AnimatePresence>
               {showMobileContainer ? (
                 <motion.div animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
-                  <XSVG />
+                  <XSVG
+                    windowScroll={windowScroll}
+                    index={router.route}
+                    mobileContainer={showMobileContainer}
+                  />
                 </motion.div>
               ) : (
                 <motion.div animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
-                  <MenuSVG />
+                  <MenuSVGContainer
+                    windowScroll={windowScroll}
+                    index={router.route}
+                    mobileContainer={showMobileContainer}
+                  >
+                    <MenuSVG />
+                  </MenuSVGContainer>
                 </motion.div>
               )}
             </AnimatePresence>
@@ -87,13 +112,16 @@ export default function Navigation({ data }) {
               <li key={site.interne_seite._meta.uid}>
                 <Link href={site.interne_seite._meta.uid}>
                   <LinkItem
+                    windowScroll={windowScroll}
+                    index={router.route}
+                    mobileContainer={showMobileContainer}
                     active={
                       router.asPath === "/" + site.interne_seite._meta.uid
                         ? true
                         : false
                     }
                   >
-                    {RichText.render(site.seitennamen)}
+                    {site.label}
                   </LinkItem>
                 </Link>
               </li>
@@ -105,47 +133,63 @@ export default function Navigation({ data }) {
   );
 }
 
-const MobileUl = styled.div``;
+const MenuSVGContainer = styled.div`
+  stroke: ${(props) =>
+    (props.windowScroll.y < 60 && props.index === "/") || props.mobileContainer
+      ? "white"
+      : "black"};
+`;
+const MobileUl = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+`;
 
 const MobileLinkItem = styled.a``;
 
 const LinkItem = styled.a`
-  h2 {
-    color: inherit;
-    font-size: 1rem;
-    font-weight: 600;
-    text-transform: uppercase;
-    transition: var(--transition-duration);
-    position: relative;
-    overflow: hidden;
-
+  font-size: 1rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  transition: var(--transition-duration);
+  position: relative;
+  overflow: hidden;
+  color: ${(props) =>
+    (props.windowScroll.y < 60 && props.index === "/") || props.mobileContainer
+      ? "white"
+      : "black"};
+  &:after {
+    content: "";
+    position: absolute;
+    width: 100%;
+    left: 0;
+    bottom: 0;
+    height: 1px;
+    transform-origin: right center;
+    transition: transform 0.6s cubic-bezier(0.19, 1, 0.22, 1),
+      -webkit-transform 0.6s cubic-bezier(0.19, 1, 0.22, 1);
+    background-color: ${(props) =>
+      (props.windowScroll.y < 60 && props.index === "/") ||
+      props.mobileContainer
+        ? "white"
+        : "black"};
+    transform: ${(props) => {
+      return props.active ? "scaleX(1)" : "scaleX(0)";
+    }};
+  }
+  &:hover {
+    cursor: pointer;
     &:after {
-      content: "";
-      position: absolute;
-      width: 100%;
-      left: 0;
-      bottom: 0;
-      height: 1px;
-      transform-origin: right center;
-      transition: transform 0.6s cubic-bezier(0.19, 1, 0.22, 1),
-        -webkit-transform 0.6s cubic-bezier(0.19, 1, 0.22, 1);
-      background-color: black;
-      transform: ${(props) => {
-        return props.active ? "scaleX(1)" : "scaleX(0)";
-      }};
-    }
-    &:hover {
-      cursor: pointer;
-      &:after {
-        transform: scaleX(1);
-        transform-origin: left center;
-      }
-    }
-    @media screen and (max-width: 768px) {
-      font-size: 2rem;
-      margin: 0;
+      transform: scaleX(1);
+      transform-origin: left center;
     }
   }
+  @media screen and (max-width: 768px) {
+    font-size: 2rem;
+    margin: 0;
+  }
+
   font-size: 1rem;
   transition: all 0.2s ease-in-out;
   position: relative;
@@ -161,10 +205,10 @@ const Container = styled.nav`
   z-index: 999;
   transition: all 0.6s cubic-bezier(0.19, 1, 0.22, 1),
     -webkit-transform 0.6s cubic-bezier(0.19, 1, 0.22, 1);
-  filter: ${(props) =>
+  /* filter: ${(props) =>
     (props.windowScroll.y < 60 && props.index === "/") || props.mobileContainer
       ? "invert(1)"
-      : "invert(0)"};
+      : "invert(0)"}; */
   background-color: ${(props) =>
     props.windowScroll.y > 60 ? "rgba(255,255,255,1)" : "transparent"};
   /* backdrop-filter: blur(20px);
@@ -183,6 +227,10 @@ const LogoContainerLink = styled.a`
 const LogoContainer = styled(Logo)`
   height: 75px;
   object-fit: contain;
+  filter: ${(props) =>
+    (props.windowScroll.y < 60 && props.index === "/") || props.mobileContainer
+      ? "invert(1)"
+      : "invert(0)"};
   @media screen and (max-width: 768px) {
     height: 50px;
   }

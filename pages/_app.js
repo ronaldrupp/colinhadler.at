@@ -29,7 +29,7 @@ class MyApp extends NextApp {
             edges {
               node {
                 interne_seiten {
-                  seitennamen
+                  label
                   interne_seite {
                     ... on Pages {
                       _meta {
