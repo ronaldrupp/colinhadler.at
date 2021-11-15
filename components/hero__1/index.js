@@ -71,7 +71,7 @@ export default function Hero__1({ data }) {
             <Image
               src={data.primary.cover.url}
               width={500}
-              height={400}
+              height={600}
               objectFit="contain"
               alt={data.primary.cover.alt}
             />
@@ -86,7 +86,7 @@ export default function Hero__1({ data }) {
 const Container = styled.div`
   width: 100%;
   height: 100vh;
-  min-height: 700px;
+  min-height: 850px;
   position: relative;
   .bgBackground {
     filter: brightness(0.3);
