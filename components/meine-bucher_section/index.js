@@ -25,7 +25,7 @@ export default function MeineBucherSection({ data }) {
         {data.fields.map((buch) => (
           <Link href={buch.buch._meta.uid} key={buch.buch._meta.uid}>
             <ElementContainer>
-              <Cover src={buch.buch.cover.url} />
+              <Cover src={buch.buch.cover.url} alt={buch.buch.cover.alt} />
             </ElementContainer>
           </Link>
         ))}

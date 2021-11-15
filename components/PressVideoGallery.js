@@ -15,7 +15,6 @@ export default function PressVideoGallery({ data }) {
             target="_blank"
             key={idx}
           >
-            {console.log(video)}
             <Image
               src={video.image.url}
               width={379}

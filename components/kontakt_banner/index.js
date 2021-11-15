@@ -14,7 +14,7 @@ export default function KontaktBanner({ data }) {
               key={idx}
               target={link.link.target}
             >
-              <img src={link.icon.url} />
+              <img src={link.icon.url} alt={link.icon.alt} />
             </SocialLinkItem>
           ))}
         </SocialLinksContainer>

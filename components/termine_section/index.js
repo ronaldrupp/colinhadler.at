@@ -13,7 +13,10 @@ export default function TermineSection({ data }) {
         objectFit="cover"
         className="bg-img"
       /> */}
-      <BackgroundImage src={data.primary.hintergrundbild.url} />
+      <BackgroundImage
+        src={data.primary.hintergrundbild.url}
+        alt={data.primary.hintergrundbild.alt}
+      />
       <OuterContainer>
         <InnerContainer>
           <Overlay>

@@ -111,7 +111,7 @@ const LegalNoticeContainer = styled.div`
   }
 `;
 
-const List = styled.ul`
+const List = styled.div`
   padding: 0;
   display: flex;
   justify-content: flex-start;

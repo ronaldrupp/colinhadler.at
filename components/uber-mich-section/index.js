@@ -19,7 +19,7 @@ export default function UberMichSection({ data }) {
           <Btn>Mehr erfahren</Btn>
         </Link>
       </Content>
-      <ColinImage src={data.primary.bild.url} />
+      <ColinImage src={data.primary.bild.url} alt={data.primary.bild.alt} />
     </Container>
   );
 }

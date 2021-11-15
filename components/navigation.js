@@ -69,7 +69,7 @@ export default function Navigation({ data }) {
               <LogoContainer />
             </LogoContainerLink>
           </Link>
-          <MenuButton onClick={() => setMobileContainer(!showMobileContainer)}>
+          <MenuButton onClick={() => setMobileContainer(!showMobileContainer)} aria-label="Menu Button">
             <AnimatePresence>
               {showMobileContainer ? (
                 <motion.div animate={{ opacity: 1 }} exit={{ opacity: 0 }}>

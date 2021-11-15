@@ -10,7 +10,7 @@ export default function All_Books({ data }) {
         <Link href={book.buch._meta.uid} key={book.buch._meta.uid}>
           <a>
             <BookItem>
-              <Cover src={book.buch.cover.url} />
+              <Cover src={book.buch.cover.url} alt={book.buch.cover.alt} />
               {/* <InfoContainer>
             {book.buch.data.isnew && <NewIndicator>NEU</NewIndicator>}
             {RichText.render(book.buch.data.titel)}

@@ -49,6 +49,7 @@ export default function Hero__1({ data }) {
         layout="fill"
         objectFit="cover"
         src={data.primary.hintergrundbild.url}
+        alt={data.primary.hintergrundbild.alt}
       />
       <Overlay>
         <TextContent>
@@ -72,6 +73,7 @@ export default function Hero__1({ data }) {
               width={500}
               height={400}
               objectFit="contain"
+              alt={data.primary.cover.alt}
             />
             {/* <Cover src={data.primary.cover.url} /> */}
           </a>
