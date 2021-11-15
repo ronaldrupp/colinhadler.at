@@ -200,7 +200,7 @@ const Container = styled.nav`
   width: 100%;
   height: ${(props) => (props.windowScroll.y > 60 ? "75px" : "150px")};
   border-bottom: ${(props) =>
-    props.windowScroll.y > 60 && "1px solid rgba(200,200,200,0.6)"};
+    props.windowScroll.y > 60 && !props.mobileContainer ? "1px solid rgba(200,200,200,0.6)" : 'none'};
   top: 0;
   z-index: 999;
   transition: all 0.6s cubic-bezier(0.19, 1, 0.22, 1),
@@ -209,8 +209,15 @@ const Container = styled.nav`
     (props.windowScroll.y < 60 && props.index === "/") || props.mobileContainer
       ? "invert(1)"
       : "invert(0)"}; */
-  background-color: ${(props) =>
-    props.windowScroll.y > 60 ? "rgba(255,255,255,1)" : "transparent"};
+  background-color: ${(props) => {
+    if (props.windowScroll.y > 60 && !props.mobileContainer) {
+      return "rgba(255,255,255,1)";
+    } else if (props.mobileContainer) {
+      return "black";
+    } else {
+      return "transparent";
+    }
+  }};
   /* backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px); */
   @media screen and (max-width: 768px) {
@@ -255,8 +262,8 @@ const LinkContainer = styled.ul`
   padding: 0;
   list-style: none;
   /* gap: 1rem; */
-  li{
-    margin-left: 0.5rem;
+  li {
+    margin-left: 1rem;
   }
   @media screen and (max-width: 768px) {
     display: none;
@@ -276,7 +283,7 @@ const MenuButton = styled.button`
 
 const MobileContainer = styled(motion.div)`
   width: 100%;
-  height: 100vh;
+  min-height: 100vh;
   position: fixed;
   inset: 0;
   background-color: var(--primary-color);
