@@ -27,6 +27,7 @@ export default function Page({ data }) {
       <NextSeo
         title={page_title}
         titleTemplate="%s | Colin Hadler"
+        defaultTitle="Colin Hadler"
         description={page_description}
         openGraph={{
           type: ist_ein_buch_ ? "book" : "website",

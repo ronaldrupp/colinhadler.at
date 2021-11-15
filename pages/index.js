@@ -16,6 +16,7 @@ export default function Home({ data }) {
     <>
       <NextSeo
         title={page_title}
+        defaultTitle="Colin Hadler"
         description={page_description}
         openGraph={{
           type: "website",
