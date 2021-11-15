@@ -100,15 +100,7 @@ class MyApp extends NextApp {
         <CookieBanner />
         <Layout footer={props.footer} navigation={props.navigation}>
           <AnimatePresence exitBeforeEnter>
-            <motion.div
-              key={router.asPath}
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              transition={{ duration: 0.3, ease: "easeInOut" }}
-            >
-              <Component {...pageProps} />
-            </motion.div>
+            <Component {...pageProps} />
           </AnimatePresence>
         </Layout>
       </>

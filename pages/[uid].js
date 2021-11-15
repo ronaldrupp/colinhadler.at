@@ -10,8 +10,11 @@ import gql from "graphql-tag";
 import fragmentTypes from "./../utils/fragmentTypes.json";
 import { NextSeo, SocialProfileJsonLd } from "next-seo";
 import * as ga from "../lib/ga";
+import { AnimatePresence, motion } from "framer-motion";
+import { useRouter } from "next/router";
 
 export default function Page({ data }) {
+  const router = useRouter();
   const {
     page_title,
     page_description,
@@ -24,49 +27,59 @@ export default function Page({ data }) {
 
   return (
     <>
-      <NextSeo
-        title={page_title}
-        titleTemplate="%s | Colin Hadler"
-        defaultTitle="Colin Hadler"
-        description={page_description}
-        openGraph={{
-          type: ist_ein_buch_ ? "book" : "website",
-          titel: page_title,
-          description: page_description,
-          images:
-            page_images &&
-            page_images.map(({ image }) => {
-              return {
-                url: image.url,
-                width: image.dimensions.width,
-                height: image.dimensions.height,
-                alt: image.alt,
-              };
-            }),
-          book: {
-            releaseDate: book_release_date,
-            isbn: book_isbn,
-            authors: ["https://colinhadler.at"],
-            tags:
-              book_tags &&
-              book_tags.map((tag) => {
-                return tag.tag;
-              }),
-          },
-        }}
-      />
-      <SocialProfileJsonLd
-        type="Person"
-        name="Colin Hadler"
-        url="http://colinhadler.at"
-        sameAs={[
-          "https://www.facebook.com/ColinHadler/",
-          "https://www.instagram.com/colinhadler/",
-        ]}
-      />
-      {data.allPagess.edges[0].node.body.map((elm, idx) => (
-        <SliceResolver slice={elm.slice_type} data={elm} key={idx} />
-      ))}
+      <AnimatePresence exitBeforeEnter>
+        <motion.div
+          key={router.asPath}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          transition={{ duration: 0.3, ease: "easeInOut" }}
+        >
+          <NextSeo
+            title={page_title}
+            titleTemplate="%s | Colin Hadler"
+            defaultTitle="Colin Hadler"
+            description={page_description}
+            openGraph={{
+              type: ist_ein_buch_ ? "book" : "website",
+              titel: page_title,
+              description: page_description,
+              images:
+                page_images &&
+                page_images.map(({ image }) => {
+                  return {
+                    url: image.url,
+                    width: image.dimensions.width,
+                    height: image.dimensions.height,
+                    alt: image.alt,
+                  };
+                }),
+              book: {
+                releaseDate: book_release_date,
+                isbn: book_isbn,
+                authors: ["https://colinhadler.at"],
+                tags:
+                  book_tags &&
+                  book_tags.map((tag) => {
+                    return tag.tag;
+                  }),
+              },
+            }}
+          />
+          <SocialProfileJsonLd
+            type="Person"
+            name="Colin Hadler"
+            url="http://colinhadler.at"
+            sameAs={[
+              "https://www.facebook.com/ColinHadler/",
+              "https://www.instagram.com/colinhadler/",
+            ]}
+          />
+          {data.allPagess.edges[0].node.body.map((elm, idx) => (
+            <SliceResolver slice={elm.slice_type} data={elm} key={idx} />
+          ))}
+        </motion.div>
+      </AnimatePresence>
     </>
   );
 }
