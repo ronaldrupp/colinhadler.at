@@ -33,7 +33,7 @@ export default function CookieBanner() {
               {/* <button className={styles.hideBtn}>X</button> */}
               <Title>🍪 Cookie</Title>
               <p>
-                Neben technisch notewendigen Cookies verwendet diese Webseite
+                Neben technisch notwendigen Cookies verwendet diese Webseite
                 auch statistische Cookies (Google Analytics).
               </p>
               <Actions>
