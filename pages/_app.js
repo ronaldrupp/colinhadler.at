@@ -9,7 +9,6 @@ import { InMemoryCache } from "apollo-cache-inmemory";
 import ApolloClient from "apollo-client";
 import gql from "graphql-tag";
 import { withRouter } from "next/router";
-import CookieBanner from "./../components/CookieBanner";
 import * as ga from "../lib/ga";
 
 const client = new ApolloClient({
@@ -97,7 +96,6 @@ class MyApp extends NextApp {
             rel="stylesheet"
           />
         </Head>
-        <CookieBanner />
         <Layout footer={props.footer} navigation={props.navigation}>
           <AnimatePresence exitBeforeEnter>
             <Component {...pageProps} />
