@@ -17,10 +17,10 @@ export default function Hero__1({ data }) {
 
   let countDownRef = useRef();
   function countDown() {
-    const date1 = new Date("January 16, 2022 11:04:30");
-    // const total =
-    //   Date.parse(data.primary.releasedatum) - Date.parse(new Date());
-    const total = Date.parse(date1) - Date.parse(new Date());
+    // const date1 = new Date("January 16, 2022 11:04:30");
+    const total =
+      Date.parse(data.primary.releasedatum) - Date.parse(new Date());
+    // const total = Date.parse(date1) - Date.parse(new Date());
     const seconds = Math.floor((total / 1000) % 60);
     const minutes = Math.floor((total / 1000 / 60) % 60);
     const hours = Math.floor((total / (1000 * 60 * 60)) % 24);
