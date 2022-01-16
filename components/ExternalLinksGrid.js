@@ -18,7 +18,6 @@ export default function ExternalLinksGrid({ data }) {
     <Container>
       {RichText.render(data.primary.titel1)}
       {RichText.render(data.primary.beschreibung)}
-
       <InnerContainer>
         {data.fields.map((video, idx) => (
           <ExternalLink
@@ -29,8 +28,10 @@ export default function ExternalLinksGrid({ data }) {
             //   logEventToGA(video.label);
             // }}
           >
-            <ExternalLinkSVG className="exLinkSVG" />
-            <h2>{video.label}</h2>
+            <DetailContainer>
+              <ExternalLinkSVG className="exLinkSVG" />
+              <span>{video.label}</span>
+            </DetailContainer>
           </ExternalLink>
         ))}
       </InnerContainer>
@@ -38,6 +39,19 @@ export default function ExternalLinksGrid({ data }) {
   );
 }
 
+const DetailContainer = styled.div`
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: 50px auto;
+  span {
+    font-weight: 600;
+    font-size: 1.25rem;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+`;
 const Container = styled.section`
   max-width: var(--main-width);
   padding: 4rem 1rem;
@@ -59,10 +73,6 @@ const ExternalLink = styled.a`
   font-size: 1rem;
   border-radius: 0.25rem;
   flex-grow: 1;
-  h3 {
-    margin: 0;
-    margin-top: 0.5rem;
-  }
   .exLinkSVG {
     width: 50px;
     stroke: white;

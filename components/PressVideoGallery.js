@@ -17,7 +17,7 @@ export default function PressVideoGallery({ data }) {
           >
             <Image
               src={video.image.url}
-              width={379}
+              width={389}
               height={200}
               objectFit="cover"
             />
@@ -59,7 +59,8 @@ const VideoLink = styled.a`
     margin-top: 0.5rem;
   }
   .playSVG {
-    width: 25px;
+    width: 100%;
+    height: 100%;
   }
   img {
     border-radius: 0.25rem 0.25rem 0 0;
@@ -78,9 +79,9 @@ const VideoLink = styled.a`
 
 const VideoDescription = styled.div`
   padding: 2rem;
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: 25px auto;
   width: 100%;
   flex-grow: 1;
   z-index: 2;
@@ -88,5 +89,13 @@ const VideoDescription = styled.div`
 
 const VideoTitel = styled.span`
   font-weight: 600;
-  margin-left: 1rem;
+  font-size: 1.25rem;
+  overflow: hidden;
+  display: block;
+  -webkit-line-clamp: 2;
+  display: block;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  text-overflow: ellipsis;
+  white-space: normal;
 `;
