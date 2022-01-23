@@ -1,6 +1,4 @@
-import Prismic from "@prismicio/client";
 import SliceResolver from "./../utils/SliceResolver";
-import Head from "next/head";
 import { PrismicLink } from "apollo-link-prismic";
 import {
   InMemoryCache,
@@ -16,7 +14,6 @@ export default function Home({ data }) {
     <>
       <NextSeo
         title={page_title}
-        defaultTitle="Colin Hadler"
         description={page_description}
         openGraph={{
           type: "website",

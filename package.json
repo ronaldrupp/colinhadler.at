@@ -16,7 +16,7 @@
     "apollo-link-prismic": "^1.0.9",
     "axios": "^0.23.0",
     "dayjs": "^1.10.7",
-    "framer-motion": "^4.1.17",
+    "framer-motion": "^6.2.1",
     "fs": "^0.0.1-security",
     "graphql": "^15.6.1",
     "graphql-tag": "^2.12.5",

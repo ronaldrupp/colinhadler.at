@@ -4,8 +4,6 @@ import styled from "styled-components";
 import gsap from "gsap";
 import Link from "next/link";
 import Image from "next/image";
-import Confetti from "react-confetti";
-import useWindowSize from "../../utils/windowSize";
 
 export default function Hero__1({ data }) {
   const [days, setDays] = useState("");
@@ -13,14 +11,11 @@ export default function Hero__1({ data }) {
   const [minutes, setMinutes] = useState("");
   const [seconds, setSeconds] = useState("");
   const [countdownEnded, setCountdownEnded] = useState(false);
-  const windowSize = useWindowSize();
 
   let countDownRef = useRef();
   function countDown() {
-    // const date1 = new Date("January 16, 2022 11:04:30");
     const total =
       Date.parse(data.primary.releasedatum) - Date.parse(new Date());
-    // const total = Date.parse(date1) - Date.parse(new Date());
     const seconds = Math.floor((total / 1000) % 60);
     const minutes = Math.floor((total / 1000 / 60) % 60);
     const hours = Math.floor((total / (1000 * 60 * 60)) % 24);
@@ -33,27 +28,19 @@ export default function Hero__1({ data }) {
     if (total < 0) setCountdownEnded(true);
   }
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     let countDownInterval = setInterval(() => countDown(), 1000);
-
     return () => {
       clearInterval(countDownInterval);
     };
   }, []);
 
-  const firstUpdate = useRef(true);
-
-  useLayoutEffect(() => {
-    if (firstUpdate.current) {
-      firstUpdate.current = false;
-      return;
-    }
+  useEffect(() => {
     gsap.to(countDownRef, { opacity: 1, duration: 1 });
-  });
+  }, []);
 
   return (
     <Container>
-      {/* <Confetti width={windowSize.width} height={windowSize.height} /> */}
       <Image
         className="bgBackground"
         layout="fill"
@@ -66,22 +53,23 @@ export default function Hero__1({ data }) {
           <Quote>{RichText.render(data.primary.kurzbeschreibung)}</Quote>
           {countdownEnded ? (
             <Link href="/ancora">
-              <BuyNowLink>Jetzt kaufen</BuyNowLink>
+              <BuyNowLink>Jetzt erhältlich</BuyNowLink>
             </Link>
-          ) : null}
-          <CountdownContainer countdownEnded={countdownEnded}>
-            <div>Release in</div>
-            <div style={{ opacity: 0 }} ref={(node) => (countDownRef = node)}>
-              <Countdown className="countDown">{days}</Countdown>
-              <Time className="time">d</Time>
-              <Countdown className="countDown">{hours}</Countdown>
-              <Time className="time">h</Time>{" "}
-              <Countdown className="countDown">{minutes}</Countdown>
-              <Time className="time">m</Time>{" "}
-              <Countdown className="countDown">{seconds}</Countdown>
-              <Time className="time">s</Time>
-            </div>
-          </CountdownContainer>
+          ) : (
+            <CountdownContainer ref={(node) => (countDownRef = node)}>
+              <div>Release in</div>
+              <div>
+                <Countdown className="countDown">{days}</Countdown>
+                <Time className="time">d</Time>
+                <Countdown className="countDown">{hours}</Countdown>
+                <Time className="time">h</Time>{" "}
+                <Countdown className="countDown">{minutes}</Countdown>
+                <Time className="time">m</Time>{" "}
+                <Countdown className="countDown">{seconds}</Countdown>
+                <Time className="time">s</Time>
+              </div>
+            </CountdownContainer>
+          )}
         </TextContent>
         <Link href="/ancora">
           <a>
@@ -108,6 +96,7 @@ const Container = styled.div`
   .bgBackground {
     filter: brightness(0.3);
   }
+  background-color: rgb(20, 20, 20);
 `;
 
 const BgImage = styled.img`
@@ -182,7 +171,7 @@ const TextContent = styled.div`
 `;
 
 const CountdownContainer = styled.div`
-  display: ${(params) => (params.countdownEnded ? "none" : "block")};
+  opacity: 0;
 `;
 
 const BuyNowLink = styled.a`

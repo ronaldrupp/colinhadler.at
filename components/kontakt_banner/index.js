@@ -19,7 +19,7 @@ export default function KontaktBanner({ data }) {
                 alt={link.icon.alt}
                 width={30}
                 height={30}
-                obecjtFit="contain"
+                objectFit="contain"
               />
             </SocialLinkItem>
           ))}

@@ -1,5 +1,4 @@
 import SliceResolver from "./../utils/SliceResolver";
-import Head from "next/head";
 import { PrismicLink } from "apollo-link-prismic";
 import {
   InMemoryCache,
@@ -9,7 +8,6 @@ import ApolloClient from "apollo-client";
 import gql from "graphql-tag";
 import fragmentTypes from "./../utils/fragmentTypes.json";
 import { NextSeo, SocialProfileJsonLd } from "next-seo";
-import * as ga from "../lib/ga";
 import { AnimatePresence, motion } from "framer-motion";
 import { useRouter } from "next/router";
 
@@ -256,6 +254,8 @@ export const getStaticProps = async (ctx) => {
                     titel_des_events,
                     ort,
                     datum___uhrzeit
+                    cover
+              beschreibung
                   }
                 }
                 ... on PagesBodyAll_books {

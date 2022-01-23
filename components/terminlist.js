@@ -1,8 +1,17 @@
 import styled from "styled-components";
 import { RichText } from "prismic-reactjs";
 import dayjs from "dayjs";
+import Image from "next/image";
+import { useState, useLayoutEffect, useEffect } from "react";
+import { AnimatePresence, motion } from "framer-motion";
+import { useRouter } from "next/router";
+import ChevronDown from "./../public/chevron-down.svg";
 
 export default function TerminList({ data }) {
+  const [showModal, setShowModal] = useState(false);
+  const [modalData, setModalData] = useState({});
+  const router = useRouter();
+
   if (data.fields.length <= 0)
     return (
       <NoEventsContainer>
@@ -11,12 +20,33 @@ export default function TerminList({ data }) {
     );
   return (
     <Container>
+      <AnimatePresence>
+        {showModal ? (
+          <Overlay event={modalData} closeModal={() => setShowModal(false)} />
+        ) : null}
+      </AnimatePresence>
       {data.fields.map((event) => (
-        <EventItem>
-          <EventTitle>{event.titel_des_events}</EventTitle>
+        <EventItem
+          onClick={() => {
+            setModalData(event);
+            setShowModal(true);
+            document.body.style.overflowY = "hidden";
+            // router.query.event = event.titel_des_events;
+            // router.push(router);
+          }}
+        >
+          <div>
+            <Image
+              src={event.cover.url}
+              width={400}
+              height={200}
+              objectFit="cover"
+            ></Image>
+          </div>
           <EventDetails>
+            <EventTitle>{event.titel_des_events}</EventTitle>
             <EventDate>
-              {dayjs(event.datum___uhrzeit).format("DD. MMM YYYY")}
+              {dayjs(event.datum___uhrzeit).format("DD. MMM YYYY, HH:mm")} Uhr
             </EventDate>
             <EventLocation>{RichText.render(event.ort)}</EventLocation>
           </EventDetails>
@@ -26,6 +56,135 @@ export default function TerminList({ data }) {
   );
 }
 
+function Overlay({ event, closeModal }) {
+  return (
+    <OverlayContainer
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      transition={{ duration: 0.5 }}
+      onClick={(e) => {
+        document.body.style.overflowY = null;
+        closeModal();
+      }}
+    >
+      <OverlayInnerContainer
+        initial={{ y: "100vh", opacity: 0 }}
+        animate={{ y: 0, opacity: 1 }}
+        exit={{ y: "100vh", opacity: 0 }}
+        transition={{ duration: 0.5 }}
+        onClick={(e) => e.stopPropagation()}
+      >
+        <Image
+          src={event.cover.url}
+          width={590}
+          height={300}
+          objectFit="cover"
+        />
+        <DateCircle>
+          <span>{dayjs(event.datum___uhrzeit).format("MMM")}</span>
+          <span>{dayjs(event.datum___uhrzeit).format("DD")}</span>
+        </DateCircle>
+        <CloseBtn
+          onClick={() => {
+            document.body.style.overflowY = null;
+            closeModal();
+          }}
+        >
+          <ChevronDown></ChevronDown>
+        </CloseBtn>
+        <OverlayDetails>
+          <h1>{event.titel_des_events}</h1>
+          <EventDate>
+            {dayjs(event.datum___uhrzeit).format("DD. MMM YYYY, HH:mm")} Uhr
+          </EventDate>
+          <EventLocation>{RichText.render(event.ort)}</EventLocation>
+          <OverlayDescription>
+            {RichText.render(event.beschreibung)}
+          </OverlayDescription>
+        </OverlayDetails>
+      </OverlayInnerContainer>
+    </OverlayContainer>
+  );
+}
+
+const DateCircle = styled.div`
+  background-color: black;
+  top: 1rem;
+  left: 1rem;
+  position: absolute;
+  color: white;
+  border-radius: 999px;
+  padding: 0.5rem;
+  width: 75px;
+  height: 75px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  span {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    &:nth-child(2) {
+      font-weight: bold;
+      font-size: 1.5rem;
+    }
+  }
+`;
+const CloseBtn = styled.button`
+  position: absolute;
+  top: 0.5rem;
+  right: 0.5rem;
+  z-index: 9999;
+  border: none;
+  border-radius: 999px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 50px;
+  height: 50px;
+  color: white;
+  cursor: pointer;
+  background-color: transparent;
+  &:hover {
+  }
+`;
+const OverlayContainer = styled(motion.div)`
+  position: fixed;
+  inset: 0;
+  z-index: 999;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  background-color: rgba(0, 0, 0, 0.8);
+  overflow-y: auto;
+  padding: 2rem;
+  @media screen and (max-width: 768px) {
+    padding: 0;
+  }
+`;
+
+const OverlayInnerContainer = styled(motion.div)`
+  background-color: white;
+  width: 590px;
+  position: relative;
+  @media screen and (max-width: 768px) {
+    width: 100%;
+  }
+`;
+
+const OverlayDetails = styled.div`
+  padding: 1rem;
+  h1 {
+    margin-top: 0;
+  }
+  text-align: justify;
+`;
+
+const OverlayDescription = styled.div``;
+const Cover = styled.img`
+  width: 100%;
+`;
 const NoEventsContainer = styled.div`
   display: grid;
   place-items: center;
@@ -39,7 +198,7 @@ const NoEventsContainer = styled.div`
   }
 `;
 const EventDetails = styled.div`
-  margin-top: 1rem;
+  padding: 1rem;
 `;
 const Container = styled.section`
   display: grid;
@@ -47,6 +206,7 @@ const Container = styled.section`
   max-width: var(--main-width);
   padding: 4rem 1rem;
   margin: 0 auto;
+  gap: 1rem;
   @media screen and (max-width: 768px) {
     grid-template-columns: 1fr;
   }
@@ -55,7 +215,8 @@ const EventLocation = styled.div`
   display: flex;
   justify-content: flex-start;
   align-items: center;
-  &:before {
+  color: gray;
+  /* &:before {
     display: inline-block;
     content: "";
     background: url("map-pin.svg") no-repeat top right;
@@ -63,13 +224,13 @@ const EventLocation = styled.div`
     margin-right: 5px;
     width: 15px;
     height: 15px;
-  }
+  } */
   p {
     margin: 0;
   }
 `;
 const EventDate = styled.div`
-  &:before {
+  /* &:before {
     display: inline-block;
     content: "";
     background: url("calendar.svg") no-repeat top right;
@@ -77,7 +238,11 @@ const EventDate = styled.div`
     margin-right: 5px;
     width: 15px;
     height: 15px;
-  }
+    svg {
+      color: white;
+    } */
+  /* } */
+  color: gray;
 `;
 const EventTitle = styled.p`
   font-weight: 800;
@@ -92,7 +257,14 @@ const EventItem = styled.article`
   border-radius: 0.25rem;
   border: 1px solid gray;
   width: 100%;
-  padding: 1rem;
+  background-color: black;
+  color: white;
+  cursor: pointer;
+  transition: transform 0.6s cubic-bezier(0.19, 1, 0.22, 1),
+    -webkit-transform 0.6s cubic-bezier(0.19, 1, 0.22, 1);
+  &:hover {
+    transform: translateY(-10px);
+  }
   a {
     position: relative;
     &:before {
@@ -107,6 +279,7 @@ const EventItem = styled.article`
       transition-duration: 0.75s;
       width: 0px;
     }
+
     &:hover {
       &:before {
         width: 100%;
