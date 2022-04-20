@@ -39,14 +39,17 @@ export default function TerminList({ data }) {
             <Image
               src={event.cover.url}
               width={400}
-              height={200}
+              height={250}
               objectFit="cover"
             ></Image>
           </div>
           <EventDetails>
             <EventTitle>{event.titel_des_events}</EventTitle>
             <EventDate>
-              {dayjs(event.datum___uhrzeit).format("DD. MMM YYYY, HH:mm")} Uhr
+              {dayjs(event.datum___uhrzeit)
+                .locale("de")
+                .format("DD. MMM YYYY, HH:mm")}{" "}
+              Uhr
             </EventDate>
             <EventLocation>{RichText.render(event.ort)}</EventLocation>
           </EventDetails>
@@ -62,7 +65,7 @@ function Overlay({ event, closeModal }) {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
-      transition={{ duration: 0.5 }}
+      transition={{ duration: 0.4 }}
       onClick={(e) => {
         document.body.style.overflowY = null;
         closeModal();
@@ -72,13 +75,13 @@ function Overlay({ event, closeModal }) {
         initial={{ y: "100vh", opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         exit={{ y: "100vh", opacity: 0 }}
-        transition={{ duration: 0.5 }}
+        transition={{ duration: 0.4 }}
         onClick={(e) => e.stopPropagation()}
       >
         <Image
           src={event.cover.url}
           width={590}
-          height={300}
+          height={450}
           objectFit="cover"
         />
         <DateCircle>
@@ -96,7 +99,10 @@ function Overlay({ event, closeModal }) {
         <OverlayDetails>
           <h1>{event.titel_des_events}</h1>
           <EventDate>
-            {dayjs(event.datum___uhrzeit).format("DD. MMM YYYY, HH:mm")} Uhr
+            {dayjs(event.datum___uhrzeit)
+              .locale("de")
+              .format("DD. MMM YYYY, HH:mm")}{" "}
+            Uhr
           </EventDate>
           <EventLocation>{RichText.render(event.ort)}</EventLocation>
           <OverlayDescription>
@@ -132,7 +138,7 @@ const DateCircle = styled.div`
   }
 `;
 const CloseBtn = styled.button`
-  position: absolute;
+  position: fixed;
   top: 0.5rem;
   right: 0.5rem;
   z-index: 9999;
@@ -170,6 +176,7 @@ const OverlayInnerContainer = styled(motion.div)`
   position: relative;
   @media screen and (max-width: 768px) {
     width: 100%;
+    min-height: 100vh;
   }
 `;
 
@@ -177,6 +184,8 @@ const OverlayDetails = styled.div`
   padding: 1rem;
   h1 {
     margin-top: 0;
+    line-height: 1.15;
+    text-align: start;
   }
   text-align: justify;
 `;
@@ -198,7 +207,7 @@ const NoEventsContainer = styled.div`
   }
 `;
 const EventDetails = styled.div`
-  padding: 1rem;
+  padding: 0.75em 1em;
 `;
 const Container = styled.section`
   display: grid;
@@ -209,6 +218,7 @@ const Container = styled.section`
   gap: 1rem;
   @media screen and (max-width: 768px) {
     grid-template-columns: 1fr;
+    gap: 2rem;
   }
 `;
 const EventLocation = styled.div`
@@ -243,11 +253,13 @@ const EventDate = styled.div`
     } */
   /* } */
   color: gray;
+  margin-top: 1em;
 `;
 const EventTitle = styled.p`
   font-weight: 800;
   font-size: 1.5rem;
   margin: 0;
+  line-height: 1.15;
 `;
 const EventItem = styled.article`
   display: flex;
@@ -255,7 +267,6 @@ const EventItem = styled.article`
   justify-content: flex-start;
   align-items: flex-start;
   border-radius: 0.25rem;
-  border: 1px solid gray;
   width: 100%;
   background-color: black;
   color: white;

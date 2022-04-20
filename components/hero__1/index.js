@@ -36,7 +36,7 @@ export default function Hero__1({ data }) {
   }, []);
 
   useEffect(() => {
-    gsap.to(countDownRef, { opacity: 1, duration: 1 });
+   if(!countdownEnded) gsap.to(countDownRef, { opacity: 1, duration: 1 });
   }, []);
 
   return (
