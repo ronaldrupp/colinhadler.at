@@ -10,7 +10,7 @@ export default function Hero__1({ data }) {
   const [hours, setHours] = useState("");
   const [minutes, setMinutes] = useState("");
   const [seconds, setSeconds] = useState("");
-  const [countdownEnded, setCountdownEnded] = useState(false);
+  const [countdownEnded, setCountdownEnded] = useState(true);
 
   let countDownRef = useRef();
   function countDown() {
