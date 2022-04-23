@@ -47,7 +47,7 @@ export default function TerminList({ data }) {
             <EventTitle>{event.titel_des_events}</EventTitle>
             <EventDate>
               {dayjs(event.datum___uhrzeit)
-                .locale("de-AT")
+                .locale("de")
                 .format("DD. MMM YYYY, HH:mm")}{" "}
               Uhr
             </EventDate>
