@@ -4,6 +4,7 @@ import styled from "styled-components";
 import gsap from "gsap";
 import Link from "next/link";
 import Image from "next/image";
+import PrimaryBtn from "../PrimaryBtn";
 
 export default function Hero__1({ data }) {
   const [days, setDays] = useState("");
@@ -36,7 +37,7 @@ export default function Hero__1({ data }) {
   }, []);
 
   useEffect(() => {
-   if(!countdownEnded) gsap.to(countDownRef, { opacity: 1, duration: 1 });
+    if (!countdownEnded) gsap.to(countDownRef, { opacity: 1, duration: 1 });
   }, []);
 
   return (
@@ -53,7 +54,9 @@ export default function Hero__1({ data }) {
           <Quote>{RichText.render(data.primary.kurzbeschreibung)}</Quote>
           {countdownEnded ? (
             <Link href="/ancora">
-              <BuyNowLink>Jetzt erhältlich</BuyNowLink>
+              <a>
+                <PrimaryBtn whiteBg>Jetzt erhältlich</PrimaryBtn>
+              </a>
             </Link>
           ) : (
             <CountdownContainer ref={(node) => (countDownRef = node)}>
@@ -161,12 +164,17 @@ const Countdown = styled.span`
 
 const TextContent = styled.div`
   padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
   @media screen and (max-width: 768px) {
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
     text-align: center;
+    order: 2;
   }
 `;
 

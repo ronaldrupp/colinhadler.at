@@ -6,12 +6,12 @@ import { useState, useLayoutEffect, useEffect } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { useRouter } from "next/router";
 import ChevronDown from "./../public/chevron-down.svg";
+import "dayjs/locale/de";
 
 export default function TerminList({ data }) {
   const [showModal, setShowModal] = useState(false);
   const [modalData, setModalData] = useState({});
   const router = useRouter();
-
   if (data.fields.length <= 0)
     return (
       <NoEventsContainer>
@@ -47,7 +47,7 @@ export default function TerminList({ data }) {
             <EventTitle>{event.titel_des_events}</EventTitle>
             <EventDate>
               {dayjs(event.datum___uhrzeit)
-                .locale("de")
+                .locale("de-AT")
                 .format("DD. MMM YYYY, HH:mm")}{" "}
               Uhr
             </EventDate>
@@ -65,23 +65,23 @@ function Overlay({ event, closeModal }) {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
-      transition={{ duration: 0.4 }}
+      transition={{ duration: 0.3 }}
       onClick={(e) => {
         document.body.style.overflowY = null;
         closeModal();
       }}
     >
       <OverlayInnerContainer
-        initial={{ y: "100vh", opacity: 0 }}
-        animate={{ y: 0, opacity: 1 }}
-        exit={{ y: "100vh", opacity: 0 }}
-        transition={{ duration: 0.4 }}
+        initial={{ scale: 0.8, opacity: 0 }}
+        animate={{ scale: 1, opacity: 1 }}
+        exit={{ scale: 0.8, opacity: 0 }}
+        transition={{ duration: 0.3 }}
         onClick={(e) => e.stopPropagation()}
       >
         <Image
           src={event.cover.url}
-          width={590}
-          height={450}
+          width={768}
+          height={650}
           objectFit="cover"
         />
         <DateCircle>
@@ -138,7 +138,7 @@ const DateCircle = styled.div`
   }
 `;
 const CloseBtn = styled.button`
-  position: fixed;
+  position: absolute;
   top: 0.5rem;
   right: 0.5rem;
   z-index: 9999;
@@ -173,8 +173,11 @@ const OverlayContainer = styled(motion.div)`
 const OverlayInnerContainer = styled(motion.div)`
   background-color: white;
   width: 590px;
+  border-radius: var(--border-radius);
   position: relative;
   @media screen and (max-width: 768px) {
+  }
+  @media screen and (max-width: 500px) {
     width: 100%;
     min-height: 100vh;
   }
@@ -217,6 +220,9 @@ const Container = styled.section`
   margin: 0 auto;
   gap: 1rem;
   @media screen and (max-width: 768px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  @media screen and (max-width: 500px) {
     grid-template-columns: 1fr;
     gap: 2rem;
   }
@@ -263,6 +269,7 @@ const EventTitle = styled.p`
 `;
 const EventItem = styled.article`
   display: flex;
+  border-radius: var(--border-radius);
   flex-direction: column;
   justify-content: flex-start;
   align-items: flex-start;

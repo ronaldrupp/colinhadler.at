@@ -147,6 +147,7 @@ const Logo = styled.img`
 
 const MerchantItem = styled.a`
   border: 1px solid black;
+  border-radius: var(--border-radius);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -164,7 +165,7 @@ const ReviewsContainer = styled.div`
   justify-content: flex-start;
   align-items: flex-start;
   width: 100%;
-  background-color: rgb(40,40,40);
+  background-color: rgb(40, 40, 40);
   color: white;
 `;
 

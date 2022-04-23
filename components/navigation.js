@@ -165,7 +165,7 @@ const LinkItem = styled.a`
     width: 100%;
     left: 0;
     bottom: 0;
-    height: 1px;
+    height: 5px;
     transform-origin: right center;
     transition: transform 0.6s cubic-bezier(0.19, 1, 0.22, 1),
       -webkit-transform 0.6s cubic-bezier(0.19, 1, 0.22, 1);
@@ -188,6 +188,7 @@ const LinkItem = styled.a`
   @media screen and (max-width: 768px) {
     font-size: 2rem;
     margin: 0;
+    margin-bottom: 1rem;
   }
 
   font-size: 1rem;
@@ -200,7 +201,9 @@ const Container = styled.nav`
   width: 100%;
   height: ${(props) => (props.windowScroll.y > 60 ? "75px" : "150px")};
   border-bottom: ${(props) =>
-    props.windowScroll.y > 60 && !props.mobileContainer ? "1px solid rgba(200,200,200,0.6)" : 'none'};
+    props.windowScroll.y > 60 && !props.mobileContainer
+      ? "1px solid rgba(200,200,200,0.6)"
+      : "none"};
   top: 0;
   z-index: 999;
   transition: all 0.6s cubic-bezier(0.19, 1, 0.22, 1),

@@ -1,15 +1,40 @@
 import styled from "styled-components";
 import PressImageItem from "./PressImageItem";
 import { RichText } from "prismic-reactjs";
+import FullScreenDiashow from "./FullScreenDiashow";
+import { useState } from "react";
 
 export default function PressImageGallery({ data }) {
+  const [showDia, setShowDia] = useState(false);
+  const [currentImage, setCurrentImage] = useState(0);
   return (
     <Container>
+      {showDia ? (
+        <FullScreenDiashow
+          images={data.fields}
+          showDiashow={showDia}
+          closeDia={() => {
+            setShowDia(false);
+            document
+              .querySelector('meta[name="theme-color"]')
+              .setAttribute("content", "#fff");
+          }}
+          currentImage={currentImage}
+        />
+      ) : null}
       {RichText.render(data.primary.titel_des_containers1)}
       {RichText.render(data.primary.beschreibung_des_containers)}
       <InnerContainer>
         {data.fields.map((image, idx) => (
-          <PressImageItem image={image} key={idx} />
+          <PressImageItem
+            image={image}
+            key={idx}
+            idx={idx}
+            showDia={(e) => {
+              setCurrentImage(e);
+              setShowDia(true);
+            }}
+          />
         ))}
       </InnerContainer>
     </Container>

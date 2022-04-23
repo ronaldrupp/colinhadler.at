@@ -133,6 +133,7 @@
 import { RichText } from "prismic-reactjs";
 import Link from "next/link";
 import styled from "styled-components";
+import PrimaryBtn from "../PrimaryBtn";
 
 export default function UberMichSection({ data }) {
   return (
@@ -151,7 +152,9 @@ export default function UberMichSection({ data }) {
             {RichText.render(data.primary.kurze_beschreibung)}
           </TextContainer>
           <Link href="/ueber-mich">
-            <Btn>Mehr erfahren</Btn>
+            <a>
+              <PrimaryBtn>Mehr erfahren</PrimaryBtn>
+            </a>
           </Link>
         </Content>
       </InnerContainer>
