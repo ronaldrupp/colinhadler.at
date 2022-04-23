@@ -1,18 +1,10 @@
 import { RichText } from "prismic-reactjs";
 import Link from "next/link";
 import styled from "styled-components";
-import Image from "next/image";
-
+import PrimaryBtn from "./../PrimaryBtn";
 export default function TermineSection({ data }) {
   return (
     <Container>
-      {/* <Image
-        src={data.primary.hintergrundbild.url}
-        width={1200}
-        height={600}
-        objectFit="cover"
-        className="bg-img"
-      /> */}
       <BackgroundImage
         src={data.primary.hintergrundbild.url}
         alt={data.primary.hintergrundbild.alt}
@@ -23,9 +15,11 @@ export default function TermineSection({ data }) {
             {RichText.render(data.primary.titel)}
             {RichText.render(data.primary.kurzbeschreibung)}
             <Link href={data.primary.link_zur_internen_seite._meta.uid}>
-              <Btn>
-                <span>Mehr erfahren</span>
-              </Btn>
+              <a>
+                <PrimaryBtn>
+                  <span>Mehr erfahren</span>
+                </PrimaryBtn>
+              </a>
             </Link>
           </Overlay>
         </InnerContainer>
@@ -84,35 +78,7 @@ const BackgroundImage = styled.img`
   height: 600px;
   object-fit: cover;
   filter: saturate(0);
-  @media screen and (max-width: 768px){
+  @media screen and (max-width: 768px) {
     height: 250px;
-  }
-`;
-
-const Btn = styled.a`
-  background-color: black;
-  color: white;
-  padding: 0.75rem 2rem;
-  margin-top: 1rem;
-  font-weight: 700;
-  font-size: 0.8rem;
-  cursor: pointer;
-  position: relative;
-  border-radius: 0.25rem;
-  :before {
-    content: "";
-    width: 100%;
-    height: 100%;
-    background-color: white;
-    position: absolute;
-    top: 0;
-    left: 0;
-    transform: scaleX(0);
-    transform-origin: right center;
-    transition: transform 0.6s cubic-bezier(0.19, 1, 0.22, 1),
-      -webkit-transform 0.6s cubic-bezier(0.19, 1, 0.22, 1);
-  }
-  :hover {
-    filter: brightness(1.5);
   }
 `;

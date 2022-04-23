@@ -4,7 +4,7 @@ import { RichText } from "prismic-reactjs";
 import gsap from "gsap";
 import Image from "next/image";
 
-export default function PressImageItem({ image }) {
+export default function PressImageItem({ image, showDia, idx }) {
   let ContainerRef = useRef();
   const [fetching, setFetching] = useState(false);
   const [error, setError] = useState(false);
@@ -30,7 +30,7 @@ export default function PressImageItem({ image }) {
   };
   return (
     <ImageItem>
-      <ImageContainer>
+      <ImageContainer onClick={() => showDia(idx)}>
         <StyledImage
           src={image.bild.url}
           width={334}
@@ -94,6 +94,7 @@ const Container = styled.div`
 
 const ImageContainer = styled.div`
   position: relative;
+  cursor: pointer;
 `;
 const StyledImage = styled(Image)`
   width: 100%;

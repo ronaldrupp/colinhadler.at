@@ -188,6 +188,10 @@ const LinkItem = styled.a`
   @media screen and (max-width: 768px) {
     font-size: 2rem;
     margin: 0;
+    margin-bottom: 1rem;
+    &:after {
+      height: 5px;
+    }
   }
 
   font-size: 1rem;
@@ -200,7 +204,9 @@ const Container = styled.nav`
   width: 100%;
   height: ${(props) => (props.windowScroll.y > 60 ? "75px" : "150px")};
   border-bottom: ${(props) =>
-    props.windowScroll.y > 60 && !props.mobileContainer ? "1px solid rgba(200,200,200,0.6)" : 'none'};
+    props.windowScroll.y > 60 && !props.mobileContainer
+      ? "1px solid rgba(200,200,200,0.6)"
+      : "none"};
   top: 0;
   z-index: 999;
   transition: all 0.6s cubic-bezier(0.19, 1, 0.22, 1),
