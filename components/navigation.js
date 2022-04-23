@@ -165,7 +165,7 @@ const LinkItem = styled.a`
     width: 100%;
     left: 0;
     bottom: 0;
-    height: 5px;
+    height: 1px;
     transform-origin: right center;
     transition: transform 0.6s cubic-bezier(0.19, 1, 0.22, 1),
       -webkit-transform 0.6s cubic-bezier(0.19, 1, 0.22, 1);
@@ -189,6 +189,9 @@ const LinkItem = styled.a`
     font-size: 2rem;
     margin: 0;
     margin-bottom: 1rem;
+    &:after {
+      height: 5px;
+    }
   }
 
   font-size: 1rem;

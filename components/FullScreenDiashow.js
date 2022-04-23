@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import Image from "next/image";
 import PrimaryBtn from "./PrimaryBtn";
-import XIcon from "./../public/x.svg";
+import XSVG from "./../public/x.svg";
 import { useEffect, useRef } from "react";
 import Head from "next/head";
 export default function FullScreenDiashow({
@@ -32,7 +32,7 @@ export default function FullScreenDiashow({
             closeDia();
           }}
         >
-          <XIcon></XIcon>
+          <XSVG></XSVG>
         </CloseBtn>
       </OverlayActions>
       <ScrollableContainer ref={scrollableContainerRef}>
