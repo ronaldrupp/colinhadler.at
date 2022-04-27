@@ -24,6 +24,19 @@ export default function Navigation({ data }) {
       window.removeEventListener("scroll", navigationListener);
     };
   }, []);
+  
+  useEffect(() => {
+    if (showMobileContainer) {
+      document
+        .querySelector('meta[name="theme-color"]')
+        .setAttribute("content", "#000");
+    } else {
+      document
+        .querySelector('meta[name="theme-color"]')
+        .setAttribute("content", "#fff");
+    }
+  }, [showMobileContainer]);
+
   return (
     <>
       <AnimatePresence>
