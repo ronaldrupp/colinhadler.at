@@ -85,7 +85,7 @@ function Overlay({ event, closeModal }) {
           objectFit="cover"
         />
         <DateCircle>
-          <span>{dayjs(event.datum___uhrzeit).format("MMM")}</span>
+          <span>{dayjs(event.datum___uhrzeit).locale("de").format("MMM")}</span>
           <span>{dayjs(event.datum___uhrzeit).format("DD")}</span>
         </DateCircle>
         <CloseBtn
