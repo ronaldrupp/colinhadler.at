@@ -82,6 +82,7 @@ export default function Hero__1({ data }) {
               height={600}
               objectFit="contain"
               alt={data.primary.cover.alt}
+              className="book-cover"
             />
             {/* <Cover src={data.primary.cover.url} /> */}
           </a>
@@ -97,7 +98,35 @@ const Container = styled.div`
   min-height: 850px;
   position: relative;
   .bgBackground {
+    animation-name: example;
+    animation-duration: 4s;
     filter: brightness(0.3);
+    animation-iteration-count: 1;
+    transition: transform 1s cubic-bezier(0.19, 1, 0.22, 1),
+      -webkit-transform 1s cubic-bezier(0.19, 1, 0.22, 1);
+    @keyframes example {
+      from {
+        transform: scale(1.5);
+      }
+      to {
+        transform: scale(1);
+      }
+    }
+  }
+  .book-cover {
+    animation-name: smallToOg;
+    animation-duration: 4s;
+    animation-iteration-count: 1;
+    transition: transform 1s cubic-bezier(0.19, 1, 0.22, 1),
+      -webkit-transform 1s cubic-bezier(0.19, 1, 0.22, 1);
+    @keyframes smallToOg {
+      from {
+        transform: scale(0.8);
+      }
+      to {
+        transform: scale(1);
+      }
+    }
   }
   background-color: rgb(20, 20, 20);
 `;
