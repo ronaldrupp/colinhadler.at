@@ -21,7 +21,7 @@ export default function Buch_Detail({ data }) {
               {data.primary.buch.listoflinks &&
                 data.primary.buch.listoflinks.map((merchant, idx) => (
                   <>
-                    <MerchantItem href={merchant.link.url} key={idx}>
+                    <MerchantItem href={merchant.link.url} target="_blank" key={idx}>
                       <Logo src={merchant.merchant.logo_of_merchant.url} />
                     </MerchantItem>
                   </>
