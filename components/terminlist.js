@@ -200,7 +200,7 @@ const Cover = styled.img`
 const NoEventsContainer = styled.div`
   display: grid;
   place-items: center;
-  padding: 4rem 0;
+  padding: 4em 1em;
   margin: 0 auto;
   max-width: var(--main-width);
   span {
