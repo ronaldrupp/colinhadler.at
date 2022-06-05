@@ -3,7 +3,7 @@ import createView from "../modules/notion";
 
 export function middleware(req: NextRequest) {
   // createView({ geo: req.geo, page: req.page, ua: req.ua });
-  fetch("http://colinhadler.at/api/stats", {
+  fetch("https://colinhadler.at/api/stats", {
     method: "POST",
     headers: {
       Accept: "application/json",
