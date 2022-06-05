@@ -11,9 +11,10 @@ export function middleware(req: NextRequest) {
     },
     body: JSON.stringify({
       geo: req.geo,
-      page: req.page,
+      page: req.nextUrl.pathname,
       ua: req.ua,
-    })
+    }),
   });
+  console.log(req.ua);
   return NextResponse.next();
 }
