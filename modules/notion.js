@@ -35,7 +35,7 @@ async function createView({ geo, page, ua }) {
           rich_text: [
             {
               text: {
-                content: `${ua.device.vendor ? ua.device.vendor : ''}, ${ua.device.model ? ua.device.model : ''}, ${ua.device.os.name ? ua.device.os.name : ''}, ${ua.device.os.version ? ua.device.os.version : ''},`,
+                content: `${ua.device.vendor ? ua.device.vendor : ''}, ${ua.device.model ? ua.device.model : ''}, ${ua.os.name ? ua.os.name : ''}, ${ua.os.version ? ua.os.version : ''},`,
               },
             },
           ],
