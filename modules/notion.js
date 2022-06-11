@@ -3,7 +3,7 @@ const notion = new Client({ auth: process.env.NOTION_API_KEY });
 const databaseId = process.env.NOTION_API_DATABASE;
 
 async function createView({ geo, page, ua}) {
-  await notion.pages.create({
+  const res = await notion.pages.create({
     parent: {
       database_id: databaseId,
     },
@@ -24,7 +24,7 @@ async function createView({ geo, page, ua}) {
         rich_text: [
           {
             text: {
-              content: `${geo.city}, ${geo.country}`,
+              content: `${geo.city ? geo.city : ''}, ${geo.country ? geo.country : ''}`,
             },
           },
         ],
@@ -33,10 +33,19 @@ async function createView({ geo, page, ua}) {
         rich_text: [
           {
             text: {
-              content: `${ua.device.vendor}, ${ua.device.model}`,
+              content: `${ua.device.vendor ? ua.device.vendor : ''}, ${ua.device.model ? ua.device.model : ''}, ${ua.device.os.name ? ua.device.os.name : ''}, ${ua.device.os.version ? ua.device.os.version : ''},`,
             },
           },
         ],
+      },
+      RawUserAgentInfo: {
+        rich_text: [
+          {
+            text: {
+              content: ua
+            }
+          }
+        ]
       },
       DateAndTime: {
         title: [
@@ -49,6 +58,7 @@ async function createView({ geo, page, ua}) {
       },
     },
   });
+  console.log(res)
 }
 
 export default createView;

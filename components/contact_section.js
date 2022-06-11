@@ -34,7 +34,7 @@ const InnerContainer = styled.section`
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   padding: 2rem 0;
-  border-bottom: 1px solid gray;
+  border-top: 1px solid gray;
   h2 {
     font-size: 2rem;
   }

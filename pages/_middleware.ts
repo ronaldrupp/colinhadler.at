@@ -2,7 +2,7 @@ import { NextFetchEvent, NextRequest, NextResponse } from "next/server";
 import createView from "../modules/notion";
 
 export function middleware(req: NextRequest) {
-  // createView({ geo: req.geo, page: req.page, ua: req.ua });
+  if (req.ua.isBot) return NextResponse.next();
   fetch("https://colinhadler.at/api/stats", {
     method: "POST",
     headers: {
@@ -15,6 +15,5 @@ export function middleware(req: NextRequest) {
       ua: req.ua,
     }),
   });
-  console.log(req.ua);
   return NextResponse.next();
 }
