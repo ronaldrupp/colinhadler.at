@@ -3,8 +3,9 @@ const notion = new Client({ auth: process.env.NOTION_API_KEY });
 const databaseId = process.env.NOTION_API_DATABASE;
 
 async function createView({ geo, page, ua }) {
+  let res;
   try {
-    const res = await notion.pages.create({
+    res = await notion.pages.create({
       parent: {
         database_id: databaseId,
       },
