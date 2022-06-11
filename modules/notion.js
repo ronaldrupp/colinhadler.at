@@ -44,7 +44,7 @@ async function createView({ geo, page, ua }) {
           rich_text: [
             {
               text: {
-                content: ua
+                content: JSON.stringify(ua)
               }
             }
           ]
