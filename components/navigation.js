@@ -24,7 +24,7 @@ export default function Navigation({ data }) {
       window.removeEventListener("scroll", navigationListener);
     };
   }, []);
-  
+
   useEffect(() => {
     if (showMobileContainer) {
       document
@@ -99,25 +99,26 @@ export default function Navigation({ data }) {
             aria-label="Menu Button"
           >
             <AnimatePresence>
-              {showMobileContainer ? (
-                <motion.div animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
-                  <XSVG
-                    windowScroll={windowScroll}
-                    index={router.route}
-                    mobileContainer={showMobileContainer}
-                  />
-                </motion.div>
-              ) : (
-                <motion.div animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
-                  <MenuSVGContainer
-                    windowScroll={windowScroll}
-                    index={router.route}
-                    mobileContainer={showMobileContainer}
-                  >
-                    <MenuSVG />
-                  </MenuSVGContainer>
-                </motion.div>
-              )}
+              <MenuIcon>
+                <MenuLine
+                  className={` ${
+                    showMobileContainer ? "firstActive white" : "first"
+                  } ${
+                    router.route === "/" && windowScroll.y < 60
+                      ? "white"
+                      : "black"
+                  }`}
+                ></MenuLine>
+                <MenuLine
+                  className={` ${
+                    showMobileContainer ? "secondActive white" : "second"
+                  } ${
+                    router.route === "/" && windowScroll.y < 60
+                      ? "white"
+                      : "black"
+                  }`}
+                ></MenuLine>
+              </MenuIcon>
             </AnimatePresence>
           </MenuButton>
           <LinkContainer>
@@ -291,13 +292,48 @@ const LinkContainer = styled.ul`
 
 const MenuButton = styled.button`
   display: none;
+  padding:0;
   @media screen and (max-width: 768px) {
-    display: block;
     width: 45px;
     height: 45px;
     border: none;
     background: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
+`;
+
+const MenuIcon = styled.span`
+  width: 60%;
+  height: 50px;
+  position: relative;
+  .white {
+    background-color: white;
+  }
+  .first {
+    /* top:5px; */
+    transform: translateY(20px);
+  }
+  .second {
+    /* bottom:5px; */
+    transform: translateY(30px);
+  }
+  .firstActive {
+    transform: translateY(20px) rotateZ(-45deg);
+  }
+  .secondActive {
+    transform: translateY(20px) rotateZ(45deg);
+  }
+`;
+
+const MenuLine = styled.span`
+  position: absolute;
+  width: 100%;
+  background-color: black;
+  height: 1px;
+  transition: 0.3s;
+  left: 0;
 `;
 
 const MobileContainer = styled(motion.div)`
