@@ -101,14 +101,22 @@ export default function Navigation({ data }) {
             <AnimatePresence>
               <MenuIcon>
                 <MenuLine
-                  className={`first ${
-                    showMobileContainer ? "firstActive white" : null
-                  } ${router.route === "/" ? "white" : "black"}`}
+                  className={` ${
+                    showMobileContainer ? "firstActive white" : "first"
+                  } ${
+                    router.route === "/" && windowScroll.y < 60
+                      ? "white"
+                      : "black"
+                  }`}
                 ></MenuLine>
                 <MenuLine
-                  className={`second ${
-                    showMobileContainer ? "secondActive white" : null
-                  } ${router.route === "/" ? "white" : "black"}`}
+                  className={` ${
+                    showMobileContainer ? "secondActive white" : "second"
+                  } ${
+                    router.route === "/" && windowScroll.y < 60
+                      ? "white"
+                      : "black"
+                  }`}
                 ></MenuLine>
               </MenuIcon>
             </AnimatePresence>
@@ -284,6 +292,7 @@ const LinkContainer = styled.ul`
 
 const MenuButton = styled.button`
   display: none;
+  padding:0;
   @media screen and (max-width: 768px) {
     width: 45px;
     height: 45px;
@@ -296,27 +305,25 @@ const MenuButton = styled.button`
 `;
 
 const MenuIcon = styled.span`
-  width: 70%;
-  height: 20px;
+  width: 60%;
+  height: 50px;
   position: relative;
-  .white{
+  .white {
     background-color: white;
   }
   .first {
     /* top:5px; */
-    transform: translateY(-5px);
+    transform: translateY(20px);
   }
   .second {
     /* bottom:5px; */
-    transform: translateY(5px);
+    transform: translateY(30px);
   }
   .firstActive {
-    margin: 0;
-    transform: rotateZ(-45deg);
+    transform: translateY(20px) rotateZ(-45deg);
   }
   .secondActive {
-    margin: 0;
-    transform: rotateZ(45deg);
+    transform: translateY(20px) rotateZ(45deg);
   }
 `;
 
