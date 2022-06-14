@@ -148,7 +148,6 @@ export default function UberMichSection({ data }) {
         start: "top bottom",
         end: "bottom 70%",
         scrub: 1,
-        markers: true,
       },
       y: 40,
       opacity: 0,
