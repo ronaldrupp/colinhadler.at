@@ -42,6 +42,7 @@ export default function Hero__1({ data }) {
 
   useEffect(() => {
     if (!countdownEnded) gsap.to(countDownRef, { opacity: 1, duration: 1 });
+    gsap.to(".quote-line", { opacity: 1 });
     let tl = gsap.timeline({
       scrollTrigger: {
         trigger: textContainerRef.current,
@@ -126,6 +127,7 @@ const WrapParagraphContainer = styled.div`
   overflow: hidden;
   p {
     margin: 0.5em 0;
+    opacity: 0;
   }
 `;
 const Container = styled.div`
