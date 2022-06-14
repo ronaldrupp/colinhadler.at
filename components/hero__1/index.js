@@ -1,12 +1,16 @@
-import { RichText } from "prismic-reactjs";
 import { useEffect, useRef, useState, useLayoutEffect } from "react";
 import styled from "styled-components";
 import gsap from "gsap";
+import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
+gsap.registerPlugin(ScrollTrigger);
 import Link from "next/link";
 import Image from "next/image";
 import PrimaryBtn from "../PrimaryBtn";
+import { RichText } from "prismic-reactjs-custom";
 
 export default function Hero__1({ data }) {
+  let textContainerRef = useRef();
+
   const [days, setDays] = useState("");
   const [hours, setHours] = useState("");
   const [minutes, setMinutes] = useState("");
@@ -38,6 +42,19 @@ export default function Hero__1({ data }) {
 
   useEffect(() => {
     if (!countdownEnded) gsap.to(countDownRef, { opacity: 1, duration: 1 });
+    let tl = gsap.timeline({
+      scrollTrigger: {
+        trigger: textContainerRef.current,
+        toggleActions: "restart none none reset",
+      },
+    });
+    tl.from(".quote-line", {
+      yPercent: 150,
+      ease: "power3.out",
+      stagger: 0.25,
+      delay: 0.2,
+      duration: 2,
+    });
   }, []);
 
   return (
@@ -51,7 +68,13 @@ export default function Hero__1({ data }) {
       />
       <Overlay>
         <TextContent>
-          <Quote>{RichText.render(data.primary.kurzbeschreibung)}</Quote>
+          <Quote ref={textContainerRef} className="hero1-text-container">
+            <RichText
+              richText={data.primary.kurzbeschreibung}
+              paragraph={WrapParagraph}
+            ></RichText>
+            {/* {RichText.render(data.primary.kurzbeschreibung)} */}
+          </Quote>
           {countdownEnded ? (
             <Link href="/ancora">
               <a>
@@ -91,6 +114,20 @@ export default function Hero__1({ data }) {
   );
 }
 
+function WrapParagraph({ children }) {
+  return (
+    <WrapParagraphContainer>
+      <p class="quote-line">{children}</p>
+    </WrapParagraphContainer>
+  );
+}
+
+const WrapParagraphContainer = styled.div`
+  overflow: hidden;
+  p {
+    margin: 0.5em 0;
+  }
+`;
 const Container = styled.div`
   width: 100%;
   height: 100vh;
@@ -131,6 +168,9 @@ const Quote = styled.div`
   font-size: 1.5rem;
   margin-bottom: 5rem;
   font-weight: 400;
+  p {
+    overflow: hidden;
+  }
   @media screen and (max-width: 768px) {
     display: none;
   }
