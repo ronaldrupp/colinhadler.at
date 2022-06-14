@@ -134,8 +134,27 @@ import { RichText } from "prismic-reactjs";
 import Link from "next/link";
 import styled from "styled-components";
 import PrimaryBtn from "../PrimaryBtn";
+import { useRef, useEffect } from 'react';
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
+gsap.registerPlugin(ScrollTrigger);
 
 export default function UberMichSection({ data }) {
+  let textContainerRef = useRef();
+  useEffect(() => {
+    gsap.from('.text-container > p', {
+      scrollTrigger: {
+        trigger: textContainerRef.current,
+        start: "top bottom",
+        end: "bottom 70%",
+        scrub: 1,
+        markers: true,
+      },
+      y: 40,
+      opacity: 0,
+    });
+  },[])
+
   return (
     <Container>
       <InnerContainer
@@ -148,7 +167,7 @@ export default function UberMichSection({ data }) {
           {RichText.render(data.primary.hintergrundnamen)}
         </Hintergrundnamen>
         <Content>
-          <TextContainer>
+          <TextContainer ref={textContainerRef} className="text-container">
             {RichText.render(data.primary.kurze_beschreibung)}
           </TextContainer>
           <Link href="/ueber-mich">
