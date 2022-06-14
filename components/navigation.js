@@ -252,14 +252,14 @@ const LogoContainerLink = styled.a`
   cursor: pointer;
 `;
 const LogoContainer = styled(Logo)`
-  height: 75px;
+  height: 50px;
   object-fit: contain;
   filter: ${(props) =>
     (props.windowScroll.y < 60 && props.index === "/") || props.mobileContainer
       ? "invert(1)"
       : "invert(0)"};
   @media screen and (max-width: 768px) {
-    height: 50px;
+    height: 20px;
   }
 `;
 
@@ -292,7 +292,7 @@ const LinkContainer = styled.ul`
 
 const MenuButton = styled.button`
   display: none;
-  padding:0;
+  padding: 0;
   @media screen and (max-width: 768px) {
     width: 45px;
     height: 45px;
