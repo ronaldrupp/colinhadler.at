@@ -2,6 +2,7 @@ import styled from "styled-components";
 import { RichText } from "prismic-reactjs";
 import dayjs from "dayjs";
 import Link from "next/link";
+import InfoSvg from "./../public/info.svg";
 
 export default function Buch_Detail({ data }) {
   return (
@@ -21,13 +22,20 @@ export default function Buch_Detail({ data }) {
               {data.primary.buch.listoflinks &&
                 data.primary.buch.listoflinks.map((merchant, idx) => (
                   <>
-                    <MerchantItem href={merchant.link.url} target="_blank" key={idx}>
+                    <MerchantItem
+                      href={merchant.link.url}
+                      target="_blank"
+                      key={idx}
+                    >
                       <Logo src={merchant.merchant.logo_of_merchant.url} />
                     </MerchantItem>
                   </>
                 ))}
             </MerchantsContainer>
-            <p>Am besten bestellen Sie in Ihrer lokalen Buchhandlung!</p>
+            <InfoParagraph>
+              <InfoSvg />
+              <p>Am besten bestellen Sie in Ihrer lokalen Buchhandlung!</p>
+            </InfoParagraph>
           </Infos>
         </Header>
         <Description>
@@ -47,6 +55,22 @@ export default function Buch_Detail({ data }) {
   );
 }
 
+const InfoParagraph = styled.div`
+  background-color: var(--gray-color);
+  padding: 1em;
+  border-radius: var(--border-radius);
+  font-size: 0.875em;
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  margin-top: 1.5em;
+  p {
+    margin: 0.1em 0;
+  }
+  svg {
+    margin-right: 0.5em;
+  }
+`;
 const BackLinkA = styled.a`
   display: flex;
   justify-content: flex-start;

@@ -2,6 +2,7 @@
   --primary-color: hsl(0, 0%, 0%);
   --bg-color: hsl(0, 0%, 100%);
   --secondary-color: #fff1da;
+  --gray-color: rgb(232, 232, 232);
   --transition-duration: 0.3s;
   --navbar-height: 140px;
   --navbar-mobile-height: 50px;
