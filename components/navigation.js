@@ -252,12 +252,15 @@ const LogoContainerLink = styled.a`
   cursor: pointer;
 `;
 const LogoContainer = styled(Logo)`
-  height: 50px;
-  object-fit: contain;
+  height: 35px;
+  /* height: ${(props) =>
+    props.windowScroll.y < 60 || props.mobileContainer ? "50px" : "35px"}; */
   filter: ${(props) =>
     (props.windowScroll.y < 60 && props.index === "/") || props.mobileContainer
       ? "invert(1)"
-      : "invert(0)"};
+    : "invert(0)"};
+  transform: ${(props) =>
+    props.windowScroll.y < 60 || props.mobileContainer ? "scale(1)" : "scale(0.8)"};
   @media screen and (max-width: 768px) {
     height: 20px;
   }
