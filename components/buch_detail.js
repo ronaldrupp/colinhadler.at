@@ -3,6 +3,7 @@ import { RichText } from "prismic-reactjs";
 import dayjs from "dayjs";
 import Link from "next/link";
 import InfoSvg from "./../public/info.svg";
+import Image from 'next/image'
 
 export default function Buch_Detail({ data }) {
   return (
@@ -27,7 +28,12 @@ export default function Buch_Detail({ data }) {
                       target="_blank"
                       key={idx}
                     >
-                      <Logo src={merchant.merchant.logo_of_merchant.url} />
+                      <Image
+                        src={merchant.merchant.logo_of_merchant.url}
+                        width={100}
+                        height={25}
+                        objectFit="contain"
+                      />
                     </MerchantItem>
                   </>
                 ))}
