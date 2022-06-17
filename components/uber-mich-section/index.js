@@ -219,8 +219,10 @@ const InnerContainer = styled.div`
   align-items: flex-start;
   position: relative;
   @media screen and (max-width: 768px) {
-    height: 700px;
+    height: 850px;
     margin: 0 auto;
+    margin-bottom: 10em;
+    padding: 5em 0;
   }
 `;
 
@@ -280,6 +282,6 @@ const Bild = styled.div`
   right: 10%;
   z-index: 2;
   @media screen and (max-width: 768px) {
-    top: 52%;
+    top: 62%;
   }
 `;
