@@ -8,7 +8,7 @@ export default function MeineBucherSection({ data }) {
       <h2>Meine Bücher</h2>
       <BookContainer>
         {data.fields.map((buch) => (
-          <Link href={buch.buch._meta.uid} key={buch.buch._meta.uid}>
+          <Link href={buch.buch._meta.uid} key={buch.buch._meta.uid} passHref>
             <ElementContainer>
               <Image
                 width={200}
