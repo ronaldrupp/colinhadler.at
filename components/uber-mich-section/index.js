@@ -141,6 +141,8 @@ gsap.registerPlugin(ScrollTrigger);
 
 export default function UberMichSection({ data }) {
   let textContainerRef = useRef();
+  let colinRef = useRef();
+  let potraitRef = useRef();
   useEffect(() => {
     gsap.from('.text-container > p', {
       scrollTrigger: {
@@ -152,6 +154,26 @@ export default function UberMichSection({ data }) {
       y: 40,
       opacity: 0,
     });
+    gsap.from(colinRef.current, {
+      scrollTrigger: {
+        trigger: textContainerRef.current,
+        start: "top bottom",
+        end: "bottom 70%",
+        scrub: 1,
+      },
+      xPercent: 10,
+      opacity: 0,
+    });
+    gsap.from(potraitRef.current, {
+      scrollTrigger: {
+        trigger: potraitRef.current,
+        start: "top bottom",
+        end: "bottom 70%",
+        scrub: 1,
+      },
+      xPercent: -30,
+      opacity: 0.8,
+    });
   },[])
 
   return (
@@ -160,11 +182,13 @@ export default function UberMichSection({ data }) {
         style={{ backgroundColor: data.primary.hintergrundfarbe }}
       >
         <Bild>
-          <img src={data.primary.bild.url} />
+          <img src={data.primary.bild.url} ref={potraitRef} />
         </Bild>
-        <Hintergrundnamen>
-          {RichText.render(data.primary.hintergrundnamen)}
-        </Hintergrundnamen>
+          <Hintergrundnamen>
+            <div ref={colinRef}>
+              {RichText.render(data.primary.hintergrundnamen)}
+            </div>
+          </Hintergrundnamen>
         <Content>
           <TextContainer ref={textContainerRef} className="text-container">
             {RichText.render(data.primary.kurze_beschreibung)}
@@ -187,27 +211,27 @@ const Container = styled.div`
 const InnerContainer = styled.div`
   width: 100%;
   height: 450px;
-  max-width: 900px;
+  max-width: var(--main-width);
   margin: 5rem auto;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
   align-items: flex-start;
   position: relative;
+  @media screen and (max-width: 768px) {
+    height: 700px;
+    margin: 0 auto;
+  }
 `;
 
 const TextContainer = styled.div`
   max-width: 30ch;
+  margin-bottom: 40px;
 `;
 
-const Btn = styled.a`
-  padding: 1rem;
-  color: white;
-  background-color: black;
-  margin-top: 2rem;
-  cursor: pointer;
-`;
+const HintergrundnamenContainer = styled.div`
 
+`
 const Hintergrundnamen = styled.div`
   position: absolute;
   top: 0;
@@ -220,6 +244,7 @@ const Hintergrundnamen = styled.div`
   justify-content: center;
   align-items: flex-end;
   z-index: 1;
+  overflow:hidden;
   p {
     font-weight: 800;
     margin: 0;
@@ -227,7 +252,10 @@ const Hintergrundnamen = styled.div`
     font-size: 12rem;
     text-align: right;
     text-transform: uppercase;
-    color: hsla(0, 0%, 100%, 0.445);
+    color: rgba(0,0,0,0.5);
+  }
+  @media screen and (max-width: 768px){
+    display: none;
   }
 `;
 
@@ -238,8 +266,12 @@ const Content = styled.div`
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  justify-content: center;
+  justify-content: flex-start;
   padding: 2rem;
+  @media screen and (max-width: 768px) {
+    text-align: center;
+    align-items: center;
+  }
 `;
 
 const Bild = styled.div`
@@ -248,6 +280,6 @@ const Bild = styled.div`
   right: 10%;
   z-index: 2;
   @media screen and (max-width: 768px) {
-    display: none;
+    top: 52%;
   }
 `;
