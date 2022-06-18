@@ -274,6 +274,9 @@ const InnerContainer = styled.div`
   margin: 0 auto;
   padding: 0 1rem;
   z-index: 2;
+  @media screen and (max-width: 768px) {
+    padding: 0 0 0 1rem;
+  }
 `;
 
 const LinkContainer = styled.ul`
@@ -295,12 +298,13 @@ const MenuButton = styled.button`
   display: none;
   padding: 0;
   @media screen and (max-width: 768px) {
-    width: 45px;
-    height: 45px;
+    width: 50px;
+    height: 50px;
+    padding-right: 1em;
     border: none;
     background: none;
     display: flex;
-    justify-content: center;
+    justify-content: flex-end;
     align-items: center;
   }
 `;
