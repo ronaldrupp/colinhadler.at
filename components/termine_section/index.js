@@ -4,11 +4,15 @@ import styled from "styled-components";
 import PrimaryBtn from "./../PrimaryBtn";
 export default function TermineSection({ data }) {
   return (
-    <Container>
-      <BackgroundImage
-        src={data.primary.hintergrundbild.url}
-        alt={data.primary.hintergrundbild.alt}
-      />
+    <Container
+      style={{ backgroundImage: `url(${data.primary.hintergrundbild.url})` }}
+    >
+      <div style={{ clipPath: "inset(0px 0px 0px 0px)" }}>
+        {/* <BackgroundImage
+          src={data.primary.hintergrundbild.url}
+          alt={data.primary.hintergrundbild.alt}
+        /> */}
+      </div>
       <OuterContainer>
         <InnerContainer>
           <Overlay>
@@ -32,9 +36,11 @@ const Container = styled.section`
   position: relative;
   display: flex;
   flex-direction: column;
-  .bg-img {
-    filter: saturate(0);
-  }
+  height: 800px;
+  background-position: 35% 0%;
+  background-size: cover;
+  background-repeat: no-repeat;
+  filter: saturate(0);
 `;
 const OuterContainer = styled.div`
   position: absolute;
@@ -43,7 +49,6 @@ const OuterContainer = styled.div`
   width: 100%;
   height: 100%;
   @media screen and (max-width: 768px) {
-    position: static;
   }
 `;
 const InnerContainer = styled.div`
@@ -55,6 +60,11 @@ const InnerContainer = styled.div`
   max-width: var(--main-width);
   margin: 0 auto;
   padding: 1rem;
+  @media screen and (max-width: 768px) {
+    justify-content:center;
+    align-items: flex-end;
+    padding: 2rem;
+  }
 `;
 const Overlay = styled.div`
   width: 350px;
@@ -64,12 +74,15 @@ const Overlay = styled.div`
   flex-direction: column;
   justify-content: flex-start;
   align-items: flex-start;
+  border-radius: var(--border-radius);
   h1 {
     margin: 0;
   }
   @media screen and (max-width: 768px) {
-    padding: 0;
     width: 100%;
+    text-align: center;
+    justify-content: flex-start;
+    align-items: center;
   }
 `;
 
@@ -79,6 +92,6 @@ const BackgroundImage = styled.img`
   object-fit: cover;
   filter: saturate(0);
   @media screen and (max-width: 768px) {
-    height: 250px;
+    height: 700px;
   }
 `;
