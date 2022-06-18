@@ -216,9 +216,9 @@ const LinkItem = styled.a`
 const Container = styled.nav`
   position: fixed;
   width: 100%;
-  height: ${(props) => (props.windowScroll.y > 60 ? "75px" : "150px")};
+  height: 75px;
   border-bottom: ${(props) =>
-    props.windowScroll.y > 60 && !props.mobileContainer
+    props.windowScroll.y > 40 && !props.mobileContainer
       ? "1px solid rgba(200,200,200,0.6)"
       : "none"};
   top: 0;
@@ -230,7 +230,7 @@ const Container = styled.nav`
       ? "invert(1)"
       : "invert(0)"}; */
   background-color: ${(props) => {
-    if (props.windowScroll.y > 60 && !props.mobileContainer) {
+    if (props.windowScroll.y > 40 && !props.mobileContainer) {
       return "rgba(255,255,255,1)";
     } else if (props.mobileContainer) {
       return "black";
@@ -256,11 +256,9 @@ const LogoContainer = styled(Logo)`
   /* height: ${(props) =>
     props.windowScroll.y < 60 || props.mobileContainer ? "50px" : "35px"}; */
   filter: ${(props) =>
-    (props.windowScroll.y < 60 && props.index === "/") || props.mobileContainer
+    (props.windowScroll.y < 40 && props.index === "/") || props.mobileContainer
       ? "invert(1)"
-    : "invert(0)"};
-  transform: ${(props) =>
-    props.windowScroll.y < 60 || props.mobileContainer ? "scale(1)" : "scale(0.8)"};
+      : "invert(0)"};
   @media screen and (max-width: 768px) {
     height: 20px;
   }
