@@ -300,7 +300,7 @@ const MenuButton = styled.button`
   @media screen and (max-width: 768px) {
     width: 50px;
     height: 50px;
-    padding-right: 1em;
+    padding-right: 16px;
     border: none;
     background: none;
     display: flex;
