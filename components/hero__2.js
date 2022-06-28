@@ -1,14 +1,32 @@
 import styled from "styled-components";
 import { RichText } from "prismic-reactjs";
+import { gsap } from "gsap";
+import { useRef, useLayoutEffect } from "react";
 
 export default function Hero__2({ data }) {
+  let BigBgTitleRef = useRef();
+  let ImageRef = useRef();
+
+  useLayoutEffect(() => {
+    gsap.from(BigBgTitleRef.current, {
+      scale: 0.7,
+      ease: "power3.out",
+      duration: 2,
+    });
+    gsap.from(ImageRef.current, {
+      scale: 1.3,
+      ease: "power3.out",
+      duration: 2,
+    });
+  }, []);
+
   return (
     <Container>
-      <BigBgTitle>
+      <BigBgTitle ref={BigBgTitleRef}>
         {RichText.render(data.primary.big_background_text)}
       </BigBgTitle>
       <ImageContainer>
-        <Image src={data.primary.image.url} />
+        <Image src={data.primary.image.url} ref={ImageRef} />
       </ImageContainer>
     </Container>
   );
