@@ -136,6 +136,7 @@ const MerchantsContainer = styled.div`
   grid-template-columns: 1fr 1fr;
   gap: 1rem;
   margin-top: 2rem;
+  width:100%;
 `;
 const Description = styled.div`
   max-width: 70ch;
