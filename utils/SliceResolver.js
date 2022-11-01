@@ -19,6 +19,7 @@ import PotraitImageWithText from "../components/PotraitImageWithText";
 import LandscapeImageWithText from "../components/LandscapeImageWithText";
 import ContactSection from "../components/contact_section";
 import ExternalLinksGrid from "../components/ExternalLinksGrid";
+import HeroScroll from "../components/HeroScroll";
 
 export default function SliceResolver({ slice, data }) {
   switch (data.__typename) {
@@ -60,6 +61,8 @@ export default function SliceResolver({ slice, data }) {
       return <ContactSection data={data} />;
     case "PagesBodyExternal_link_section":
       return <ExternalLinksGrid data={data} />;
+    case "exiliumhero":
+      return <HeroScroll />
     default:
       return (
         <Container>

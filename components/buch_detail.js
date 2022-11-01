@@ -3,7 +3,7 @@ import { RichText } from "prismic-reactjs";
 import dayjs from "dayjs";
 import Link from "next/link";
 import InfoSvg from "./../public/info.svg";
-import Image from 'next/image'
+import Image from "next/image";
 
 export default function Buch_Detail({ data }) {
   return (
@@ -17,8 +17,13 @@ export default function Buch_Detail({ data }) {
         <Header>
           <Cover src={data.primary.buch.cover.url} />
           <Infos>
-            {RichText.render(data.primary.buch.titel)}
-            {dayjs(data.primary.buch.erscheinungsdatum).format("YYYY")}
+            {data.primary.buch.isnew ? <NewIndicator>NEU</NewIndicator> : null}
+            {RichText.render(data.primary.buch.titel)}{" "}
+            <p>
+              {dayjs(data.primary.buch.erscheinungsdatum)
+                .locale("de")
+                .format("DD. MMMM YYYY")}
+            </p>
             <MerchantsContainer>
               {data.primary.buch.listoflinks &&
                 data.primary.buch.listoflinks.map((merchant, idx) => (
@@ -40,7 +45,9 @@ export default function Buch_Detail({ data }) {
             </MerchantsContainer>
             <InfoParagraph>
               <InfoSvg />
-              <p>Am besten bestellen Sie in Ihrer lokalen Buchhandlung!</p>
+              <p style={{ margin: 0, marginTop:3 }}>
+                Am besten bestellen Sie in Ihrer lokalen Buchhandlung!
+              </p>
             </InfoParagraph>
           </Infos>
         </Header>
@@ -61,6 +68,9 @@ export default function Buch_Detail({ data }) {
   );
 }
 
+const NewIndicator = styled.div`
+  color: orange;
+`;
 const InfoParagraph = styled.div`
   background-color: var(--gray-color);
   padding: 1em;
@@ -74,7 +84,6 @@ const InfoParagraph = styled.div`
     margin: 0.1em 0;
   }
   svg {
-    margin-right: 0.5em;
   }
 `;
 const BackLinkA = styled.a`
@@ -135,8 +144,8 @@ const MerchantsContainer = styled.div`
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 1rem;
-  margin-top: 2rem;
-  width:100%;
+  margin-top: 4rem;
+  width: 100%;
 `;
 const Description = styled.div`
   max-width: 70ch;
@@ -160,12 +169,19 @@ const Cover = styled.img`
 `;
 
 const Infos = styled.div`
+  h1 {
+    margin: 0px;
+  }
+  p {
+    margin: 0.5rem 0;
+  }
   @media screen and (max-width: 768px) {
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
     text-align: center;
+    margin-top: 40px;
   }
 `;
 
