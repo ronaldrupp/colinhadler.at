@@ -38,6 +38,7 @@ const Container = styled.div`
   align-items: center;
   position: relative;
   min-height: 800px;
+  height:100vh;
   padding: 4rem 0;
   overflow: hidden;
   @media screen and (max-width: 768px) {
@@ -55,7 +56,9 @@ const BigBgTitle = styled.div`
     margin: 0;
   }
   @media screen and (max-width: 768px) {
-    font-size: 7.5rem;
+    font-size: 4.5rem;
+    position:absolute;
+    top:95px;
   }
 `;
 
@@ -65,7 +68,7 @@ const ImageContainer = styled.div`
   inset: 0;
   display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: flex-end;
 `;
 
 const Image = styled.img`
