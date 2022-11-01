@@ -68,4 +68,8 @@ const ImageContainer = styled.div`
   align-items: center;
 `;
 
-const Image = styled.img``;
+const Image = styled.img`
+width:400px;
+height:600px;
+object-fit: contain;
+`;
