@@ -8,6 +8,8 @@ import ApolloClient from "apollo-client";
 import gql from "graphql-tag";
 import fragmentTypes from "./../utils/fragmentTypes.json";
 import { NextSeo, SocialProfileJsonLd } from "next-seo";
+import HeroScroll from "./../components/HeroScroll";
+
 export default function Home({ data }) {
   const { page_title, page_description, page_images } = data;
   return (
@@ -40,6 +42,7 @@ export default function Home({ data }) {
           "https://www.instagram.com/colinhadler/",
         ]}
       />
+      <HeroScroll />
       {data.body.map((elm) => (
         <SliceResolver slice={elm.slice_type} data={elm} key={elm.slice_type} />
       ))}
