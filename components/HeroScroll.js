@@ -47,7 +47,15 @@ export default function HeroScroll() {
 
   return (
     <Container>
-      <BgImage src="/exilium-bg.png" alt="Innenklappe vom Buch Exilium" />
+      <BgImage>
+        <Image
+          className="bgBackground"
+          layout="fill"
+          objectFit="cover"
+          src="/exilium-bg.png"
+          alt="Innenklappe vom Buch Exilium"
+        />
+      </BgImage>
       <Content ref={contentContainer}>
         <TextContainer ref={textContainerRef}>
           <h1>Wie viele Menschen haben noch ihren freien Willen?</h1>
@@ -80,7 +88,7 @@ const Content = styled.div`
   width: 100%;
   margin-top: calc((100vh + 7.5px) * -1);
 `;
-const BgImage = styled.img`
+const BgImage = styled.div`
   width: 100vw;
   height: 100vh;
   object-fit: cover;
@@ -105,15 +113,15 @@ const TextContainer = styled.div`
   justify-content: center;
   position: sticky;
   top: 0;
-  padding:20px;
+  padding: 20px;
   h1 {
     margin: 0;
     text-transform: uppercase;
-    line-height:1;
+    line-height: 1;
     &:nth-child(2) {
       font-weight: 400;
       font-size: 20px;
-      margin-top:20px;
+      margin-top: 20px;
     }
   }
 `;
