@@ -25,16 +25,16 @@ export default function Buch_Detail({ data }) {
                 .format("DD. MMMM YYYY")}
             </p>
             <MerchantsContainer>
-              {data.primary.buch.listoflinks &&
+              {data.primary.buch.listoflinks.length > 1 &&
                 data.primary.buch.listoflinks.map((merchant, idx) => (
                   <>
                     <MerchantItem
-                      href={merchant.link.url}
+                      href={merchant.link?.url}
                       target="_blank"
                       key={idx}
                     >
                       <Image
-                        src={merchant.merchant.logo_of_merchant.url}
+                        src={merchant.merchant?.logo_of_merchant?.url}
                         width={100}
                         height={25}
                         objectFit="contain"
@@ -43,12 +43,14 @@ export default function Buch_Detail({ data }) {
                   </>
                 ))}
             </MerchantsContainer>
-            <InfoParagraph>
-              <InfoSvg />
-              <p style={{ margin: 0, marginTop:3 }}>
-                Am besten bestellen Sie in Ihrer lokalen Buchhandlung!
-              </p>
-            </InfoParagraph>
+            {data.primary.buch.listoflinks.length > 1 && (
+              <InfoParagraph>
+                <InfoSvg />
+                <p style={{ margin: 0, marginTop: 3 }}>
+                  Am besten bestellen Sie in Ihrer lokalen Buchhandlung!
+                </p>
+              </InfoParagraph>
+            )}
           </Infos>
         </Header>
         <Description>
@@ -56,14 +58,14 @@ export default function Buch_Detail({ data }) {
         </Description>
       </Container>
 
-      <ReviewsContainer>
+      {data.primary.buch.rezensionen.length > 1 && <ReviewsContainer>
         {data.primary.buch.rezensionen.map((review, idx) => (
           <ReviewItem key={idx}>
             <ReviewQoute>{RichText.render(review.text)}</ReviewQoute>
             <ReviewAuthor>{RichText.render(review.name)}</ReviewAuthor>
           </ReviewItem>
         ))}
-      </ReviewsContainer>
+      </ReviewsContainer>}
     </>
   );
 }
