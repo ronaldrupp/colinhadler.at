@@ -45,7 +45,6 @@ export default function Buch_Detail({ data }) {
             </MerchantsContainer>
             {data.primary.buch.listoflinks.length > 1 && (
               <InfoParagraph>
-                <InfoSvg />
                 <p style={{ margin: 0, marginTop: 3 }}>
                   Am besten bestellen Sie in Ihrer lokalen Buchhandlung!
                 </p>
