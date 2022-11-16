@@ -89,7 +89,7 @@ const Content = styled.div`
   margin-top: calc((100vh + 7.5px) * -1);
 `;
 const BgImage = styled.div`
-  width: 100vw;
+  width: 100%;
   height: 100vh;
   object-fit: cover;
   filter: brightness(0.5);
