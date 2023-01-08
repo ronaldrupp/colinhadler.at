@@ -6,7 +6,7 @@ gsap.registerPlugin(ScrollTrigger);
 import Link from "next/link";
 import Image from "next/image";
 import PrimaryBtn from "../PrimaryBtn";
-import { RichText } from "prismic-reactjs-custom";
+import { RichText } from "prismic-reactjs";
 
 export default function Hero__1({ data }) {
   let textContainerRef = useRef();
@@ -70,10 +70,17 @@ export default function Hero__1({ data }) {
       <Overlay>
         <TextContent>
           <Quote ref={textContainerRef} className="hero1-text-container">
-            <RichText
+           <WrapParagraph>{RichText.render(data.primary.kurzbeschreibung)}</WrapParagraph>
+            {/* <PrismicRichText
+  field={data.primary.kurzbeschreibung}
+  components={{
+    paragraph: ({ children }) => <WrapParagraph>{children}</WrapParagraph>,
+  }}
+/> */}
+            {/* <RichText
               richText={data.primary.kurzbeschreibung}
               paragraph={WrapParagraph}
-            ></RichText>
+            ></RichText> */}
             {/* {RichText.render(data.primary.kurzbeschreibung)} */}
           </Quote>
           {countdownEnded ? (
@@ -127,7 +134,7 @@ const WrapParagraphContainer = styled.div`
   overflow: hidden;
   p {
     margin: 0.5em 0;
-    opacity: 0;
+    opacity: 1;
   }
 `;
 const Container = styled.div`

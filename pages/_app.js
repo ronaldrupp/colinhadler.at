@@ -10,6 +10,7 @@ import ApolloClient from "apollo-client";
 import gql from "graphql-tag";
 import { withRouter } from "next/router";
 import * as ga from "../lib/ga";
+import { Analytics } from '@vercel/analytics/react';
 
 const client = new ApolloClient({
   link: PrismicLink({
@@ -101,6 +102,7 @@ class MyApp extends NextApp {
             <Component {...pageProps} />
           </AnimatePresence>
         </Layout>
+        <Analytics />
       </>
     );
   }
