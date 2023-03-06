@@ -38,7 +38,7 @@ export default function TerminList({ data }) {
           <div>
             <Image
               src={event.cover.url}
-              width={400}
+              width={500}
               height={250}
               objectFit="cover"
             ></Image>
