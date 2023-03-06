@@ -1,6 +1,3 @@
 {
-  "crons": [{
-    "path": "/api/emailStats",
-    "schedule": "*/5 * * * *"
-  }]
+
 }
