@@ -134,6 +134,7 @@ export const getStaticProps = async (req, ctx) => {
                     link {
                       ... on _ExternalLink {
                         url
+                        target
                       }
                     }
                   }
