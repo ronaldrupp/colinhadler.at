@@ -44,4 +44,10 @@ const Cover = styled.img`
 
 const ElementContainer = styled.a`
   cursor: pointer;
+  transition: transform 0.6s cubic-bezier(0.19, 1, 0.22, 1),
+    -webkit-transform 0.6s cubic-bezier(0.19, 1, 0.22, 1);
+
+  &:hover {
+    transform: translateY(-10px);
+  }
 `;
