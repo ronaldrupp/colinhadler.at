@@ -1,6 +1,6 @@
 # colinhadler.at
 
-Website of [Colin Hadler](http://colinhadler.at) built with Next.js and Prismic.
+Website of [Colin Hadler](http://colinhadler.at) built with Next.js and Prismic. Deployed on Vercel.
 
 ## Setup
 
