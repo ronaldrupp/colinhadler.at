@@ -193,7 +193,9 @@ const OverlayDetails = styled.div`
   text-align: justify;
 `;
 
-const OverlayDescription = styled.div``;
+const OverlayDescription = styled.div`
+  text-align: left;
+`;
 const Cover = styled.img`
   width: 100%;
 `;
