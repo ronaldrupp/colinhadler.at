@@ -8,6 +8,8 @@ import { useRouter } from "next/router";
 import ChevronDown from "./../public/chevron-down.svg";
 import "dayjs/locale/de";
 
+const currentDate = dayjs();
+
 export default function TerminList({ data }) {
   const [showModal, setShowModal] = useState(false);
   const [modalData, setModalData] = useState({});
@@ -25,36 +27,42 @@ export default function TerminList({ data }) {
           <Overlay event={modalData} closeModal={() => setShowModal(false)} />
         ) : null}
       </AnimatePresence>
-      {data.fields.map((event) => (
-        <EventItem
-          onClick={() => {
-            setModalData(event);
-            setShowModal(true);
-            document.body.style.overflowY = "hidden";
-            // router.query.event = event.titel_des_events;
-            // router.push(router);
-          }}
-        >
-          <div>
-            <Image
-              src={event.cover.url}
-              width={500}
-              height={250}
-              objectFit="cover"
-            ></Image>
-          </div>
-          <EventDetails>
-            <EventTitle>{event.titel_des_events}</EventTitle>
-            <EventDate>
-              {dayjs(event.datum___uhrzeit)
-                .locale("de")
-                .format("DD. MMM YYYY, HH:mm")}{" "}
-              Uhr
-            </EventDate>
-            <EventLocation>{RichText.render(event.ort)}</EventLocation>
-          </EventDetails>
-        </EventItem>
-      ))}
+      {data.fields
+        .filter((event) => dayjs(event.datum___uhrzeit).isAfter(currentDate))
+        .map((event) => (
+          <EventItem
+            onClick={() => {
+              setModalData(event);
+              setShowModal(true);
+              document.body.style.overflowY = "hidden";
+              // router.query.event = event.titel_des_events;
+              // router.push(router);
+            }}
+          >
+            <div>
+              <Image
+                src={
+                  event.cover.url
+                    ? event.cover.url
+                    : "https://images.prismic.io/colinhadler/ea91e83e-7dea-43ba-a355-b1fdd45f387c_colin_9.jpg?auto=compress,format"
+                }
+                width={500}
+                height={250}
+                objectFit="cover"
+              ></Image>
+            </div>
+            <EventDetails>
+              <EventTitle>{event.titel_des_events}</EventTitle>
+              <EventDate>
+                {dayjs(event.datum___uhrzeit)
+                  .locale("de")
+                  .format("DD. MMM YYYY, HH:mm")}{" "}
+                Uhr
+              </EventDate>
+              <EventLocation>{RichText.render(event.ort)}</EventLocation>
+            </EventDetails>
+          </EventItem>
+        ))}
     </Container>
   );
 }
