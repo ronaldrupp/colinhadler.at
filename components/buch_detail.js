@@ -2,7 +2,6 @@ import styled from "styled-components";
 import { RichText } from "prismic-reactjs";
 import dayjs from "dayjs";
 import Link from "next/link";
-import InfoSvg from "./../public/info.svg";
 import Image from "next/image";
 
 export default function Buch_Detail({ data }) {
@@ -27,7 +26,6 @@ export default function Buch_Detail({ data }) {
             <MerchantsContainer>
               {data.primary.buch.listoflinks.length > 1 &&
                 data.primary.buch.listoflinks.map((merchant, idx) => (
-                  <>
                     <MerchantItem
                       href={merchant.link?.url}
                       target="_blank"
@@ -40,7 +38,6 @@ export default function Buch_Detail({ data }) {
                         objectFit="contain"
                       />
                     </MerchantItem>
-                  </>
                 ))}
             </MerchantsContainer>
             {data.primary.buch.listoflinks.length > 1 && (
@@ -56,8 +53,7 @@ export default function Buch_Detail({ data }) {
           {RichText.render(data.primary.buch.beschreibung)}
         </Description>
       </Container>
-
-      {data.primary.buch.rezensionen.length > 1 && <ReviewsContainer>
+      {data.primary.buch.rezensionen.length > 0 && <ReviewsContainer>
         {data.primary.buch.rezensionen.map((review, idx) => (
           <ReviewItem key={idx}>
             <ReviewQoute>{RichText.render(review.text)}</ReviewQoute>
