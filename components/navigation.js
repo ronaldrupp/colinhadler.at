@@ -52,6 +52,7 @@ export default function Navigation({ data }) {
                 <Link
                   href={site.interne_seite._meta.uid}
                   key={site.interne_seite._meta.uid}
+                  passHref={true}
                 >
                   <LinkItem
                     onClick={() => {
@@ -80,7 +81,7 @@ export default function Navigation({ data }) {
         mobileContainer={showMobileContainer}
       >
         <InnerContainer>
-          <Link href="/">
+          <Link href="/" passHref={true}>
             <LogoContainerLink
               onClick={() => {
                 if (showMobileContainer)
@@ -124,7 +125,7 @@ export default function Navigation({ data }) {
           <LinkContainer>
             {data.node.interne_seiten.map((site) => (
               <li key={site.interne_seite._meta.uid}>
-                <Link href={site.interne_seite._meta.uid}>
+                <Link href={site.interne_seite._meta.uid} passHref={true}>
                   <LinkItem
                     windowScroll={windowScroll}
                     index={router.route}
