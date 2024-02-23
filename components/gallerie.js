@@ -6,7 +6,7 @@ export default function Gallerie({ data }) {
     <Container>
       {data.fields.map((bild, idx) => (
         <Element key={bild.bild.url}>
-          <Image src={bild.bild.url} />
+          <Image src={bild.bild.url} alt={bild.bild.alt}/>
           {bild.beschreibung && (
             <TextContainer>{RichText.render(bild.beschreibung)}</TextContainer>
           )}

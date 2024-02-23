@@ -6,6 +6,7 @@ export default function PotraitImageWithText({ data }) {
     <Container>
       <Image
         src={data.primary.bild.url}
+        alt={data.primary.bild.alt}
         leftRight={data.primary.links_oder_rechts}
       />
       {data.primary.beschreibung ? (

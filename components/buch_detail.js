@@ -33,6 +33,7 @@ export default function Buch_Detail({ data }) {
                     >
                       <Image
                         src={merchant.merchant?.logo_of_merchant?.url}
+                        alt={merchant.merchant?.logo_of_merchant?.alt}
                         width={100}
                         height={25}
                         objectFit="contain"

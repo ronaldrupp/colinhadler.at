@@ -5,7 +5,7 @@ export default function LandscapeImageWithText({ data }) {
 
   return (
     <Container>
-      <Image src={data.primary.bild.url} />
+      <Image src={data.primary.bild.url} alt={data.primary.bild.alt}/>
       <Description>{RichText.render(data.primary.beschreibung)}</Description>
     </Container>
   );

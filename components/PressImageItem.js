@@ -28,6 +28,7 @@ export default function PressImageItem({ image, showDia, idx }) {
       <ImageContainer onClick={() => showDia(idx)}>
         <StyledImage
           src={image.bild.url}
+          alt={image.bild.alt}
           width={334}
           height={334}
         ></StyledImage>

@@ -49,6 +49,7 @@ export default function TerminList({ data }) {
                 width={500}
                 height={450}
                 objectFit="cover"
+                alt={event.cover.alt}
               ></Image>
             </div>
             <EventDetails>
@@ -88,6 +89,7 @@ function Overlay({ event, closeModal }) {
       >
         <Image
           src={event.cover.url}
+          alt={event.cover.alt}
           width={768}
           height={650}
           objectFit="cover"

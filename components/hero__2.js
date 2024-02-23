@@ -26,7 +26,7 @@ export default function Hero__2({ data }) {
         {RichText.render(data.primary.big_background_text)}
       </BigBgTitle>
       <ImageContainer>
-        <Image src={data.primary.image.url} ref={ImageRef} />
+        <Image src={data.primary.image.url} alt={data.primary.image.alt} ref={ImageRef} />
       </ImageContainer>
     </Container>
   );

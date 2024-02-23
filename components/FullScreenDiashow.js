@@ -38,7 +38,7 @@ export default function FullScreenDiashow({
       <ScrollableContainer ref={scrollableContainerRef}>
         {images.map((image, idx) => (
           <ImageOuterContainer key={image.bild.url}>
-            <Image src={image.bild.url} layout="fill" objectFit="contain" />
+            <Image src={image.bild.url} layout="fill" objectFit="contain" alt={image.bild.alt}/>
           </ImageOuterContainer>
         ))}
       </ScrollableContainer>

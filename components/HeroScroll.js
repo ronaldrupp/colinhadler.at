@@ -66,6 +66,7 @@ export default function HeroScroll() {
             <a>
               <Image
                 src="/exilium-3d.png"
+                alt="Exilium Buchcover"
                 width={500}
                 height={600}
                 objectFit="contain"

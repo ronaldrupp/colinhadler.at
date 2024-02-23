@@ -109,6 +109,7 @@ export default function Hero__1({ data }) {
           <a>
             <Image
               src={data.primary.cover.url}
+              alt={data.primary.cover.alt}
               width={500}
               height={600}
               objectFit="contain"
