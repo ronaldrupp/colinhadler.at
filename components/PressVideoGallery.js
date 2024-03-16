@@ -17,7 +17,7 @@ export default function PressVideoGallery({ data }) {
           >
             <Image
               src={video.image.url}
-              src={video.image.alt}
+              alt={video.image.alt}
               width={389}
               height={200}
               objectFit="cover"
