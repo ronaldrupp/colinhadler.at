@@ -126,7 +126,7 @@ export default function Hero__1({ data }) {
 function WrapParagraph({ children }) {
   return (
     <WrapParagraphContainer>
-      <p class="quote-line">{children}</p>
+      <p className="quote-line">{children}</p>
     </WrapParagraphContainer>
   );
 }
