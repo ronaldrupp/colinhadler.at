@@ -5,7 +5,6 @@ import Link from "next/link";
 import Image from "next/image";
 
 export default function All_Books({ data }) {
-  console.log(data);
   return (
     <Container>
       {data.fields.map((book) => (

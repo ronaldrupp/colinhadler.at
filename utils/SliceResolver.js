@@ -66,7 +66,6 @@ export default function SliceResolver({ slice, data }) {
     default:
       return (
         <Container>
-          {console.log(data)}
           <code>component not found</code>
         </Container>
       );

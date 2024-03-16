@@ -34,7 +34,7 @@ const BuchHero = ({ slice }) => {
       duration: 1,
     });
   });
-  console.log(slice);
+
   return (
     <section className="needsTransparentNav">
       <div className="background-image">

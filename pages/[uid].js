@@ -281,7 +281,7 @@ export const getStaticProps = async (ctx) => {
       }
     `,
   });
-  // console.log(response.data.allPagess.edges);
+
   return {
     props: {
       data: response.data,
