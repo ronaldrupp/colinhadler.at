@@ -14,7 +14,8 @@ export default function TerminList({ data }) {
   const [showModal, setShowModal] = useState(false);
   const [modalData, setModalData] = useState({});
   const router = useRouter();
-  if (data.fields.length <= 0)
+  if (data.fields
+    .filter((event) => dayjs(event.datum___uhrzeit).isAfter(currentDate)).length <= 0)
     return (
       <NoEventsContainer>
         <span>Momentan keine öffentlichen Lesungen geplant.</span>
@@ -239,6 +240,7 @@ const NoEventsContainer = styled.div`
   padding: 4em 1em;
   margin: 0 auto;
   max-width: var(--main-width);
+  min-height: 50vh;
   span {
     font-weight: 100;
     color: rgb(150, 150, 150);
@@ -255,6 +257,7 @@ const Container = styled.section`
   padding: 4rem 1rem;
   margin: 0 auto;
   gap: 1rem;
+  min-height: 50vh;
   @media screen and (max-width: 768px) {
     grid-template-columns: repeat(2, 1fr);
   }
