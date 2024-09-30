@@ -9,6 +9,7 @@ import gql from "graphql-tag";
 import fragmentTypes from "./../utils/fragmentTypes.json";
 import { NextSeo, SocialProfileJsonLd } from "next-seo";
 import HeroScroll from "./../components/HeroScroll";
+import HeroSwttal from "../components/hero_swttal";
 
 export default function Home({ data }) {
   const { page_title, page_description, page_images } = data;
@@ -42,6 +43,7 @@ export default function Home({ data }) {
           "https://www.instagram.com/colinhadler/",
         ]}
       />
+    <HeroSwttal />
       <HeroScroll />
       {data.body.map((elm) => (
         <SliceResolver slice={elm.slice_type} data={elm} key={elm.slice_type} />

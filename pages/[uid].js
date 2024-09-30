@@ -105,7 +105,7 @@ export const getStaticProps = async (ctx) => {
               }
               page_title
         page_description
-        page_images{
+        page_images{ 
           image
         }
         ist_ein_buch_

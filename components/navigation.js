@@ -223,7 +223,7 @@ const Container = styled.nav`
       ? "1px solid rgba(200,200,200,0.6)"
       : "none"};
   top: 0;
-  z-index: 999;
+  z-index: 9999;
   transition: all 0.6s cubic-bezier(0.19, 1, 0.22, 1),
     -webkit-transform 0.6s cubic-bezier(0.19, 1, 0.22, 1);
   /* filter: ${(props) =>
