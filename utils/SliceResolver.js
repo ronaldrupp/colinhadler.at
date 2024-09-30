@@ -24,7 +24,7 @@ import HeroScroll from "../components/HeroScroll";
 export default function SliceResolver({ slice, data }) {
   switch (data.__typename) {
     case "HomepageBodyHero__1":
-      return <Hero__1 data={data} />;
+      return <div />;
     case "HomepageBodyUberMich_section":
       return <UberMichSection data={data} />;
     case "HomepageBodyMeineBucher_section":
