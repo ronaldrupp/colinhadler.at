@@ -52,6 +52,8 @@ const Description = styled.div`
   grid-column: ${(params) => (!params.leftRight ? "7 / 12" : "2 / 7")};
   grid-row: 2 / 5;
   padding: 3rem;
+    position: sticky;
+    top: 5rem;
   p {
     margin: 0;
   }
