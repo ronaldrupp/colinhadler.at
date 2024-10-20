@@ -30,7 +30,7 @@ const Container = styled.section`
 const Image = styled.img`
   width: 100%;
   grid-column: ${(params) => (params.leftRight ? "6 / 12" : "4 / 9")};
-  grid-row: 1/13;
+  grid-row: 1/8;
   @media screen and (max-width: 768px) {
     grid-column: ${(params) => (params.leftRight ? "6 / 13" : "1 / 10")};
     grid-row: 1/12;
@@ -47,13 +47,14 @@ const DescriptionWrapper = styled.div`
 
 const Description = styled.div`
   background-color: white;
+    box-shadow: 1px 1px 2rem rgba(0, 0, 0, 0.1);
   font-weight: 500;
   font-size: 1.5rem;
   grid-column: ${(params) => (!params.leftRight ? "7 / 12" : "2 / 7")};
   grid-row: 2 / 5;
   padding: 3rem;
     position: sticky;
-    top: 5rem;
+    top: 6rem;
   p {
     margin: 0;
   }
